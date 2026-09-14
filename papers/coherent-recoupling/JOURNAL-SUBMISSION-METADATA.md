@@ -2,9 +2,9 @@
 
 Paper ID: `PAPER-BCRD-COHERENT-RECOUPLING-001`
 
-Status: **V3 DESIGN RECONCILIATION FROZEN — NATIVE RESULT PENDING — NO FINAL VENUE SELECTED — NO SUBMISSION AUTHORIZED**
+Status: **V3 DESIGN RECONCILED — GOVERNANCE FROZEN — EXECUTION BLOCKED NOT AUTHORIZED — NO FINAL VENUE SELECTED — NO SUBMISSION AUTHORIZED**
 
-Venue scope checked against official publisher/journal pages on 2026-09-15. Recheck immediately before submission because scope and policies can change.
+Venue scope was checked against official publisher/journal pages on 2026-09-15. Recheck immediately before submission because scope and policies can change.
 
 ## Current authority state relevant to venue selection
 
@@ -13,20 +13,52 @@ DESIGN_V3 author design = PR #276
 DESIGN_V3 blind hostile design review = PR #277
 DESIGN_V3 author/review reconciliation = PR #278
 DESIGN_V3 substantive reconciliation authority = 167ce041cef4fc5d93c0cce41ddbfd48e3e5805e
-DESIGN_V3 metadata-only head = 5a8037eb1583c87d6b3df44c805ebbdb3854cb49
-DESIGN_V3 canonical authority = PR_278
-DESIGN_V3 execution governance frozen = NO
+
+execution/interface governance = PR #279
+scientific_governance_terminal = b0c2c32b0eaf7020a1f42f0d23aecc0eedc4b20f
+physical_interface_otherwise_governed = YES
+
+non-outcome exact-representation precheck = PR #280
+scientific_precheck_terminal = cbd2367103654c13f351bf0d97f4d632d2e82636
+precheck_status = FAIL_VALUE_FIREWALL
+
+independent precheck verification = PR #281
+scientific_verification_terminal = b06319c30b78b772aedd1fb7fc5850b2dfa3edb3
+final_verification_disposition = PRECHECK_VERIFIED_WITH_SCOPE_HARDENING
+
+G6_status = BLOCKED
+G7_status = BLOCKED
+all_execution_gates_pass = NO
+ready_for_native_execution = NO
+execution_authorized = NO
 native N=6 target outcome inspected = NO
 native N=6 execution completed = NO
-execution authorized = NO
 maximum programme claim = L2
 
 PRE_RESULT_LITERATURE_AUDIT = COMPLETED
-verified_bibliography_entries = 34
+general_verified_bibliography_entries = 34
+TARGETED_V3_PRIOR_ART_AUDIT = COMPLETED
+new_verified_sources_added = 13
+total_verified_sources_currently_available = 47
+BCRD_specific_conjunction_classification = KNOWN_BUT_APPLICATION_APPEARS_DISTINCT
 priority_claim_established = NO
+priority_language_authorized = NONE
 ```
 
-Canonical DESIGN_V3 design-side scope includes:
+## Scientific/readiness separation required in any submission
+
+1. **DESIGN-SIDE SCIENCE:** PR #278 accepts the exact V3 reference-fingerprint mathematics after independent reproduction and scope hardening.
+2. **GOVERNANCE / READINESS:** PR #279 otherwise governs the physical interface; PR #280 fails the value-free exact-capability precheck; PR #281 independently verifies that readiness conclusion with epistemic scope hardening.
+3. **NATIVE SCIENCE:** not executed.
+4. **LITERATURE POSITIONING:** `KNOWN_BUT_APPLICATION_APPEARS_DISTINCT`; no priority claim.
+
+The publication-safe readiness formulation is:
+
+> The required native exact-representation capability could not be established through the frozen value-free authority surface.
+
+Do not say native loading was proved to expose values, that the native target requires value exposure, or that exact arithmetic is impossible.
+
+## Canonical DESIGN_V3 design-side scope
 
 ```text
 V3_core_mathematics_status = ACCEPTED_AFTER_INDEPENDENT_REPRODUCTION
@@ -38,22 +70,27 @@ C1_collision_locus = c3 != 0 AND c1 = 0 AND c5 = 0
 C1_global_exclusion_full_c3_chart = NO
 C1_global_exclusion_noncollision_stratum = PROVED_ON_c3_NONZERO_AND_(c1_NONZERO_OR_c5_NONZERO)
 C2_global_exclusion_status = PROVED_FOR_CLASS_ON_C3_NONZERO_CHART
-prospective_forward_prediction_count = 118
-generic_apparatus_identity_count = 82
-reference_specific_constraint_count_vs_Sym5 = 36
-reference_specific_constraint_count_vs_C1 = 14
-generic_additional_C1_transverse_directions = 4
-collision_locus_additional_C1_transverse_directions = 3
 effective_compatibility_status = SUPPORTED_ON_C3_NONZERO_CHART
 microscopic_membership_status = NOT_SUPPORTED
 ```
 
-These are DESIGN-SIDE authority statements only. They do not establish a native N=6 outcome, microscopic membership, physical F-move, pentagon/Pachner dynamics, Regge/Ponzano-Regge dynamics, gravity, or quantum gravity.
+These are design-side statements only. They do not establish a native N=6 outcome, microscopic membership, physical F-move, pentagon/Pachner dynamics, Regge/Ponzano-Regge dynamics, gravity, or quantum gravity.
 
-The completed general literature audit does not establish a broad novelty or priority claim and does not replace:
+## Literature positioning
 
-- `[V3-PENDING: targeted frozen-V3 prior-art addendum]`
-- `[V3-PENDING: final result-specific literature/novelty disposition]`
+The targeted frozen-V3 audit supersedes the earlier provisional `POSSIBLY_NOVEL__REQUIRES_DEEPER_SEARCH` posture with:
+
+```text
+exact_V3_combination_found_in_prior_art = PARTIAL
+finite_SU2_V3_application_classification = KNOWN_BUT_APPLICATION_APPEARS_DISTINCT
+BCRD_specific_conjunction_classification = KNOWN_BUT_APPLICATION_APPEARS_DISTINCT
+priority_claim_established = NO
+priority_language_authorized = NONE
+```
+
+Safe contribution posture: DESIGN_V3 specializes established ideas from quantum Hamiltonian identification, algebraic/structural identifiability, predictive validation, matched-model discrimination, and blind analysis to a finite ordinary-SU(2) multipath recoupling observable architecture. Application-level synthesis only; no priority claim.
+
+Do not use `first`, `novel`, `unprecedented`, or `to our knowledge, the first` as priority claims.
 
 ## Common submission metadata
 
@@ -62,7 +99,7 @@ The completed general literature audit does not establish a broad novelty or pri
 - Abstract: `[V3-PENDING: final reconciled abstract]`
 - Article type: `[V3-PENDING: venue-specific article type]`
 - Keywords: `[V3-PENDING: final keyword set consistent with final result]`
-- Corresponding author email: not frozen in this package; provide at submission time from the author's chosen current address.
+- Corresponding author email: provide at submission time from the author's chosen current address.
 - ORCID: not supplied in this package.
 - Funding statement: `[V3-PENDING: final accurate funding/no-funding statement]`
 - Competing interests: `[V3-PENDING: final journal-form declaration]`
@@ -73,46 +110,32 @@ The completed general literature audit does not establish a broad novelty or pri
 
 ### Journal of Physics A: Mathematical and Theoretical
 
-**Current fit assessment: strong conditional fit, especially for a theorem/structure-led final outcome.**
+**Current fit assessment: strong conditional fit, especially for a theorem/structure-led final paper.**
 
-The reconciled DESIGN_V3 authority strengthens the mathematical-physics plausibility of this venue because the design-side result is an exact structural-identifiability statement with explicit algebraic collision/exclusion strata. However, venue selection remains premature: the paper's final centre depends on `[V3-PENDING: native fingerprint/result]`, post-execution review/reconciliation, and the frozen-V3/result-specific novelty disposition.
-
-Best fit if the eventual paper is primarily an exact structural-identifiability theorem/no-go/obstruction with clear physical motivation. Fit weakens if the final contribution is mainly implementation-specific without a sufficiently significant mathematical conclusion.
+The reconciled V3 design mathematics is exact and structurally meaningful, but current execution readiness is blocked before native science. J. Phys. A remains plausible if the final manuscript can stand substantially on the exact identifiability/collision/exclusion structure, regardless of whether native execution later becomes available. Final venue selection must still wait for the final manuscript and result-dependent authority chain.
 
 ### Physical Review A
 
-**Current fit assessment: strong conditional fit only if the eventual native result produces a clearly physical quantum-science/identification contribution; moderate if the paper remains mainly mathematical.**
+**Current fit assessment: conditional; stronger if a later native operational result exists.**
 
-The current design authority alone is not a native operational result. PRA fit therefore depends materially on `[V3-PENDING: native fingerprint/result]` and its post-execution scientific reconciliation.
+PRA fit depends more strongly on physically interpretable executed quantum-science content. The present governance/precheck state is not a native result and should not be presented as one.
 
 ### Quantum
 
 **Current fit assessment: high-bar conditional fit only; do not target by default.**
 
-The reconciled design-side mathematics is not by itself sufficient to infer the breadth or significance threshold required for Quantum. A final decision requires the native result plus targeted novelty adjudication.
-
-## Result-strength decision matrix
-
-| Eventual reconciled result | Journal of Physics A | Physical Review A | Quantum |
-|---|---|---|---|
-| rigorous algebraic-identifiability theorem/no-go with strong physical motivation, limited direct operational novelty | **Strong** | Moderate | Low to moderate |
-| clean physically meaningful operational quantum-identification result with exact/robust certification | Strong | **Strong** | Moderate; high only if broad/significant beyond BCRD |
-| major general framework/theorem with broad quantum-science consequences | Strong | Strong | **Potentially strong** |
-| sharp negative native result with a significant general obstruction | **Strong to moderate** | Moderate to strong if physically important | Low to moderate unless broadly consequential |
-| native result remains model-specific/inconclusive and paper is mainly design progression | Moderate only if exact mathematics itself constitutes a significant contribution | Low to moderate | Low |
-
-This matrix is advisory, not a venue decision. Final venue remains `[V3-PENDING: choose only after post-execution scientific reconciliation, final result-specific literature/novelty disposition, and publication-level hostile claim audit]`.
+The targeted prior-art audit now classifies the BCRD-specific conjunction as `KNOWN_BUT_APPLICATION_APPEARS_DISTINCT`. That does not support a priority claim and, by itself, does not establish the broad advance threshold appropriate for Quantum.
 
 ## Submission-specific final checks
 
 Before selecting any venue:
 
 1. Re-read current official scope and preprint policy.
-2. Confirm all DESIGN_V3 design-side wording maps to PR #278 and does not masquerade as native execution evidence.
-3. Preserve the C1 collision locus and `C1_global_exclusion_full_c3_chart = NO`.
-4. Preserve `microscopic_membership_status = NOT_SUPPORTED` unless later explicit authority changes it.
-5. Ensure the title/abstract/cover letter do not imply physical F-move, gravity, or quantum gravity unless explicitly established downstream.
-6. Ensure claimed novelty is no stronger than the completed general literature audit plus the targeted frozen-V3 and final result-specific addenda.
-7. Ensure `priority_claim_established = NO` is preserved unless an explicit later authority changes it.
-8. Ensure the exact public reproducibility packet is available or the journal's data policy is otherwise satisfied.
-9. Record final selection and rationale only after the downstream authority chain freezes.
+2. Keep DESIGN_V3 design science, governance/readiness, and native science in separate evidential categories.
+3. Preserve the C1 collision locus, stratified C1 exclusion, C2 chart scope, and effective-vs-microscopic distinction.
+4. Preserve PR #279's readiness blocker, PR #280's failed value-free precheck, and PR #281's epistemic hardening even if a later native result is positive.
+5. Do not turn the precheck failure into a native physics failure or impossibility theorem.
+6. Use `KNOWN_BUT_APPLICATION_APPEARS_DISTINCT` and no priority language unless later explicit literature authority changes it.
+7. Ensure no unsupported physical F-move, Regge/Ponzano-Regge, gravity, or quantum-gravity language.
+8. Ensure exact public reproducibility materials exist before making availability claims.
+9. Record final venue only after `[V3-PENDING: final result-dependent manuscript authority]`, `[V3-PENDING: final hostile publication claim audit]`, and `[V3-PENDING: final publication-readiness authority]` freeze.
