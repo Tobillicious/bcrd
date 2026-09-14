@@ -17,11 +17,11 @@ Status: **TEMPLATE ONLY — DO NOT CREATE OR PUBLISH AN ITEM FROM THIS FILE YET*
 
 Mandatory provenance paragraph to append after the scientific description:
 
-> This archive is the immutable reproducibility release for `PAPER-BCRD-COHERENT-RECOUPLING-001` by Tobias Croydon-McRae. The deposited files are bound to the frozen public repository target `[V3-PENDING: Tobillicious/bcrd full commit SHA A]` and immutable tag `[V3-PENDING: paper/coherent-recoupling/vMAJOR.MINOR.PATCH]`. SHA-256 checksums are provided in `ARTIFACT-MANIFEST.sha256`. The archive contains no scientific change relative to that frozen target.
+> This archive is the frozen reproducibility release for `PAPER-BCRD-COHERENT-RECOUPLING-001` by Tobias Croydon-McRae. The deposited files are bound to the frozen public repository target `[V3-PENDING: Tobillicious/bcrd full commit SHA A]` and frozen non-moving release tag by project policy `[V3-PENDING: paper/coherent-recoupling/vMAJOR.MINOR.PATCH]`. SHA-256 checksums are provided in `ARTIFACT-MANIFEST.sha256`. The archive contains no scientific change relative to that frozen target. The project treats the release tag as non-moving; this metadata does not claim technical immutability unless repository protection is independently verified.
 
 ## Keywords
 
-Pre-V3 stable candidates:
+Pre-result stable candidates:
 
 - Boundary-Complete Relational Dynamics
 - BCRD
@@ -46,7 +46,7 @@ Do not classify the record as quantum gravity merely because Racah/6j mathematic
 
 - Code repository: `https://github.com/Tobillicious/bcrd`
 - Frozen GitHub target: `[V3-PENDING: exact commit A URL]`
-- Immutable release tag: `[V3-PENDING: exact tag URL]`
+- Frozen non-moving release tag by project policy: `[V3-PENDING: exact tag URL]`
 - Source scientific repository: `Tobillicious/physics-lane`
 - Final manuscript authority: `[V3-PENDING: physics-lane SHA]`
 - Final scientific reconciliation: `[V3-PENDING: physics-lane PR/SHA]`
@@ -77,7 +77,7 @@ V3 scientific reconciliation = [V3-PENDING: PASS]
 final hostile claim audit = [V3-PENDING: PASS]
 publication readiness = [V3-PENDING: PASS]
 public frozen target commit A = [V3-PENDING: SHA]
-immutable tag = [V3-PENDING: tag]
+frozen non-moving release tag by project policy = [V3-PENDING: tag]
 manifest verification = [V3-PENDING: PASS]
 uploaded-byte verification = [V3-PENDING: PASS]
 ```
