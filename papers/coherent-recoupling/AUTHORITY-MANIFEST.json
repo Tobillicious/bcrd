@@ -1,20 +1,22 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "paper_id": "PAPER-BCRD-COHERENT-RECOUPLING-001",
   "author": "Tobias Croydon-McRae",
-  "status": "V3_DESIGN_AND_REVIEW_EXIST__RECONCILIATION_PENDING__STAGING_ONLY",
+  "status": "V3_DESIGN_RECONCILIATION_FROZEN__EXECUTION_GOVERNANCE_PENDING__STAGING_ONLY",
   "source_repository": "Tobillicious/physics-lane",
   "public_repository": "Tobillicious/bcrd",
   "authority_policy": {
-    "rule": "Scientific claims are bounded by the strongest reconciled or independently reviewed authority applicable to that claim. Design and scout artifacts are never upgraded into scientific evidence. Provisional V3 author/review custody is noncanonical until reconciliation freezes.",
+    "rule": "Scientific claims are bounded by the strongest frozen reconciled authority applicable to that claim. DESIGN_V3 design-side scope is canonical through PR #278; this does not authorize governance, execution, or any native N=6 inference.",
     "current_maximum_programme_claim_level": "L2",
     "native_N6_target_outcome_inspected": "NO",
     "native_N6_execution_completed": "NO",
     "execution_authorized": "NO",
     "DESIGN_V3_AUTHOR_DESIGN_EXISTS": "YES",
     "DESIGN_V3_HOSTILE_REVIEW_EXISTS": "YES",
-    "DESIGN_V3_RECONCILIATION_FROZEN": "NO",
-    "DESIGN_V3_CANONICAL_AUTHORITY": "PENDING"
+    "DESIGN_V3_RECONCILIATION_FROZEN": "YES",
+    "DESIGN_V3_CANONICAL_AUTHORITY": "PR_278",
+    "DESIGN_V3_EXECUTION_GOVERNANCE_FROZEN": "NO",
+    "DESIGN_V3_NATIVE_EXECUTION_COMPLETED": "NO"
   },
   "pre_v3_authorities": [
     {
@@ -118,24 +120,78 @@
       "disposition": "DESIGN_V2_NOT_EXECUTION_READY__HELD_R1_EXACT_BUT_NOT_RACAH_IDENTIFYING__GATE_D_STRUCTURALLY_INCONSISTENT__RACAH_SPECIFIC_ATTRIBUTION_REJECTED_WITHOUT_REJECTING_N6_ARCHITECTURE__NUMERICAL_CERTIFICATION_REQUIRES_REDESIGN"
     }
   ],
-  "provisional_noncanonical_v3_custody": {
-    "author_design": {
+  "canonical_v3_design_chain": {
+    "DESIGN_V3_AUTHOR_DESIGN": {
       "pr": 276,
       "design_contract_sha": "a7c86f23bf674063f52f261636a4d15a4bec6a47",
       "scientific_terminal_sha": "1104eebd9724cbaa44cce886e5c6968b558932ec",
       "metadata_head_sha": "030eff9cffc9353c0604f3632e2c39e70cb15810",
-      "role": "DESIGN_V3_AUTHOR_DESIGN_CUSTODY_ONLY",
-      "canonical_status": "[V3-RECONCILIATION-PENDING: final canonical design disposition]"
+      "status": "CANONICAL_THROUGH_PR_278_RECONCILIATION"
     },
-    "blind_hostile_design_review": {
+    "DESIGN_V3_INDEPENDENT_BLIND_HOSTILE_REVIEW": {
       "pr": 277,
       "review_contract_sha": "bff8c7d7fcb613dd0138528a25a6bcc8c927311a",
       "scientific_review_terminal_sha": "52b7bd5f72927d1fc76be16b14f1542a00a1372d",
+      "review_metadata_head_sha": "920550dfbc0e523ea70bb6a7e595986bfa3c680c",
       "blind_review_integrity": "CLEAN",
-      "role": "DESIGN_V3_HOSTILE_REVIEW_CUSTODY_ONLY",
-      "canonical_status": "[V3-RECONCILIATION-PENDING: final canonical design disposition]"
+      "status": "CANONICAL_THROUGH_PR_278_RECONCILIATION"
     },
-    "explicit_nonpromotion_rule": "No scientific content from PR #276 or PR #277 is canonical in this staging manifest until design reconciliation freezes."
+    "DESIGN_V3_AUTHOR_REVIEW_RECONCILIATION": {
+      "pr": 278,
+      "reconciliation_contract_sha": "ae669a6046cf2cfc6d2487c27ca0c1b3431f0e9a",
+      "scientific_reconciliation_terminal_sha": "167ce041cef4fc5d93c0cce41ddbfd48e3e5805e",
+      "metadata_head_sha": "5a8037eb1583c87d6b3df44c805ebbdb3854cb49",
+      "blind_review_integrity": "CLEAN",
+      "status": "CANONICAL_V3_DESIGN_SCOPE_AUTHORITY",
+      "substantive_to_metadata_freeze": "CLEAN__METADATA_HEAD_RECORDS_SUBSTANTIVE_SHA_AND_DOES_NOT_ALTER_SCIENCE"
+    }
+  },
+  "canonical_v3_design_scope": {
+    "authority_sha": "167ce041cef4fc5d93c0cce41ddbfd48e3e5805e",
+    "classification": "DESIGN_SIDE_AUTHORITY_ONLY__NOT_NATIVE_N6_RESULT",
+    "V3_core_mathematics_status": "ACCEPTED_AFTER_INDEPENDENT_REPRODUCTION",
+    "reference_generic_identifiability_status": "YES_MOD_GLOBAL_SIGN",
+    "compatibility_chart": "c3 != 0",
+    "reference_nonidentifiability_locus": "V(c3, c1*c5)",
+    "C1_exact_global_collision_exists": "YES",
+    "C1_collision_locus": "c3 != 0 AND c1 = 0 AND c5 = 0",
+    "C1_global_exclusion_full_c3_chart": "NO",
+    "C1_global_exclusion_noncollision_stratum": "PROVED_ON_c3_NONZERO_AND_(c1_NONZERO_OR_c5_NONZERO)",
+    "C2_global_exclusion_status": "PROVED_FOR_CLASS_ON_C3_NONZERO_CHART",
+    "prospective_forward_prediction_count": 118,
+    "generic_apparatus_identity_count": 82,
+    "reference_specific_constraint_count_vs_Sym5": 36,
+    "reference_specific_constraint_count_vs_C1": 14,
+    "generic_additional_C1_transverse_directions": 4,
+    "collision_locus_additional_C1_transverse_directions": 3,
+    "effective_compatibility_status": "SUPPORTED_ON_C3_NONZERO_CHART",
+    "microscopic_membership_status": "NOT_SUPPORTED",
+    "maximum_programme_claim_after_reconciliation": "L2"
+  },
+  "prospective_future_exact_pass_semantics": {
+    "classification": "PROSPECTIVE_CLAIM_SEMANTICS_ONLY__NOT_ACHIEVED_NATIVE_RESULT",
+    "full_compatibility_chart": {
+      "condition": "c3 != 0",
+      "wording": [
+        "EFFECTIVE_GR_REFERENCE_FINGERPRINT_COMPATIBILITY",
+        "PLUS_EFFECTIVE_COEFFICIENT_CLASS_MOD_GLOBAL_SIGN",
+        "PLUS_GLOBAL_C2_EXCLUSION"
+      ]
+    },
+    "noncollision_stratum": {
+      "condition": "c3 != 0 AND (c1 != 0 OR c5 != 0)",
+      "additional_wording": "GLOBAL_C1_EXCLUSION"
+    },
+    "collision_stratum": {
+      "condition": "c3 != 0 AND c1 = 0 AND c5 = 0",
+      "does_not_support": "GLOBAL_C1_DISCRIMINATION"
+    },
+    "microscopic_membership_status": "NOT_SUPPORTED",
+    "physical_F_move": "NOT_ESTABLISHED",
+    "pentagon_Pachner_dynamics": "NOT_ESTABLISHED",
+    "Regge_Ponzano_Regge_dynamics": "NOT_ESTABLISHED",
+    "gravity": "NOT_ESTABLISHED",
+    "quantum_gravity": "NOT_ESTABLISHED"
   },
   "pre_result_literature_authority": {
     "PRE_RESULT_LITERATURE_AUDIT": "COMPLETED",
@@ -152,28 +208,32 @@
       "prior operational F/R extraction and Racah-as-quantum-operation work"
     ],
     "broad_novelty_claims_supported": "NO",
-    "future_targeted_addendum": "[V3-PENDING: design/result-specific targeted novelty addendum after reconciliation]"
+    "future_targeted_addendum": "[V3-PENDING: targeted frozen-V3 prior-art addendum]"
   },
   "v3_authority_slots": {
-    "design_canonical_reconciliation": "[V3-PENDING: frozen reconciliation authority for PR #276/#277 and final canonical design disposition]",
-    "execution_governance": "[V3-PENDING: prospective execution/interface governance authority and terminal SHA]",
-    "execution": "[V3-PENDING: native N=6 execution PR, raw-result SHA, controls SHA, and terminal author SHA]",
-    "hostile_scientific_review_1": "[V3-PENDING: first independent hostile scientific review terminal SHA]",
-    "hostile_scientific_review_2": "[V3-PENDING: second independent review terminal SHA if commissioned]",
-    "scientific_reconciliation": "[V3-PENDING: final scientific reconciliation terminal SHA]",
-    "targeted_novelty_addendum": "[V3-PENDING: design/result-specific targeted novelty addendum after reconciliation]",
-    "final_manuscript": "[V3-PENDING: frozen final manuscript source SHA]",
-    "final_publication_hostile_claim_audit": "[V3-PENDING: terminal publication-level hostile claim audit SHA]",
-    "publication_readiness": "[V3-PENDING: final build/render/reproducibility/readiness authority SHA]"
+    "execution_governance": "[V3-PENDING: execution/interface governance authority]",
+    "execution": "[V3-PENDING: native N=6 execution authority]",
+    "native_fingerprint_result": "[V3-PENDING: native fingerprint/result]",
+    "raw_result_certificate_authorities": "[V3-PENDING: raw result/certificate authorities]",
+    "hostile_scientific_review": "[V3-PENDING: post-execution hostile scientific review]",
+    "scientific_reconciliation": "[V3-PENDING: post-execution scientific reconciliation]",
+    "targeted_novelty_addendum": "[V3-PENDING: targeted frozen-V3 prior-art addendum]",
+    "final_result_specific_literature_novelty_disposition": "[V3-PENDING: final result-specific literature/novelty disposition]",
+    "final_manuscript": "[V3-PENDING: final manuscript authority]",
+    "final_publication_hostile_claim_audit": "[V3-PENDING: final hostile publication claim audit]",
+    "publication_readiness": "[V3-PENDING: publication readiness]",
+    "public_frozen_commit_A": "[V3-PENDING: public frozen commit A]",
+    "release_tag": "[V3-PENDING: release tag]",
+    "archive_doi": "[V3-PENDING: archive DOI]"
   },
-  "forbidden_inferences_before_v3_reconciliation_and_execution": [
-    "Do not infer any native N=6 target outcome.",
-    "Do not infer that DESIGN_V2's exact HELD-R1 relation identifies a Racah-specific mechanism.",
-    "Do not treat Gate D as a valid positive test for the frozen G_R class.",
-    "Do not treat finite |R| < tau as an exact certificate of R = 0.",
-    "Do not promote PR #276 or PR #277 scientific content into canonical claims before design reconciliation freezes.",
-    "Do not claim a physical coherent F-move, pentagon/Pachner dynamics, Regge/Ponzano-Regge physics, continuum gravity, or quantum gravity.",
+  "forbidden_inferences_before_execution": [
+    "Do not infer any native N=6 target outcome from DESIGN_V3 design-side authority.",
+    "Do not treat prospective future exact-pass semantics as achieved native results.",
+    "Do not infer microscopic membership from effective compatibility.",
+    "Do not claim full-chart C1 exclusion; the exact collision locus must be preserved.",
+    "Do not claim a physical coherent F-move, pentagon/Pachner dynamics, Regge/Ponzano-Regge dynamics, gravity, or quantum gravity.",
     "Do not establish a priority claim from the completed general literature audit.",
+    "Do not authorize governance or execution from this release-engineering lane.",
     "Do not raise the programme ceiling above L2."
   ]
 }
