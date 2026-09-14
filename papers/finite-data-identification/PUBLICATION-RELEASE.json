@@ -1,0 +1,21 @@
+{
+  "paper_id": "PAPER-BCRD-FINITE-DATA-IDENTIFICATION-001",
+  "title": "Finite-Data Non-Identification of Effective Quantum Coarse Dynamics",
+  "author": "Tobias Croydon-McRae",
+  "publication_type": "preprint",
+  "publication_date": "2026-09-14",
+  "doi": "10.6084/m9.figshare.33727360",
+  "doi_url": "https://doi.org/10.6084/m9.figshare.33727360",
+  "figshare_item_id": 33727360,
+  "license": "CC BY 4.0",
+  "public_repository": "Tobillicious/bcrd",
+  "public_promotion_terminal_sha": "3d2b2781c1b20f04639d338263f1bc1f3f0363f7",
+  "public_promotion_merge_sha": "bacf12814dd1eb51fcd124d985c3fcbdbc2ce541",
+  "frozen_manuscript_authority": "53e365b6c947d5abd672c9b02f905e0175d6176a",
+  "frozen_reproducibility_packet": "0155ec7f1c765b41737322837f3266337626c201",
+  "reproducibility_tree_sha": "ff41547263ed9356a55d7cdc28f5cdbcfdb8da39",
+  "reproducibility_file_count": 29,
+  "npz_file_count": 6,
+  "scientific_content_modified_for_release": "NO",
+  "reproducibility_semantics_modified_for_release": "NO"
+}
