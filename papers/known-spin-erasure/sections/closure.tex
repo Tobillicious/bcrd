@@ -1,0 +1,128 @@
+\section{Autonomous closure induced by recoverability}
+\label{sec:closure}
+
+Exact recovery is sufficient to close the record dynamics under any microscopic unitary that preserves the recovered state space.  The statement is an elementary standard consequence of reversibility, retained here because it is the conceptual hinge linking recovery to the finite BCRD application.
+
+\begin{lemma}[Closure from a CPTP left inverse]
+\label{lem:left-inverse-closure}
+Let
+\begin{equation}
+  \Lambda:\B(\Hilb_{\mathrm{phys}})\to\B(\Hilb_C)
+\end{equation}
+be a CPTP channel.  Suppose there exists a CPTP map
+\begin{equation}
+  \R:\B(\Hilb_C)\to\B(\Hilb_{\mathrm{phys}})
+\end{equation}
+satisfying
+\begin{equation}
+  \R\circ\Lambda=\id_{\B(\Hilb_{\mathrm{phys}})}.
+  \label{eq:general-left-inverse}
+\end{equation}
+Let $U$ be a unitary on $\Hilb_{\mathrm{phys}}$.  Define
+\begin{equation}
+  \Phi:=\Lambda\circ\Ad_U\circ\R,
+  \qquad
+  \Ad_U(X)=UXU^\dagger.
+  \label{eq:Phi-general}
+\end{equation}
+Then $\Phi$ is CPTP and
+\begin{equation}
+  \Phi\circ\Lambda
+  =\Lambda\circ\Ad_U.
+  \label{eq:intertwining}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Each factor in \cref{eq:Phi-general} is CPTP, so $\Phi$ is CPTP.  Using \cref{eq:general-left-inverse},
+\begin{align}
+  \Phi\circ\Lambda
+  &=\Lambda\circ\Ad_U\circ\R\circ\Lambda\\
+  &=\Lambda\circ\Ad_U.
+\end{align}
+\end{proof}
+
+The logical implication is therefore
+\begin{equation}
+  \boxed{\text{recoverability}\Longrightarrow\text{exact autonomous record closure}.}
+  \label{eq:recoverability-implies-closure}
+\end{equation}
+This implication is not claimed as a new general channel theorem.  Nothing in the lemma turns the reconstructive record into an information-losing coarse state; that separate interpretive point is developed in \cref{sec:reconstruction}.
+
+\begin{corollary}[Exact iterative record dynamics]
+\label{cor:iterative-record}
+For $\rho_n=U^n\rho_0(U^\dagger)^n$ and $c_n=\Lambda(\rho_n)$,
+\begin{equation}
+  c_{n+1}=\Phi(c_n),
+  \qquad
+  c_{n+r}=\Phi^r(c_n),
+  \label{eq:record-iteration}
+\end{equation}
+for every $n,r\ge0$ for which the same microscopic unitary and record channel remain in scope.
+\end{corollary}
+
+\begin{proof}
+The first identity is \cref{eq:intertwining} applied to $\rho_n$; the second follows by induction.
+\end{proof}
+
+The equality in \cref{eq:intertwining} is an equality on the physical/code-image states $\Lambda(\B(\Hilb_{\mathrm{phys}}))$.  The formula \cref{eq:Phi-general} supplies one legitimate CPTP extension to the entire ambient record algebra $\B(\Hilb_C)$, but that extension is generally nonunique away from the physical image.  No independent physical meaning is assigned here to its off-image action.
+
+We now specialize the lemma to known-spin erasure.  Suppose a microscopic Hilbert space has the form
+\begin{equation}
+  \Hilb_{\mathrm{phys}}
+  =\Hilb_A\otimes\Code_0,
+\end{equation}
+where $A$ collects all retained nonmatter degrees of freedom.  Define
+\begin{equation}
+  \Lambda_i
+  =\id_A\otimes\E_i,
+  \qquad
+  \widetilde{\R}_i
+  =\id_A\otimes\R_i.
+  \label{eq:extended-erasure-recovery}
+\end{equation}
+By complete recovery in \cref{thm:known-erasure},
+\begin{equation}
+  \widetilde{\R}_i\circ\Lambda_i
+  =\id_{\B(\Hilb_A\otimes\Code_0)}.
+  \label{eq:extended-left-inverse}
+\end{equation}
+If $U$ preserves $\Hilb_A\otimes\Code_0$, then
+\begin{equation}
+  \boxed{
+  \Phi_i
+  =\Lambda_i\circ\Ad_U\circ\widetilde{\R}_i
+  }
+  \label{eq:spin-record-Phi}
+\end{equation}
+is a fixed CPTP record update satisfying
+\begin{equation}
+  \Phi_i(\Lambda_i(\rho))
+  =\Lambda_i(U\rho U^\dagger)
+  \label{eq:spin-record-intertwining}
+\end{equation}
+for every physical state $\rho$.
+
+\begin{proposition}[Singlet-sector invariance under scalar spin couplings]
+\label{prop:singlet-invariance}
+Let a finite Hamiltonian on $\Hilb_A\otimes\Hilb_N$ have the form
+\begin{equation}
+  H=H_A\otimes I_N+\sum_\ell A_\ell\otimes D_\ell,
+  \label{eq:scalar-H}
+\end{equation}
+where each $D_\ell$ is a real linear combination of pairwise scalar products
+\begin{equation}
+  D_{jk}=\frac14\,\boldsymbol\sigma_j\cdot\boldsymbol\sigma_k.
+\end{equation}
+Then $H$ commutes with $I_A\otimes\mathbf S_{\mathrm{tot}}^2$.  Consequently $U_t=e^{-itH}$ preserves $\Hilb_A\otimes\Code_0$ exactly for every $t$.
+\end{proposition}
+
+\begin{proof}
+Each $D_{jk}$ is a scalar under collective $\SU(2)$ rotations and hence commutes with $\mathbf S_{\mathrm{tot}}^2$.  The remaining term acts as the identity on matter.  Linearity gives
+\begin{equation}
+  [H,I_A\otimes\mathbf S_{\mathrm{tot}}^2]=0.
+\end{equation}
+The associated spectral subspaces of $\mathbf S_{\mathrm{tot}}^2$, in particular the zero-spin subspace, are therefore invariant under $e^{-itH}$.
+\end{proof}
+
+Combining \cref{thm:known-erasure,prop:singlet-invariance,lem:left-inverse-closure} gives an exact autonomous record channel for any finite singlet-preserving model of the form \cref{eq:scalar-H}.  No fitted channel, trajectory-dependent decoder, time-step label, source identity, or microscopic history is needed.  At the same time, \cref{lem:left-inverse-closure} shows that the closure itself is not an additional dynamical miracle: after exact recoverability has been established, the intertwining relation is automatic.

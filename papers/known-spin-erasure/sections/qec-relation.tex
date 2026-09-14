@@ -1,0 +1,75 @@
+\section{Relation to quantum error correction, prior art, and sufficient channels}
+\label{sec:qec}
+
+This section separates the mathematical ingredients that are standard or directly precedented from the channel-level reformulation and finite dynamical application used in this manuscript.
+
+\subsection{Standard QEC and located erasure}
+
+Knill and Laflamme gave the standard necessary and sufficient conditions for exact quantum error correction \cite{KnillLaflamme1997}.  Located erasure, in which the affected physical position is known while the error at that position is otherwise arbitrary, is likewise a standard error model \cite{GrasslBethPellizzari1997}.  Accordingly, the implication from
+\begin{equation}
+  P_0\ket{s}\!\bra{t}_iP_0=\frac{\delta_{st}}2P_0
+\end{equation}
+to existence of an exact state-independent recovery is standard QEC rather than a manuscript-specific theorem.
+
+\subsection{Direct prior art: particle-loss immunity and physical-support factorization}
+
+The closest direct prior art is Migda\l{} and Banaszek \cite{MigdalBanaszek2011}.  They consider $n$ qudits subjected to perfectly correlated collective $\SU(d)$ transformations and the decoherence-free subspace of states invariant under $U^{\otimes n}$.  They prove that quantum information stored in that DFS is fully immune to removal of one particle.  In the qubit specialization they explicitly identify the complete even-$n$ singlet sector and the Clebsch--Gordan decomposition
+\begin{equation}
+  (\mathcal H_{1/2})^{\otimes n}
+  =\bigoplus_j \mathbb C^{K_n^j}\otimes\mathcal H_j,
+\end{equation}
+with the singlet DFS given by the $j=0$ multiplicity space.  Removing one qubit maps the state into the spin-$1/2$ sector of the remaining particles with matching multiplicity, and the paper gives an explicit recovery procedure for the four-qubit logical DFS before proving the general $\SU(d)$ statement.
+
+For publication purposes, this closes the priority question for the underlying one-particle-loss immunity mechanism.  The novelty audit further finds that Migda\l{}--Banaszek Eqs.~(9), (10), and (13) give, in equivalent form, the retained-component orthogonality and equal mixture written here as the $W_i$ physical-support factorization.  The present manuscript therefore does \emph{not} claim that either complete-singlet one-particle-loss immunity or that syndrome/logical support structure is new.
+
+\subsection{Manuscript reformulation}
+
+The self-contained derivation in \cref{sec:erasure} is retained because the later dynamical argument needs three exact statements in a common notation:
+\begin{enumerate}[label=(\roman*)]
+  \item the operator identity $P_0\sigma_i^\alpha P_0=0$ on the complete singlet multiplicity space;
+  \item the physical-support isometry $W_i$ satisfying
+  \begin{equation}
+    \E_i(\rho)=W_i\!\left(\frac{I_2}{2}\otimes\rho\right)W_i^\dagger;
+  \end{equation}
+  \item an explicit CPTP left inverse together with the statement that full-algebra completion away from the reachable image is nonunique.
+\end{enumerate}
+These are used as a channel-level package for the subsequent closure construction.  The $W_i$ factorization is an explicit recasting of direct/equivalent prior art, while the full-algebra completion is a standard corollary/reformulation; neither is assigned a novelty claim.
+
+\subsection{DFS and noiseless-subsystem background}
+
+Symmetry-defined noiseless and decoherence-free encodings are established structures \cite{ZanardiRasetti1997,LidarBaconWhaley1999,BaconKempeLidarWhaley2000}.  The complete singlet sector is the multiplicity space carrying the trivial irreducible representation of collective $\SU(2)$.  This explains both its invariance under collective rotations and the absence of rank-one vector-operator matrix elements within the sector.  Recent work also treats the complete even-$N$ singlet DFS and its Catalan dimension directly \cite{LiLiu2026}; neither the code space nor its counting is presented here as new.
+
+\subsection{Reconstructability, secret sharing, and sufficiency}
+
+Exact complement reconstruction has standard analogues in quantum secret sharing \cite{CleveGottesmanLo1999}, while reversible statistical reductions are naturally related to channel sufficiency and Petz recovery theory \cite{Petz1986}.  We use this literature to situate the interpretation, not to replace the explicit recovery constructed in \cref{cor:explicit-recovery}.  The decisive property for the present paper is simply
+\begin{equation}
+  \R\circ\Lambda=\id
+\end{equation}
+on the physical sector.
+
+\subsection{BCRD-specific application}
+
+The BCRD-specific content is the use of the exact recovery inside the already reviewed finite singlet-preserving dynamics.  The frozen microscopic unitary preserves the relevant singlet sector; therefore recovery, microscopic evolution, and re-erasure define a fixed per-$N$ CPTP update
+\begin{equation}
+  \Phi=\Lambda\circ\Ad_U\circ\R
+\end{equation}
+satisfying exact record-level intertwining.  At the reviewed finite sizes, this applies to the fixed constructions $J2$ at $N=8$, $J4$ at $N=10$, and $J6$ at $N=12$.  These examples establish reconstructive autonomous closure at those sizes, not a common cross-$N$ map, strict minimality, or support-growth theorem.
+
+\subsection{Settled contribution audit}
+
+The dedicated novelty audit resolves the previously pending questions as follows:
+\begin{itemize}
+  \item \textbf{A --- DIRECT PRIOR ART:} the $W_i$ physical-support / syndrome factorization in equivalent form;
+  \item \textbf{B --- STANDARD COROLLARY / REFORMULATION:} the chosen full-algebra CPTP recovery completion;
+  \item \textbf{C --- STANDARD COROLLARY / REFORMULATION:} recoverability inducing the exact autonomous update by $\Phi=\Lambda\circ\Ad_U\circ\R$;
+  \item \textbf{D --- DISTINCT SYNTHESIS / APPLICATION:} use of the reconstructive-versus-genuinely-lossy distinction to organize the present record hierarchy;
+  \item \textbf{E --- DISTINCT SYNTHESIS / APPLICATION:} the finite BCRD $J2/J4/J6$ realization at $N=8,10,12$.
+\end{itemize}
+The first three items are retained because they make the argument explicit in a common notation, not as new QEC/channel mathematics.  The last two identify the publication-specific finite synthesis and application without claiming a new general classification or theorem.
+
+For clarity, the publication categories are:
+\begin{itemize}
+  \item \textbf{STANDARD QEC/DFS RESULT:} Knill--Laflamme recovery, located erasure, DFS/noiseless structures, singlet-sector representation theory, channel reversibility concepts, full-algebra recovery completion, and left-inverse-induced record closure.
+  \item \textbf{DIRECT PRIOR ART:} one-particle-loss immunity and the equivalent retained-support/syndrome factorization of collective-$\SU(d)$ DFS encodings from Migda\l{}--Banaszek 2011.
+  \item \textbf{BCRD SYNTHESIS / APPLICATION:} the reconstructive-versus-genuinely-lossy interpretation of the present hierarchy and exact per-$N$ reconstructive autonomous updates for the reviewed finite constructions.
+\end{itemize}

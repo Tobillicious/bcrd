@@ -1,0 +1,88 @@
+\section{Reconstructive closure versus genuine coarse-graining}
+\label{sec:reconstruction}
+
+The existence of an exact reduced update is often suggestive of an autonomous coarse state.  In the present construction that inference would be incorrect.  The reduction removes a physical tensor factor from the ambient description, but it does not remove information about the allowed microscopic state.
+
+\begin{definition}[Reconstructive autonomous closure]
+A record channel $\Lambda:\B(\Hilb_{\mathrm{phys}})\to\B(\Hilb_C)$ has \emph{reconstructive autonomous closure} under a microscopic unitary $U$ if
+\begin{enumerate}[label=(\roman*)]
+  \item $\Lambda$ has a CPTP left inverse on $\B(\Hilb_{\mathrm{phys}})$; and
+  \item there exists a fixed CPTP map $\Phi$ on the record algebra satisfying
+  \begin{equation}
+    \Phi\circ\Lambda=\Lambda\circ\Ad_U
+  \end{equation}
+  on the physical domain.
+\end{enumerate}
+\end{definition}
+
+By \cref{lem:left-inverse-closure}, condition (ii) follows automatically from condition (i) once $U$ preserves the physical domain.  The physically substantive step is therefore establishing recoverability.
+
+\begin{definition}[Genuinely lossy record, working usage]
+At a fixed physical scope, we call a record \emph{genuinely lossy} if the microscopic/code state cannot be exactly reconstructed by a CPTP left inverse from that record.  An autonomous update on such a record would represent closure after genuine information loss rather than closure of a reversible encoding.
+\end{definition}
+
+This working distinction is intentionally narrower than a general theory of coarse-graining.  Failure of a known recovery construction would not by itself prove genuine lossiness; nonreconstructiveness requires its own certificate.  Conversely, exact reconstructiveness is enough to rule out an interpretation in which inaccessible microscopic information has been discarded.
+
+\subsection{The erased spin leaves a retained virtual partner}
+
+The virtual-qubit factorization in \cref{thm:virtual-qubit} shows directly why the one-spin record is reconstructive.  Within the physical code image,
+\begin{equation}
+  \Code_0
+  \xrightarrow{\,V\,}
+  \mathbb C^2_i\otimes\Hilb_{\bar i}
+\end{equation}
+has the form
+\begin{equation}
+  \ket{\lambda}
+  \longmapsto
+  \frac{1}{\sqrt2}
+  \sum_s\ket{s}_i\otimes
+  W_i(\ket{s}_{\mathrm v}\otimes\ket{\lambda}).
+\end{equation}
+The physical spin $i$ is maximally entangled with a virtual qubit supported inside the retained spins, while the complete logical state $\ket{\lambda}$ remains present as a second factor under the same isometry.  Tracing out site $i$ therefore replaces one half of this Bell-like pair by the maximally mixed state $I_{\mathrm v}/2$ but leaves the logical factor intact and exactly identifiable through $W_i$.
+
+This is stronger than saying that the erased spin carries no expectation-value signal about the code state.  The channel retains the entire operator algebra of the logical state, including coherence with arbitrary external reference systems.  In quantum-information terms the record is sufficient for exact reconstruction.
+
+\subsection{The ambient record is not a compression of the code space}
+
+The singlet-code dimension is the Catalan number in \cref{eq:singlet-dim}, whereas the ambient Hilbert space of the retained $N-1$ physical spins has dimension $2^{N-1}$.  Their ratio is
+\begin{equation}
+  \frac{2^{N-1}}{d_0(N)}
+  =\frac{2^{N-1}}{\operatorname{Cat}_{N/2}}
+  =\Theta(N^{3/2}).
+  \label{eq:dimension-ratio}
+\end{equation}
+Thus the ambient retained space grows rather than shrinks relative to the constrained physical code space.  In the finite model considered later, other retained degrees of freedom appear in both the microscopic physical space and the record, so they cancel from the corresponding dimension ratio and leave the same scaling.
+
+Equation \eqref{eq:dimension-ratio} is not used to prove recoverability; the exact left inverse already does that.  It instead blocks a misleading interpretation in which the record is viewed as a compact representation emerging from large-$N$ compression.  The retained fraction of raw matter sites is $(N-1)/N\to1$, and the allowed state is stored in a highly redundant ambient subsystem.
+
+\subsection{What exact autonomy does and does not show}
+
+The reduced map $\Phi$ is exact, state independent, and time homogeneous whenever the same microscopic unitary and the same erased site are used.  Those are nontrivial formal properties of the record dynamics.  Nevertheless, their origin is the diagram
+\begin{equation}
+  \boxed{
+  \text{record}
+  \xrightarrow{\;\R\;}
+  \text{microscopic code state}
+  \xrightarrow{\;\Ad_U\;}
+  \text{microscopic code state}
+  \xrightarrow{\;\Lambda\;}
+  \text{record}
+  }.
+  \label{eq:reconstructive-diagram}
+\end{equation}
+No inaccessible complement is required because the complement can be reconstructed from the record itself.
+
+Mathematically, $\R\circ\Lambda=\id$ on the physical sector means that no two distinct physical code states are identified by the record channel.  Physically, the omitted raw tensor factor is therefore not synonymous with omitted state information: the relevant microscopic information remains encoded in the retained system.  Exact record autonomy in this setting is consequently evidence for a reversible representation of the physical sector, not for a fundamental reduction of that sector.
+
+In particular, the construction is not evidence of irreversible information loss, thermodynamic coarse-graining, entropy production, emergent Markovianity, or effective fundamental state reduction.  Those phenomena would require additional statements that do not follow from a CPTP left inverse.
+
+For the present analysis we therefore distinguish
+\begin{equation}
+  \boxed{
+  \text{exact reconstructive autonomous closure}
+  \neq
+  \text{genuinely lossy autonomous coarse-graining}.
+  }
+\end{equation}
+The first is established here.  The second remains an independent scientific question.  This is the structural interpretation of the present finite construction: its exact autonomous reduced dynamics occurs without loss of the information needed to reconstruct the physical microscopic state.  We do not claim priority for a new general classification.

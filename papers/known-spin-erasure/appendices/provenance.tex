@@ -1,0 +1,64 @@
+\section{Scientific provenance and reproducibility}
+\label{app:provenance}
+
+The manuscript is derived from banked finite-dimensional theorem, review, and reconciliation artifacts.  The development repository is private; repository visibility is not changed by this paper-authoring lane.  The public archival release currently associated with the broader programme has Figshare DOI
+\begin{center}
+  \url{https://doi.org/10.6084/m9.figshare.33716677}.
+\end{center}
+That release is contextual only and is not represented as containing every artifact used in this manuscript.
+
+\subsection{Load-bearing repository authorities}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Load-bearing repository authorities for the present draft.  Review-only pull requests are cited as provenance and were not merged to create scientific authority.}
+\label{tab:authority-provenance}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.19\linewidth}>{\raggedright\arraybackslash}p{0.29\linewidth}>{\raggedright\arraybackslash}p{0.44\linewidth}@{}}
+\toprule
+Authority & Frozen identifier & Role \\
+\midrule
+Microscopic predecessor & \commitsha{cb715a13254c4ff9cdc4594767e1f5cf5f52d954} & Frozen finite-model provenance used by the independent one-spin review. \\
+\addlinespace
+One-spin author theorem & \commitsha{76dde863ab0433907a527229acb04e23b8c5c396} & Exact one-known-matter-spin recoverability theorem inside the finite record study. \\
+\addlinespace
+PR \#195 hostile review & \commitsha{2f328e7d9d72a454467ddbd27ebd2fb53e5d66c4} & Independent proof-first authority for the projected-Pauli identity, Knill--Laflamme recovery, virtual-qubit factorization, sector invariance, and reconstructive closure classification. \\
+\addlinespace
+PR \#196 author study & \commitsha{0bbe6d7d6fceb35c429e38758eaeff1231bc06a3} & Finite interaction-closed record constructions $J_2/J_4/J_6$ at $N=8,10,12$. \\
+\addlinespace
+PR \#198 hostile review & scientific terminal \commitsha{a1904d70b46df79d903134089e3263742e2d0954}; handoff \commitsha{becbc82e77b5c4fe8c595ae7d77008b1bd202582} & Independent acceptance of exact finite-$N$ reconstructive autonomy with scope hardening; records the nonuniqueness of off-image CPTP extensions and rejects minimal-support extrapolation. \\
+\addlinespace
+PR \#199 reconciliation & \commitsha{bb17394b8ae71f547db29801e0f56c36042d3ad5} & Reconciles the dynamical-record frontier: exact reconstructive closure accepted, genuinely lossy autonomous closure and minimum-support scaling unestablished. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A source-tree-level authority ledger is maintained alongside the manuscript in \texttt{AUTHORITIES.md}.  See \texttt{CLAIMS.md} for the frozen claim ceiling.  See \texttt{LITERATURE-NOTES.md} for literature status.
+
+\subsection{Analytic versus numerical status}
+
+The central theorem does not depend on numerical tolerance.  The identities
+\begin{equation}
+  P_0\sigma_i^\alpha P_0=0,
+  \qquad
+  P_0\ket{s}\!\bra{t}_iP_0=\frac{\delta_{st}}2P_0
+\end{equation}
+are proved analytically from collective-$\SU(2)$ representation theory, and the recovery map in \cref{eq:explicit-recovery} is explicit.  Likewise, singlet-sector preservation follows analytically from the scalar character of the pairwise matter couplings.  Previously banked finite-dimensional numerical checks are corroborative rather than load-bearing for these claims.
+
+The finite record labels and support counts in \cref{tab:finite-records} are imported from the reviewed record-search artifacts.  This paper does not rerun the search, open new parameter points, optimize a recovery, or create new numerical evidence.
+
+\subsection{Reproduction of the manuscript}
+
+The source tree is self-contained at the LaTeX level:
+\begin{verbatim}
+publications/papers/known-spin-erasure/
+  main.tex
+  references.bib
+  sections/
+  appendices/
+  AUTHORITIES.md
+  LITERATURE-NOTES.md
+  CLAIMS.md
+  README.md
+\end{verbatim}
+A conventional BibTeX build is sufficient.  No generated figure is required for the present draft; the key recovery and closure structures are given by equations \eqref{eq:virtual-schmidt}, \eqref{eq:erasure-W-form}, and \eqref{eq:reconstructive-diagram}.  Future figures, if added, should clarify these structures rather than introduce independent scientific claims.

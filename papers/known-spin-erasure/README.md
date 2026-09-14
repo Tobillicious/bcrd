@@ -1,46 +1,56 @@
-# Exact Autonomous Closure from Known-Spin Erasure in Finite Singlet Quantum Systems
+# PAPER-BCRD-KNOWN-SPIN-ERASURE-001
 
-**Author:** Tobias Croydon-McRae  
-**Status:** Manuscript in preparation  
-**Paper ID:** `PAPER-BCRD-KNOWN-SPIN-ERASURE-001`
+## Reconciled title
 
-## Summary
+**Exact Reconstructive Autonomous Closure in Finite Singlet Quantum Systems**
 
-This paper develops an exact finite-system result for known-spin erasure in a total-spin-zero quantum setting.
+Status: **focused manuscript reconciliation complete at the scientific/novelty wording level; final clean-build/render gate still required before promotion**.
 
-The central result is that erasure of one known spin is exactly recoverable on the relevant encoded sector. This recoverability induces an exact autonomous evolution for associated record constructions.
+This lane performs no new physics, new theorem, or new literature search.
 
-The paper emphasizes the distinction
+## Publication centre
 
-\[
-\text{exact reconstructive closure}
-\neq
-\text{genuinely lossy autonomous coarse-graining}.
-\]
+One-particle-loss immunity and its syndrome-factor structure are established QEC/DFS results. The present finite BCRD application places that reversible structure in a common record-dynamics formulation and uses it to interpret the reviewed `J2/J4/J6` records at `N=8,10,12` as exact reconstructive autonomous closure.
 
-The surviving record remains sufficient to reconstruct the microscopic state on the proved domain. The result therefore establishes an exact closure mechanism without claiming irreversible coarse-graining.
+```text
+EXACT_RECONSTRUCTIVE_AUTONOMOUS_CLOSURE
+!=
+AUTONOMOUS_CLOSURE_AFTER_GENUINE_INFORMATION_LOSS
+```
 
-## Scope
+## Settled contribution audit
 
-The manuscript is restricted to the exact reviewed finite-system result.
+```text
+A_Wi_factorization = DIRECT_PRIOR_ART
+B_full_algebra_recovery = STANDARD_COROLLARY_OR_REFORMULATION
+C_recoverability_to_autonomy = STANDARD_COROLLARY_OR_REFORMULATION
+D_reconstructive_vs_lossy = DISTINCT_SYNTHESIS_OR_APPLICATION
+E_BCRD_finite_application = DISTINCT_SYNTHESIS_OR_APPLICATION
+```
 
-It does not claim:
+No priority adjective is attached to A–E.
 
-- generic erasure correction;
-- arbitrary unknown-spin erasure;
-- genuinely lossy autonomous coarse dynamics;
-- thermodynamic irreversibility;
-- a continuum limit;
-- gravity or quantum gravity.
+## Scope controls
 
-## Reproducibility
+The general even-`N` singlet/DFS recovery structure remains general where supported. The BCRD realization remains finite at `N=8,10,12`. No strict minimality, minimum-support growth, common cross-`N` map, arbitrary-`N` BCRD theorem, genuinely lossy autonomous closure, semigroup/Markovianity, thermodynamic irreversibility, continuum, geometry, gravity, or quantum gravity is claimed.
 
-The final manuscript will include exact provenance for the author theorem, hostile review, and any reconciliation authority used in the paper.
+## Reconciliation authorities
 
-Development work remains in the private BCRD research archive until promoted here as publication-ready material.
+- PR #254 hostile review: `7622473f21276f014224954a21ae8f26b22a2fbf`
+- PR #256 manuscript base: `78584848a1051f8eb963ddbc1dd7f2bb1a42def0`
+- PR #258 novelty authority: `9d67e480ea2278ad8781a269e39e904c41fe9a3d`
 
-## Archival context
+See `reconciliation/` for the contract, authority crosswalk, novelty classification, scope audit, wording audit, contribution statement, and publication-readiness gate.
 
-Current BCRD public archival release:
+## Build
 
-https://doi.org/10.6084/m9.figshare.33716677
+The manuscript uses conventional BibTeX:
+
+```bash
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+bibtex main
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+```
+
+The frozen #256 candidate previously passed this gate, but that PDF is not treated as representative of the reconciled source. A new clean build and all-page render inspection are mandatory before `MANUSCRIPT_READY_FOR_PROMOTION` can be assigned.

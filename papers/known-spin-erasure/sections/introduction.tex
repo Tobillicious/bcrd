@@ -1,0 +1,61 @@
+\section{Introduction}
+\label{sec:introduction}
+
+When can a restricted record of a finite closed quantum system support an exact autonomous evolution of its own?  Two logically different mechanisms can produce such closure.  One is genuinely lossy: a reduced state discards microscopic information yet still contains everything required for its future dynamics.  The other is reconstructive: the record omits physical degrees of freedom in the ambient tensor product while retaining, in encoded form, all information about the physically allowed microscopic state.  This paper studies the second mechanism exactly.
+
+The quantum-error-correction ingredient that makes the example possible is not new.  Knill--Laflamme theory supplies the standard exact-recovery criterion \cite{KnillLaflamme1997}; known-position erasure is a standard error model \cite{GrasslBethPellizzari1997}; and decoherence-free/noiseless structures under collective symmetries are well established \cite{ZanardiRasetti1997,LidarBaconWhaley1999,BaconKempeLidarWhaley2000}.  Most importantly for the present manuscript, Migda\l{} and Banaszek proved that information encoded in collective-$\SU(d)$ decoherence-free subspaces is immune to the loss of one particle \cite{MigdalBanaszek2011}.  Their general retained-component orthogonality and equal-mixture construction is also mathematically equivalent, under routine isometry packaging, to the physical-support factorization used below.  Their qubit specialization is the complete singlet sector for an even number of spin-$1/2$ particles.  We therefore treat both one-particle-loss immunity and the equivalent syndrome/logical support structure as direct prior art rather than novelty claims.
+
+Our purpose is narrower.  Let
+\begin{equation}
+  \Hilb_N=(\mathbb C^2)^{\otimes N},
+\end{equation}
+and let $\Code_0\subset\Hilb_N$ be the complete total-spin-zero sector for even $N$.  For a fixed known site $i$, define the erasure channel by partial trace.  We give a self-contained channel-level derivation, useful for the later dynamical construction, beginning with
+\begin{equation}
+  P_0\sigma_i^\alpha P_0=0,
+  \qquad \alpha=x,y,z,
+\end{equation}
+and hence
+\begin{equation}
+  P_0\ket{s}\!\bra{t}_iP_0
+  =\frac{\delta_{st}}2P_0.
+\end{equation}
+These identities recover the exact located-erasure condition on the full multiplicity-rich singlet sector.
+
+We then make the reachable-support structure explicit.  There exists an isometry
+\begin{equation}
+  W_i:\mathbb C^2_{\mathrm v}\otimes\Code_0\longrightarrow\Hilb_{\bar i}
+\end{equation}
+such that
+\begin{equation}
+  \E_i(\rho)
+  =W_i\!\left(\frac{I_2}{2}\otimes\rho\right)W_i^\dagger.
+  \label{eq:intro-W}
+\end{equation}
+We use ``virtual qubit'' only for this isometric tensor structure on the physical support; no canonical tensor decomposition of the entire retained-spin Hilbert space is asserted.  Equation \eqref{eq:intro-W} yields an explicit CPTP left inverse on the reachable image, together with nonunique CPTP completions away from that image.
+
+The conceptual center of the present application is the dynamical interpretation of that recoverability.  Suppose a record channel $\Lambda$ has a CPTP left inverse $\R$ on the relevant physical state space, and let $U$ preserve that space.  Then
+\begin{equation}
+  \Phi=\Lambda\circ\Ad_U\circ\R
+  \label{eq:intro-phi}
+\end{equation}
+is CPTP and satisfies
+\begin{equation}
+  \Phi\circ\Lambda=\Lambda\circ\Ad_U
+\end{equation}
+on physical states.  Thus
+\begin{equation}
+  \boxed{\text{recoverability}\Rightarrow\text{exact autonomous record closure}.}
+\end{equation}
+This implication is an immediate standard consequence of exact reversibility, not a new general autonomy theorem.  Since $\R\circ\Lambda=\id$ on the physical sector, the record has not irreversibly discarded the microscopic information relevant to that sector.  Therefore
+\begin{equation}
+  \boxed{\text{exact reconstructive autonomous closure}
+  \neq
+  \text{genuinely lossy autonomous coarse-graining}.}
+\end{equation}
+This distinction is the structural interpretation we use for the finite result, not a priority claim for a new general classification.
+
+As a finite application, we use the previously reviewed singlet-preserving microscopic construction.  At $N=8,10,12$, the fixed records $J2,J4,J6$ respectively omit one fixed matter spin while retaining the other specified degrees of freedom, and each admits an exact per-$N$ CPTP update by recovery, microscopic evolution, and re-erasure.  These are fixed finite constructions: no strict minimality theorem, minimum-support-growth theorem, asymptotic theorem, or common cross-$N$ update map is claimed.
+
+The settled contribution audit separates five categories throughout: standard QEC/DFS results; direct prior art for one-particle-loss immunity and the equivalent $W_i$ support factorization; standard corollaries/reformulations for the full-algebra recovery completion and left-inverse-induced update; a reconstructive-versus-lossy synthesis used to interpret the present records; and the distinct finite BCRD application.  No first/new/novel priority claim is made for these items.
+
+The paper is organized as follows.  \Cref{sec:setting} fixes the finite singlet notation.  \Cref{sec:erasure} restates the known particle-loss immunity result in the channel form required later and derives the physical-support factorization.  \Cref{sec:closure} derives exact autonomous closure from a CPTP left inverse.  \Cref{sec:reconstruction} formalizes reconstructive versus genuinely lossy closure.  \Cref{sec:finite} states the finite $N=8,10,12$ application at its reviewed scope.  \Cref{sec:qec} places the construction relative to direct prior art and adjacent QEC/sufficiency literature.  \Cref{sec:discussion} collects limitations and publication-scope boundaries before \cref{sec:conclusion} concludes.

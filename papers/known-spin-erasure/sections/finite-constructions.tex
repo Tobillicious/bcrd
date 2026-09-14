@@ -1,0 +1,77 @@
+\section{Finite singlet-preserving record constructions}
+\label{sec:finite}
+
+We now state the application that motivated the abstract analysis.  The purpose of this section is not to introduce new numerical evidence; it re-expresses previously banked finite constructions in the notation of \cref{sec:setting,sec:closure}.
+
+\subsection{Microscopic structure needed for the theorem}
+
+The finite model has a physical Hilbert space of the form
+\begin{equation}
+  \Hilb_{\mathrm{phys}}^{(N)}
+  =\Hilb_A^{(N)}\otimes\Code_0^{(N)},
+  \label{eq:finite-phys-space}
+\end{equation}
+where $\Code_0^{(N)}$ is the complete $N$-spin singlet matter sector and $A$ collects the retained nonmatter degrees of freedom.  Every Hamiltonian term acting nontrivially on matter is a real linear combination of pairwise exchange scalars
+\begin{equation}
+  D_{ij}=\frac14\boldsymbol\sigma_i\cdot\boldsymbol\sigma_j.
+\end{equation}
+The remaining terms act trivially on matter.  Hence \cref{prop:singlet-invariance} applies and the microscopic unitary
+\begin{equation}
+  U_N(\delta)=e^{-iH_N\delta}
+\end{equation}
+preserves \cref{eq:finite-phys-space} exactly.
+
+Fix the same designated matter site $m_N$ throughout the successive-time construction and define
+\begin{equation}
+  \Lambda_N
+  =\id_A\otimes\E_{m_N},
+  \qquad
+  \widetilde{\R}_N
+  =\id_A\otimes\R_{m_N}.
+\end{equation}
+Then
+\begin{equation}
+  \Phi_N
+  =\Lambda_N\circ\Ad_{U_N(\delta)}\circ\widetilde{\R}_N
+  \label{eq:finite-Phi}
+\end{equation}
+is CPTP and satisfies
+\begin{equation}
+  \Phi_N(\Lambda_N(\rho))
+  =\Lambda_N(U_N(\delta)\rho U_N(\delta)^\dagger)
+  \label{eq:finite-intertwine}
+\end{equation}
+for every state $\rho$ on the complete physical code space.
+
+\subsection{Certified finite constructions}
+
+Within the frozen interaction-closed record hierarchy, the penultimate certified records at the three tested sizes retain all members of the designated register/mediator support and all matter spins except one fixed site.  Their reviewed dispositions are summarized in \cref{tab:finite-records}.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Previously certified finite reconstructive records.  The symbol $q$ is the support count used by the frozen record hierarchy.  It describes the certified constructions, not a proven minimum.}
+  \label{tab:finite-records}
+  \begin{tabular}{@{}cccc@{}}
+    \toprule
+    $N$ & record label & $q$ & closure mechanism \\
+    \midrule
+    $8$  & $J_2$ & $12$ & one-known-spin recovery \\
+    $10$ & $J_4$ & $16$ & one-known-spin recovery \\
+    $12$ & $J_6$ & $20$ & one-known-spin recovery \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+For each row, \cref{eq:finite-Phi} provides one fixed per-$N$ CPTP update.  The map is independent of the discrete step label and of the choice of physical source state because its ingredients---the erased site, recovery, Hamiltonian, and time increment---are fixed state-independent objects.  Since the microscopic evolution remains in the singlet sector, exact iteration follows from \cref{cor:iterative-record}.
+
+Two qualifications are essential.  First, equality with the reduced microscopic dynamics is asserted on the complete physical code image.  The map in \cref{eq:finite-Phi} is a CPTP extension to the surrounding raw record algebra, but its action away from physically encoded records is nonunique.  Second, \cref{tab:finite-records} does not prove minimality.  Smaller candidates in the same frozen search remained unresolved at the available certification ceiling.  Thus the observed sequence
+\begin{equation}
+  q=12,16,20
+\end{equation}
+licenses only the statement that the \emph{certified constructions} grow across the tested sizes.  It does not establish that the mathematically minimal support must grow, nor does it justify an asymptotic law from three finite points.
+
+\subsection{Architecture independence of the recovery mechanism}
+
+The one-spin theorem itself depends only on the singlet constraint, while the invariance step requires only that the matter couplings be collective-$\SU(2)$ scalars.  Accordingly, the recovery mechanism has no power by itself to distinguish one microscopic architecture from another when both share these properties.  The finite constructions are useful as realizations of the theorem, but the existence of reconstructive closure should not be interpreted as evidence uniquely favoring the particular architecture in which they were first identified.
+
+Likewise, the retained record contains the internal timing/controller degrees of freedom specified by the finite model.  A statement that the update requires no \emph{external} clock therefore means that the clock/controller is internal to the retained record; it is not a claim that temporal structure has emerged from a clock-free coarse state.
