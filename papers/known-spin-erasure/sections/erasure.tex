@@ -1,0 +1,157 @@
+\section{Known-spin erasure and exact recovery}
+\label{sec:erasure}
+
+The particle-loss immunity used here is established prior art for collective-$\SU(d)$ decoherence-free subspaces \cite{MigdalBanaszek2011}.  We retain a complete proof because the later autonomous-closure construction requires a precise channel identity and a specific physical-support factorization.  The first lemma is a representation-theoretic identity on the \emph{complete} qubit singlet multiplicity space.
+
+\begin{lemma}[Vanishing of projected one-site vector operators]
+\label{lem:projected-pauli}
+For every even $N\ge4$, every site $i$, and every $\alpha\in\{x,y,z\}$,
+\begin{equation}
+  P_0\sigma_i^\alpha P_0=0.
+  \label{eq:projected-pauli}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Under a collective rotation $g\in\SU(2)$, the one-site Pauli vector transforms in the defining three-dimensional rotation representation:
+\begin{equation}
+  U_N(g)\sigma_i^\alpha U_N(g)^\dagger
+  =\sum_{\beta}R_{\alpha\beta}(g)\sigma_i^\beta.
+\end{equation}
+Define $A_\alpha=P_0\sigma_i^\alpha P_0$.  Using \cref{eq:trivial-action}, projection of the covariance relation onto the singlet sector gives
+\begin{equation}
+  A_\alpha
+  =\sum_\beta R_{\alpha\beta}(g)A_\beta
+  \qquad\text{for every }g\in\SU(2).
+\end{equation}
+Hence $(A_x,A_y,A_z)$ is an invariant vector for the nontrivial spin-1 representation.  That representation contains no invariant vector, so $A_x=A_y=A_z=0$.
+\end{proof}
+
+The same statement follows from the Wigner--Eckart theorem: a rank-one tensor operator has vanishing matrix elements between total-spin-zero states, including off-diagonal matrix elements between distinct singlet multiplicity labels.  The operator form in \cref{eq:projected-pauli}, rather than only vanishing diagonal expectations, is what is needed for exact channel recovery.
+
+\begin{theorem}[Known particle-loss immunity, recast in channel form]
+\label{thm:known-erasure}
+Let $N\ge4$ be even, let $\Code_0\subset(\mathbb C^2)^{\otimes N}$ be the complete total-spin-zero sector, and fix a known site $i$.  The erasure channel $\E_i$ in \cref{eq:erasure-def} is exactly correctable on $\Code_0$.  Equivalently, there exists a CPTP map
+\begin{equation}
+  \R_i:\B(\Hilb_{\bar i})\longrightarrow\B(\Code_0)
+\end{equation}
+such that
+\begin{equation}
+  \R_i\circ\E_i
+  =\id_{\B(\Code_0)}.
+  \label{eq:left-inverse}
+\end{equation}
+Moreover, the identity is complete in the sense of \cref{eq:complete-recovery}: the same recovery works after tensoring with an arbitrary retained reference system.
+\end{theorem}
+
+\begin{proof}
+Choose the computational basis $\{\ket{0},\ket{1}\}$ at the erased site.  A Kraus representation for partial trace is
+\begin{equation}
+  K_s=\bra{s}_i,
+  \qquad s\in\{0,1\},
+\end{equation}
+so that
+\begin{equation}
+  K_s^\dagger K_t=\ket{s}\!\bra{t}_i.
+\end{equation}
+Every one-qubit matrix unit is a linear combination of $I$, $\sigma^x$, $\sigma^y$, and $\sigma^z$.  By \cref{lem:projected-pauli},
+\begin{equation}
+  P_0\ket{s}\!\bra{t}_iP_0
+  =\frac{\delta_{st}}{2}P_0.
+  \label{eq:matrix-unit-kl}
+\end{equation}
+Thus the Knill--Laflamme conditions hold exactly for the located-erasure channel \cite{KnillLaflamme1997,GrasslBethPellizzari1997}.  They guarantee a state-independent CPTP recovery satisfying \cref{eq:left-inverse}.  Because \cref{eq:left-inverse} is equality of channels on the code, tensoring with $\id_A$ for an arbitrary reference $A$ preserves the equality, proving complete recovery.
+\end{proof}
+
+Migda\l{} and Banaszek prove the underlying one-particle-loss immunity for collective-$\SU(d)$ DFS encodings, including the qubit singlet sector, and give an explicit recovery procedure in the four-qubit case \cite{MigdalBanaszek2011}.  Their general Eqs.~(9), (10), and (13) also give the retained-component orthogonality and equal post-loss mixture that are mathematically equivalent, under routine isometry packaging, to the physical-support factorization below.  The remaining statements are retained as a self-contained channel reformulation for the record-dynamics construction, not as a new erasure code or new factorization.
+
+\begin{theorem}[Physical-support virtual-qubit factorization]
+\label{thm:virtual-qubit}
+Under the assumptions of \cref{thm:known-erasure}, there exists an isometry
+\begin{equation}
+  W_i:\mathbb C^2_{\mathrm v}\otimes\Code_0
+  \longrightarrow\Hilb_{\bar i}
+  \label{eq:W-isometry}
+\end{equation}
+such that, after identifying the code with its image under $V$,
+\begin{equation}
+  V\ket{\lambda}
+  =\frac{1}{\sqrt2}\sum_{s=0}^1
+  \ket{s}_i\otimes W_i(\ket{s}_{\mathrm v}\otimes\ket{\lambda})
+  \label{eq:virtual-schmidt}
+\end{equation}
+for every $\ket{\lambda}\in\Code_0$.  Consequently,
+\begin{equation}
+  \boxed{
+  \E_i(\rho)
+  =W_i\!\left(\frac{I_{\mathrm v}}2\otimes\rho\right)W_i^\dagger
+  }
+  \label{eq:erasure-W-form}
+\end{equation}
+for every $\rho\in\B(\Code_0)$.
+\end{theorem}
+
+\begin{proof}
+Choose an orthonormal basis $\{\ket{\lambda}\}$ of $\Code_0$ and decompose
+\begin{equation}
+  V\ket{\lambda}
+  =\sum_{s=0}^1\ket{s}_i\otimes\ket{v_{\lambda,s}},
+  \qquad
+  \ket{v_{\lambda,s}}\in\Hilb_{\bar i}.
+  \label{eq:v-decomposition}
+\end{equation}
+For any pair $\lambda,\mu$, the reduced operator on site $i$ is
+\begin{equation}
+  \Tr_{\bar i}\!\left(
+  V\ket{\lambda}\!\bra{\mu}V^\dagger
+  \right)
+  =\sum_{s,t}\ket{s}\!\bra{t}
+  \braket{v_{\mu,t}}{v_{\lambda,s}}.
+  \label{eq:site-reduced-cross}
+\end{equation}
+Its Pauli components are precisely the matrix elements of $P_0\sigma_i^\alpha P_0$.  By \cref{lem:projected-pauli}, every traceless component vanishes.  The trace is $\delta_{\lambda\mu}$, so
+\begin{equation}
+  \Tr_{\bar i}\!\left(
+  V\ket{\lambda}\!\bra{\mu}V^\dagger
+  \right)
+  =\frac{\delta_{\lambda\mu}}2 I_2.
+\end{equation}
+Comparing matrix elements with \cref{eq:site-reduced-cross} gives the Gram relation
+\begin{equation}
+  \braket{v_{\mu,t}}{v_{\lambda,s}}
+  =\frac12\delta_{\lambda\mu}\delta_{st}.
+  \label{eq:gram-relation}
+\end{equation}
+Therefore
+\begin{equation}
+  W_i(\ket{s}_{\mathrm v}\otimes\ket{\lambda})
+  :=\sqrt2\ket{v_{\lambda,s}}
+\end{equation}
+extends linearly to an isometry, proving \cref{eq:W-isometry}.  Substitution into \cref{eq:v-decomposition} gives \cref{eq:virtual-schmidt}; tracing out site $i$ then gives \cref{eq:erasure-W-form}.
+\end{proof}
+
+The term ``virtual qubit'' refers only to the isometric tensor structure on the reachable support $\operatorname{im}W_i\subset\Hilb_{\bar i}$.  It does not assert a canonical tensor-product decomposition of the entire retained-spin Hilbert space.  In the settled novelty audit, this support factorization is classified as direct prior art in equivalent form rather than a priority-bearing channel result.
+
+\begin{corollary}[Explicit CPTP recovery with nonunique off-image completion]
+\label{cor:explicit-recovery}
+Let $Q_i=W_iW_i^\dagger$ project onto the image of $W_i$, and fix any density operator $\rho_\star$ on $\Code_0$.  Then
+\begin{equation}
+  \R_i(X)
+  =\Tr_{\mathrm v}(W_i^\dagger XW_i)
+   +\Tr[(I-Q_i)X]\,\rho_\star
+  \label{eq:explicit-recovery}
+\end{equation}
+defines a CPTP map $\B(\Hilb_{\bar i})\to\B(\Code_0)$ satisfying $\R_i\circ\E_i=\id$.
+\end{corollary}
+
+\begin{proof}
+Both terms in \cref{eq:explicit-recovery} are completely positive.  The trace of the first term is $\Tr(Q_iX)$ and that of the second is $\Tr[(I-Q_i)X]$, so their sum is trace preserving.  For $X=\E_i(\rho)$, \cref{eq:erasure-W-form} has support entirely in $Q_i$ and gives
+\begin{equation}
+  \Tr_{\mathrm v}\!\left(\frac{I_{\mathrm v}}2\otimes\rho\right)=\rho,
+\end{equation}
+while the second term vanishes.
+\end{proof}
+
+Only the action on the reachable image is physically fixed by the recovery requirement.  The second term in \cref{eq:explicit-recovery} is one convenient full-algebra CPTP completion, and other completions are possible.  No uniqueness or independent physical significance is assigned to the off-image action.  The settled novelty audit classifies this completion as a standard corollary/reformulation.
+
+The factorization is the structural reason the later closure must be interpreted carefully.  The erased physical spin is maximally entangled with a virtual qubit encoded inside the retained spins, while the full logical singlet state remains as the second factor on the physical support.  On the allowed sector, the partial trace is therefore a reversible encoding rather than an information-destroying coarse-graining.

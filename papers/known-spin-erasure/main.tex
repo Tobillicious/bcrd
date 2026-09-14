@@ -1,0 +1,88 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{seqsplit}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage[nameinlink,capitalize]{cleveref}
+
+\geometry{margin=1in}
+\setlength{\emergencystretch}{2em}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue,
+  pdftitle={Exact Reconstructive Autonomous Closure in Finite Singlet Quantum Systems},
+  pdfauthor={Tobias Croydon-McRae}
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Hilb}{\mathcal H}
+\newcommand{\Code}{\mathcal C}
+\newcommand{\B}{\mathcal B}
+\newcommand{\E}{\mathcal E}
+\newcommand{\R}{\mathcal R}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\Ad}{\operatorname{Ad}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\CPTP}{\mathrm{CPTP}}
+\newcommand{\ket}[1]{\lvert #1\rangle}
+\newcommand{\bra}[1]{\langle #1\rvert}
+\newcommand{\braket}[2]{\langle #1\vert #2\rangle}
+\newcommand{\proj}[1]{\lvert #1\rangle\!\langle #1\rvert}
+\newcommand{\commitsha}[1]{\texttt{\seqsplit{#1}}}
+
+\title{Exact Reconstructive Autonomous Closure\\in Finite Singlet Quantum Systems}
+\author{Tobias Croydon-McRae}
+\date{Reconciled manuscript candidate: 14 September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+When can a restricted record of a finite closed quantum system support an exact autonomous evolution of its own? We analyze a mechanism in which exact closure arises not from irreversible information loss but from complete reconstructability. One-particle-loss immunity and the associated retained-component/syndrome-factor structure are established results for collective-$\SU(d)$ decoherence-free subspaces, including the complete even-$N$ qubit singlet sector \cite{MigdalBanaszek2011}. In the finite spin-$1/2$ setting considered here, we give a self-contained channel-level formulation. For the complete total-spin-zero sector $\Code_0\subset(\mathbb C^2)^{\otimes N}$ and any fixed known site $i$, the identities $P_0\sigma_i^\alpha P_0=0$ and $P_0\ket{s}\!\bra{t}_iP_0=(\delta_{st}/2)P_0$ give exact located-erasure recovery. The equivalent retained-support isometry may be written
+\[
+\E_i(\rho)=W_i\!\left(\frac{I_2}{2}\otimes\rho\right)W_i^\dagger,
+\]
+with a state-independent CPTP left inverse; this is an isometric tensor structure on the physical support, not a canonical factorization of the full retained Hilbert space.
+
+As a standard consequence of exact recoverability, if a record channel $\Lambda$ has a CPTP left inverse $\R$ on the relevant physical domain and $U$ preserves that domain, then $\Phi=\Lambda\circ\Ad_U\circ\R$ is CPTP and satisfies $\Phi\circ\Lambda=\Lambda\circ\Ad_U$. Applied to the reviewed finite singlet-preserving constructions at $N=8,10,12$, this yields exact fixed per-$N$ record updates. We use this to classify the present autonomous records as \emph{reconstructive}: their exact closure follows because the record retains all information needed to recover the microscopic code state. The finite application thereby separates autonomy inherited from reversible encoding from the distinct problem of autonomous closure after genuine information loss. We do not infer genuinely lossy coarse-graining, thermodynamic irreversibility, emergent Markovianity, continuum dynamics, geometry, gravity, or quantum gravity.
+\end{abstract}
+
+\input{sections/introduction}
+\input{sections/setting}
+\input{sections/erasure}
+\input{sections/closure}
+\input{sections/reconstruction}
+\input{sections/finite-constructions}
+\input{sections/qec-relation}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+\appendix
+\input{appendices/provenance}
+
+\begingroup
+\small
+\bibliographystyle{unsrt}
+\bibliography{references}
+\endgroup
+
+\end{document}

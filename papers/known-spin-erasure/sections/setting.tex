@@ -1,0 +1,77 @@
+\section{Finite singlet setting and notation}
+\label{sec:setting}
+
+We work first in a model-independent spin setting.  Let $N$ be even and define
+\begin{equation}
+  \Hilb_N=(\mathbb C^2)^{\otimes N}.
+\end{equation}
+For site $i$, let $\sigma_i^\alpha$ denote the Pauli matrix $\sigma^\alpha$ acting on that site and the identity elsewhere.  The collective spin operators are
+\begin{equation}
+  S_{\mathrm{tot}}^\alpha
+  =\frac12\sum_{i=1}^N\sigma_i^\alpha,
+  \qquad
+  \mathbf S_{\mathrm{tot}}^2
+  =\sum_{\alpha=x,y,z}(S_{\mathrm{tot}}^\alpha)^2.
+\end{equation}
+The complete total-spin-zero sector is
+\begin{equation}
+  \Code_0
+  =\ker \mathbf S_{\mathrm{tot}}^2
+  \subset\Hilb_N,
+\end{equation}
+with orthogonal projector $P_0$ and inclusion isometry
+\begin{equation}
+  V:\Code_0\hookrightarrow\Hilb_N.
+\end{equation}
+For even $N$ its dimension is the Catalan number
+\begin{equation}
+  d_0(N)=\dim\Code_0
+  =\frac{1}{N/2+1}\binom{N}{N/2}.
+  \label{eq:singlet-dim}
+\end{equation}
+For odd $N$ the spin-$1/2$ tensor product has no total-spin-zero sector, so odd $N$ is outside the theorem's domain.
+
+The collective representation is
+\begin{equation}
+  U_N(g)=u(g)^{\otimes N},\qquad g\in\SU(2),
+\end{equation}
+where $u$ is the defining spin-$1/2$ representation.  By definition of total spin zero,
+\begin{equation}
+  U_N(g)P_0=P_0U_N(g)=P_0
+  \label{eq:trivial-action}
+\end{equation}
+for every $g\in\SU(2)$.  Importantly, $\Code_0$ is generally not one-dimensional: the multiplicity dimension in \cref{eq:singlet-dim} equals $2,5,14,42$ for $N=4,6,8,10$, respectively.  Thus an operator identity on $\Code_0$ is stronger than a statement about expectation values in a single singlet vector.
+
+Fix once and for all a physical site $i$.  Write
+\begin{equation}
+  \Hilb_N\cong\mathbb C^2_i\otimes\Hilb_{\bar i},
+  \qquad
+  \Hilb_{\bar i}=(\mathbb C^2)^{\otimes(N-1)}.
+\end{equation}
+The located erasure channel restricted to the code is
+\begin{equation}
+  \E_i:\B(\Code_0)\longrightarrow\B(\Hilb_{\bar i}),
+  \qquad
+  \E_i(\rho)=\Tr_i(V\rho V^\dagger).
+  \label{eq:erasure-def}
+\end{equation}
+The adjective \emph{known} is load-bearing: the site label $i$ is part of the channel specification.  We do not model an unknown-location error by \cref{eq:erasure-def}.
+
+For later use, let $\Hilb_A$ denote an arbitrary retained reference system.  Exact recovery is called \emph{complete} if a single CPTP map $\R_i$ satisfies
+\begin{equation}
+  (\id_A\otimes\R_i)
+  \circ
+  (\id_A\otimes\E_i)
+  =\id_A\otimes\id_{\B(\Code_0)}
+  \label{eq:complete-recovery}
+\end{equation}
+on all states supported on $\Hilb_A\otimes\Code_0$.  This reference-stable formulation is the one needed when the singlet matter sector is correlated or entangled with other retained degrees of freedom.
+
+\begin{definition}[Reconstructive record]
+Let $\Lambda:\B(\Hilb_{\mathrm{phys}})\to\B(\Hilb_C)$ be a CPTP record channel, with $\Hilb_{\mathrm{phys}}$ denoting the relevant physical/code Hilbert space rather than necessarily the full ambient tensor product.  We call $\Lambda$ \emph{reconstructive} on $\Hilb_{\mathrm{phys}}$ if there exists a CPTP map $\R:\B(\Hilb_C)\to\B(\Hilb_{\mathrm{phys}})$ such that
+\begin{equation}
+  \R\circ\Lambda=\id_{\B(\Hilb_{\mathrm{phys}})}.
+\end{equation}
+\end{definition}
+
+This definition concerns exact information sufficiency on the specified physical domain.  It does not require $\Lambda$ to be invertible on an ambient Hilbert space that contains states excluded by the physical constraint.

@@ -1,0 +1,50 @@
+\section{Discussion and limitations}
+\label{sec:discussion}
+
+The exact result established here has a narrow but useful interpretation.  A raw physical subsystem can be removed while the reduced state remains informationally complete for a constrained microscopic sector.  In that circumstance a closed reduced dynamics exists exactly, but it is the dynamics of a reversible encoding.  This provides a clean finite counterexample to any inference of the form
+\begin{equation}
+  \text{exact reduced autonomy}
+  \Longrightarrow
+  \text{genuine microscopic information loss}.
+\end{equation}
+The implication fails because exact autonomy may be induced by reconstructability.
+
+Several limitations delimit the theorem.
+
+\paragraph{Known location is essential.}
+The channel in \cref{eq:erasure-def} removes a specified site.  The proof uses the one-site operator algebra at that fixed location and does not establish correction when the damaged location is unknown.  Located erasure and unknown-position errors are distinct QEC tasks \cite{GrasslBethPellizzari1997}.
+
+\paragraph{One erased spin only.}
+The exact theorem concerns a single known erasure.  Independent checks of the reviewed construction exhibit two-site Knill--Laflamme violations at the finite sizes $N=4,6,8,10$.  We therefore make no extension to two known erasures, arbitrary subsystem erasure, or a nonzero erased fraction at large $N$.
+
+\paragraph{The same record must be used for time homogeneity.}
+The update in \cref{eq:spin-record-Phi} is fixed only when the erased site and microscopic unitary are fixed.  A protocol that changes the erased location between steps could still admit exact stepwise recovery, but it would not be the single time-homogeneous record map established here.
+
+\paragraph{The theorem is not architecture discriminating.}
+The projected-Pauli identity follows from the singlet representation alone, and singlet-sector invariance follows for any Hamiltonian whose matter couplings are collective-$\SU(2)$ scalars.  Consequently the recovery mechanism cannot, by itself, distinguish microscopic models sharing those structural properties.
+
+\paragraph{The exact closure is not a compact coarse state.}
+The ambient retained-spin space grows relative to the constrained singlet state space as \cref{eq:dimension-ratio}.  This scaling is not a no-go theorem for every possible compact record; it says only that the present one-spin-erased construction is not such a compression.
+
+\paragraph{No minimality theorem follows from the finite hierarchy.}
+The constructions in \cref{tab:finite-records} are the smallest records certified by the frozen search at its stopping ceiling, not proven mathematical minima.  Smaller record families remained unresolved.  Therefore neither strict minimality nor growth of the minimally required support is established.
+
+\paragraph{No semigroup or generator is established.}
+A fixed discrete channel $\Phi_N$ exists for the chosen microscopic step $\delta$.  Nothing in the present theorem implies that the family of reduced maps embeds in a CPTP semigroup, is CP-divisible, or admits a Lindblad generator.  The word ``Markovian'' is therefore avoided.
+
+\paragraph{No irreversibility follows.}
+Indeed, the central result points in the opposite informational direction: the record has a CPTP left inverse on the physical domain.  Thermodynamic irreversibility, entropy production, and genuinely information-destroying coarse dynamics would require additional structures not present in this theorem.
+
+\paragraph{No continuum, geometry, or gravity claim is made.}
+All statements in this paper concern finite-dimensional quantum systems.  The finite singlet construction does not establish a continuum limit, spacetime geometry, gravity, or quantum gravity.
+
+\subsection{The remaining structural question}
+
+The theorem isolates a sharper open problem.  Can one find a physically accessible record that is simultaneously
+\begin{enumerate}[label=(\roman*)]
+  \item nonreconstructive on the relevant physical state family, and
+  \item autonomously CPTP-closed at the same scope?
+\end{enumerate}
+A positive answer would represent a qualitatively different mechanism from \cref{eq:reconstructive-diagram}: the record would close after genuine microscopic information had become inaccessible.  A negative answer would require an impossibility result, not merely failure of a particular recovery construction or numerical search.  Neither conclusion is established here.
+
+This open problem is also why the distinction between source-family recoverability and full-sector recoverability matters.  A small record may be approximately reconstructive on a restricted set of prepared states while failing to reconstruct the full physical sector.  Conversely, failure to reconstruct the full sector does not imply that discarded directions are dynamically relevant for a particular prediction.  Any future claim of genuinely lossy autonomous closure must therefore align the scope of nonreconstructiveness, predictive relevance, and autonomous dynamics rather than mixing evidence drawn from different state families.

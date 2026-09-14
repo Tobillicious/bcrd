@@ -1,0 +1,23 @@
+{
+  "role": "CUSTODY_ONLY_PUBLIC_PROMOTION_AUTHOR",
+  "promotion_id": "PUB-PROMOTE-KSE-PAPER-001",
+  "paper_id": "PAPER-BCRD-KNOWN-SPIN-ERASURE-001",
+  "title": "Exact Reconstructive Autonomous Closure in Finite Singlet Quantum Systems",
+  "author": "Tobias Croydon-McRae",
+  "public_repository": "Tobillicious/bcrd",
+  "public_base_sha": "5ff9076b0263ab0d467494f73430586561668113",
+  "frozen_manuscript_authority": "00c981e2ce1aa9da06e9d959f164580021c37ceb",
+  "publication_readiness_terminal_sha": "342ca267c21a98d428ce90847296892898c065cb",
+  "exact_source_tree_sha": "07b10155deacbbc7b6bedf612aa368fa800c6bf4",
+  "exact_public_copy_commit": "ef09497c7d21434a8b68743d8139ff13c55558ac",
+  "exact_tree_identity_verified": "YES",
+  "file_count": 25,
+  "private_machine_path_leak_detected": "NO",
+  "credential_or_secret_leak_detected": "NO",
+  "scientific_content_modified_during_promotion": "NO",
+  "manuscript_content_modified_during_exact_copy": "NO",
+  "paper_specific_doi_assigned": "NO",
+  "github_release_created": "NO",
+  "figshare_action_performed": "NO",
+  "promotion_status": "PUBLIC_PROMOTION_CUSTODY_STAGED"
+}
