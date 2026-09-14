@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite the paper-specific Figshare record."
+title: "Finite-Data Non-Identification of Effective Quantum Coarse Dynamics"
+type: article
+authors:
+  - family-names: "Croydon-McRae"
+    given-names: "Tobias"
+doi: "10.6084/m9.figshare.33727360"
+identifiers:
+  - type: doi
+    value: "10.6084/m9.figshare.33727360"
+    description: "Published Figshare preprint"
+date-released: 2026-09-14
+repository-code: "https://github.com/Tobillicious/bcrd"
+url: "https://doi.org/10.6084/m9.figshare.33727360"
+license: CC-BY-4.0
+keywords:
+  - quantum coarse dynamics
+  - quantum channels
+  - CPTP maps
+  - finite-data identification
+  - set-membership identification
+  - quantum process tomography
+  - coarse graining
+  - BCRD
+preferred-citation:
+  type: article
+  title: "Finite-Data Non-Identification of Effective Quantum Coarse Dynamics"
+  authors:
+    - family-names: "Croydon-McRae"
+      given-names: "Tobias"
+  doi: "10.6084/m9.figshare.33727360"
+  year: 2026
