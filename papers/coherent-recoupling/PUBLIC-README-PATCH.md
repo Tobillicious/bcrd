@@ -1,4 +1,4 @@
-# Proposed public README patch — DO NOT APPLY PRE-V3
+# Proposed public README patch — DO NOT APPLY WHILE V3 RECONCILIATION IS PENDING
 
 This file contains a proposed future addition to the repository root `README.md`. It is deliberately stored as a patch proposal rather than applied, because the paper is not yet releasable.
 
@@ -14,7 +14,7 @@ Author: Tobias Croydon-McRae
 Paper ID: `PAPER-BCRD-COHERENT-RECOUPLING-001`  
 Status: `[V3-PENDING: released preprint / submitted article / published article]`  
 DOI: `[V3-PENDING: archive DOI]`  
-Frozen source: `[V3-PENDING: immutable GitHub tag and commit]`
+Frozen source: `[V3-PENDING: frozen public commit A and frozen non-moving release tag by project policy]`
 
 This paper develops the BCRD coherent-recoupling line from the reviewed N=4 phase-sensitive L2 result through the 2x2 endpoint-rephasing obstruction and the N=6 multipath identifiability programme. The pre-V3 record includes the independently reviewed failure of DESIGN_V2 as a Racah-identifying test: HELD-R1 is exact but non-identifying, Gate D is structurally inconsistent with the proposed Racah class, and finite numerical tolerance does not certify exact equality.
 
@@ -27,9 +27,11 @@ Reproducibility, frozen authorities, claim ledger, checksum manifest, and releas
 
 When this patch is eventually applied:
 
-1. replace every `[V3-PENDING: ...]` field from frozen authority only;
-2. do not rewrite the pre-V3 failure history to make the final result look inevitable;
-3. do not use "quantum gravity" unless the final authority actually establishes it;
-4. link the DOI only after it exists;
-5. link the immutable tag/commit, not a moving branch;
-6. include the root-README change in the metadata-only DOI-backlink commit if the scientific frozen target has already been archived.
+1. replace every pending field from frozen authority only;
+2. do not promote PR #276/#277 scientific content except through a frozen reconciliation authority;
+3. do not rewrite the pre-V3 failure history to make the final result look inevitable;
+4. do not use "quantum gravity" unless the final authority actually establishes it;
+5. link the DOI only after it exists;
+6. link commit A plus the frozen non-moving release tag by project policy, not a moving branch;
+7. do not describe the tag as technically immutable unless repository protection that prevents mutation has been independently verified;
+8. include the root-README change in the metadata-only DOI-backlink commit if the scientific frozen target has already been archived.
