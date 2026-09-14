@@ -4,182 +4,200 @@ Paper ID: `PAPER-BCRD-COHERENT-RECOUPLING-001`
 
 Formal author name: **Tobias Croydon-McRae**
 
-Status: **V3 DESIGN RECONCILIATION FROZEN / EXECUTION GOVERNANCE PENDING / NOT RELEASED / NOT CITEABLE AS A FINAL NATIVE RESULT**
+Status: **V3 DESIGN RECONCILED / PHYSICAL INTERFACE OTHERWISE GOVERNED / EXACT NATIVE CAPABILITY NOT ESTABLISHED VALUE-FREE / EXECUTION BLOCKED / NOT RELEASED**
 
-This directory is a release-engineering staging area for the next conditional BCRD paper. DESIGN_V3 design-side authority is now frozen through author/review reconciliation, but execution/interface governance, native N=6 execution, post-execution review/reconciliation, result-specific novelty disposition, manuscript freeze, and release readiness remain unresolved. This staging lane does not create a DOI, GitHub release, archive deposit, arXiv submission, journal submission, governance authority, execution authority, or native N=6 scientific result.
+This directory is a release-engineering staging area for the next conditional BCRD paper. DESIGN_V3 design-side authority is frozen through PR #278. Prospective physical-interface/execution governance exists at PR #279, the non-outcome-bearing exact-representation capability precheck exists at PR #280, and its independent verification exists at PR #281. None authorizes native N=6 execution or exposes a native result.
 
-## Scientific firewall
-
-The current programme ceiling remains L2. No file in this directory may be read as predicting, inferring, or filling the future native N=6 result.
-
-The evidential/design progression captured by the paper is:
-
-1. N=4 phase sensitivity is operationally established at the reconciled L2 scope.
-2. Mechanism attribution remains underdetermined at that scope.
-3. A closed unitary 2x2 mixing map has no nontrivial continuous phase invariant after independent endpoint rephasings.
-4. N=6 supplies a richer multipath architecture.
-5. DESIGN_V2 is not execution-ready: its HELD-R1 relation is exact but non-identifying, Gate D is structurally inconsistent with the proposed Racah class, and the numerical exactness gate requires redesign.
-6. DESIGN_V3 author design PR #276 and independent blind hostile design review PR #277 are reconciled canonically by PR #278.
-7. DESIGN_V3 design-side mathematics and scope are accepted after independent reproduction, with the exact collision and comparator limitations recorded below.
-8. `[V3-PENDING: execution/interface governance authority]`.
-9. `[V3-PENDING: native N=6 execution authority]` and `[V3-PENDING: native fingerprint/result]`.
-10. `[V3-PENDING: post-execution hostile scientific review]` and `[V3-PENDING: post-execution scientific reconciliation]`.
-
-No stronger native or physical claim is encoded here.
-
-## Current canonical DESIGN_V3 authority state
-
-The machine-readable ledger is `AUTHORITY-MANIFEST.json`.
+## Current programme state
 
 ```text
-DESIGN_V3_AUTHOR_DESIGN = PR #276
-design_contract_SHA = a7c86f23bf674063f52f261636a4d15a4bec6a47
-scientific_terminal_SHA = 1104eebd9724cbaa44cce886e5c6968b558932ec
-metadata_head_SHA = 030eff9cffc9353c0604f3632e2c39e70cb15810
-
-DESIGN_V3_INDEPENDENT_BLIND_HOSTILE_REVIEW = PR #277
-review_contract_SHA = bff8c7d7fcb613dd0138528a25a6bcc8c927311a
-scientific_review_terminal_SHA = 52b7bd5f72927d1fc76be16b14f1542a00a1372d
-review_metadata_head_SHA = 920550dfbc0e523ea70bb6a7e595986bfa3c680c
-blind_review_integrity = CLEAN
-
-DESIGN_V3_AUTHOR_REVIEW_RECONCILIATION = PR #278
-reconciliation_contract_SHA = ae669a6046cf2cfc6d2487c27ca0c1b3431f0e9a
-scientific_reconciliation_terminal_SHA = 167ce041cef4fc5d93c0cce41ddbfd48e3e5805e
-metadata_head_SHA = 5a8037eb1583c87d6b3df44c805ebbdb3854cb49
-status = CANONICAL_V3_DESIGN_SCOPE_AUTHORITY
-
-DESIGN_V3_AUTHOR_DESIGN_EXISTS = YES
-DESIGN_V3_HOSTILE_REVIEW_EXISTS = YES
-DESIGN_V3_RECONCILIATION_FROZEN = YES
-DESIGN_V3_CANONICAL_AUTHORITY = PR_278
-DESIGN_V3_EXECUTION_GOVERNANCE_FROZEN = NO
-DESIGN_V3_NATIVE_EXECUTION_COMPLETED = NO
+V3_DESIGN_SCIENCE = FROZEN_AND_RECONCILED
+V3_PHYSICAL_INTERFACE = GOVERNED_EXCEPT_EXACT_CAPABILITY_READINESS
+NATIVE_EXACT_CAPABILITY = NOT_ESTABLISHED_VALUE_FREE
+EXECUTION = BLOCKED_NOT_AUTHORIZED
 
 native_N6_target_outcome_inspected = NO
-native_N6_execution_completed = NO
+native_coefficient_values_inspected = NO
+native_fingerprint_inspected = NO
+new_native_N6_physics_executed = NO
+V3_execution_performed = NO
 execution_authorized = NO
 maximum_programme_claim = L2
 ```
 
-The substantive scientific reconciliation authority is `167ce041cef4fc5d93c0cce41ddbfd48e3e5805e`. The later `5a8037eb1583c87d6b3df44c805ebbdb3854cb49` head is metadata-only and does not alter the frozen science.
+This is an execution-readiness state, not a native-physics failure and not an impossibility theorem.
 
-## Canonical reconciled V3 design-side scope
-
-The following are design-side authority only. They are not achieved native N=6 results.
+## Canonical DESIGN_V3 authority
 
 ```text
-V3_core_mathematics_status = ACCEPTED_AFTER_INDEPENDENT_REPRODUCTION
-reference_generic_identifiability_status = YES_MOD_GLOBAL_SIGN
-compatibility_chart = c3 != 0
-reference_nonidentifiability_locus = V(c3, c1*c5)
+PR #276 author design
+  design_contract_SHA = a7c86f23bf674063f52f261636a4d15a4bec6a47
+  scientific_terminal_SHA = 1104eebd9724cbaa44cce886e5c6968b558932ec
+  metadata_head_SHA = 030eff9cffc9353c0604f3632e2c39e70cb15810
 
-C1_exact_global_collision_exists = YES
-C1_collision_locus = c3 != 0 AND c1 = 0 AND c5 = 0
-C1_global_exclusion_full_c3_chart = NO
-C1_global_exclusion_noncollision_stratum = PROVED_ON_c3_NONZERO_AND_(c1_NONZERO_OR_c5_NONZERO)
-C2_global_exclusion_status = PROVED_FOR_CLASS_ON_C3_NONZERO_CHART
+PR #277 independent blind hostile design review
+  review_contract_SHA = bff8c7d7fcb613dd0138528a25a6bcc8c927311a
+  scientific_review_terminal_SHA = 52b7bd5f72927d1fc76be16b14f1542a00a1372d
+  review_metadata_head_SHA = 920550dfbc0e523ea70bb6a7e595986bfa3c680c
+  blind_review_integrity = CLEAN
 
-prospective_forward_prediction_count = 118
-generic_apparatus_identity_count = 82
-reference_specific_constraint_count_vs_Sym5 = 36
-reference_specific_constraint_count_vs_C1 = 14
-generic_additional_C1_transverse_directions = 4
-collision_locus_additional_C1_transverse_directions = 3
-
-effective_compatibility_status = SUPPORTED_ON_C3_NONZERO_CHART
-microscopic_membership_status = NOT_SUPPORTED
-maximum_programme_claim_after_reconciliation = L2
+PR #278 author/review reconciliation
+  reconciliation_contract_SHA = ae669a6046cf2cfc6d2487c27ca0c1b3431f0e9a
+  substantive_scientific_authority = 167ce041cef4fc5d93c0cce41ddbfd48e3e5805e
+  metadata_head_SHA = 5a8037eb1583c87d6b3df44c805ebbdb3854cb49
+  status = CANONICAL_V3_DESIGN_SCOPE_AUTHORITY
 ```
 
-## Prospective future exact-pass semantics — not an achieved result
+The reconciled V3 design-side scope remains exactly as already frozen: generic reference identifiability modulo global sign on `c3 != 0`; non-identifiability locus `V(c3,c1*c5)`; exact C1 collision on `c3 != 0 AND c1 = 0 AND c5 = 0`; no full-chart C1 exclusion; C1 exclusion only on the noncollision stratum; C2 exclusion for the class on the full `c3 != 0` chart; effective compatibility only; microscopic membership unsupported. These are design-side statements, not achieved native results.
 
-If a later native exact result passes under separately frozen governance and execution authority, the strongest reconciled design-side wording is stratified as follows.
-
-Full compatibility chart `c3 != 0`:
+## Governance authority — PR #279
 
 ```text
-EFFECTIVE_GR_REFERENCE_FINGERPRINT_COMPATIBILITY
-PLUS_EFFECTIVE_COEFFICIENT_CLASS_MOD_GLOBAL_SIGN
-PLUS_GLOBAL_C2_EXCLUSION
+governance_ID = GOV-BCRD-N6-V3-INTERFACE-EXECUTION-READINESS-001
+governance_contract_SHA = 38aa43646893f68a4f956063cf404dc9ba0b89e9
+scientific_governance_terminal_SHA = b0c2c32b0eaf7020a1f42f0d23aecc0eedc4b20f
+metadata_head_SHA = b574356e94329f4b0a224845cae654aef55a90c3
+native_target_firewall = CLEAN
 ```
 
-Noncollision stratum `c3 != 0 AND (c1 != 0 OR c5 != 0)` may additionally support:
+The frozen V3 physical interface is otherwise governed without introducing a new V3-specific physical resource. PR #279 governs the four preparations, shifted analyser, Q10/Q01 resolution, orientation, mask-bit ordering, eight exact Lüders-mask channels, common scalar `t`, ROUTE_B effective-record semantics, reset/cross-run independence, 128-coordinate manifest, Walsh postprocessing, exact stratum classifier, execution decision tree, failure semantics, blind execution topology, and independent post-execution review requirement.
+
+Hard-gate state after governance:
 
 ```text
-GLOBAL_C1_EXCLUSION
+G0 = PASS
+G1 = PASS
+G2 = PASS
+G3 = PASS
+G4 = PASS
+G5 = PASS
+G6 = BLOCKED_PENDING_PRECHECK
+G7 = BLOCKED_PENDING_PRECHECK
+G8 = PASS
+G9 = PASS
+G10 = PASS
+all_execution_gates_pass = NO
+ready_for_native_execution = NO
+execution_authorized_by_governance = NO
 ```
 
-Collision stratum `c3 != 0 AND c1 = 0 AND c5 = 0` does **not** support:
+Final governance disposition:
 
 ```text
-GLOBAL_C1_DISCRIMINATION
+GOVERNANCE_REVISE__EXACT_CERTIFICATE_ROUTE_UNRESOLVED
+__PHYSICAL_INTERFACE_OTHERWISE_GOVERNED
+__NON_OUTCOME_PRECHECK_REQUIRED
 ```
 
-Explicitly unchanged:
+## Non-outcome-bearing exact-representation precheck — PR #280
 
 ```text
-microscopic_membership_status = NOT_SUPPORTED
-physical_F_move = NOT_ESTABLISHED
-pentagon_Pachner_dynamics = NOT_ESTABLISHED
-Regge_Ponzano_Regge_dynamics = NOT_ESTABLISHED
-gravity = NOT_ESTABLISHED
-quantum_gravity = NOT_ESTABLISHED
+precheck_ID = PRECHECK-BCRD-N6-V3-EXACT-REPRESENTATION-001
+precheck_contract_SHA = c5e7876ef9f79f391808ae91861ba88762c5048b
+scientific_precheck_terminal_SHA = cbd2367103654c13f351bf0d97f4d632d2e82636
+metadata_head_SHA = 1988625d41d7c2f1a8bf4707b2e3de0c5cbdd8f3
+native_target_firewall = CLEAN
+precheck_status = FAIL_VALUE_FIREWALL
+execution_authorized_by_precheck = NO
+value_free_native_adapter_found = NO
+metadata_resolvable_without_value_exposure = NO
 ```
+
+The capability `NO` fields mean only **not established for the governed native target by a value-free frozen adapter**. They do not mean mathematically impossible. `scalar_representation_class = OTHER` means unresolved without crossing the value firewall, not an exotic scalar type.
+
+PR #280 therefore leaves:
+
+```text
+G6 = CAPABILITY_REQUIREMENT_NOT_SATISFIED__NATIVE_EXACT_DERIVATIVE_ROUTE_NOT_ESTABLISHED_VALUE_FREE
+G7 = CAPABILITY_REQUIREMENT_NOT_SATISFIED__NATIVE_EXACT_CERTIFICATE_ROUTE_NOT_ESTABLISHED_VALUE_FREE
+```
+
+## Independent precheck verification — PR #281
+
+```text
+verification_ID = IV-PRECHECK-BCRD-N6-V3-EXACT-REPRESENTATION-001
+verification_contract_SHA = a10a584f1779af2bca6c96eb0950be3381b6b508
+independent_authority_surface_audit_SHA = b3198e9d1a45d397b7147235faed7d210ebab831
+scientific_verification_terminal_SHA = b06319c30b78b772aedd1fb7fc5850b2dfa3edb3
+metadata_head_SHA = cbefaac65d237b3a4cd1e07c7865aabba372bfef
+verification_firewall = CLEAN
+final_verification_disposition = PRECHECK_VERIFIED_WITH_SCOPE_HARDENING
+```
+
+Canonical scope hardening:
+
+```text
+native_target_load_required_for_metadata = UNRESOLVED_SAFELY
+coefficient_value_exposure_required = UNRESOLVED_SAFELY
+failure_is_epistemic_not_impossibility = YES
+```
+
+Publication-safe formulation: **the required native exact-representation capability could not be established through the frozen value-free authority surface.** Do not state that native loading was proved to expose coefficient values or that the native target requires value exposure.
+
+Current execution-readiness state:
+
+```text
+physical_interface_otherwise_governed = YES
+new_interface_resources_declared = NO
+G6_status = BLOCKED
+G7_status = BLOCKED
+all_execution_gates_pass = NO
+ready_for_native_execution = NO
+execution_authorized = NO
+```
+
+## Future readiness dependency
+
+Clearing G6/G7 would require a separately prospectively frozen, non-outcome-bearing native adapter/capability manifest capable of establishing the relevant native representation/arithmetic properties without exposing the scientific outcome, together with an independently checkable exact certificate/checker path and independent verification.
+
+This is a future dependency only. This staging lane does not build such an adapter, imply that one is mandatory, create DESIGN_V4, or authorize execution.
 
 ## Literature authority state
 
-The independent general pre-result literature/novelty audit is complete:
-
 ```text
 PRE_RESULT_LITERATURE_AUDIT = COMPLETED
-verified_bibliography_entries = 34
+general_verified_bibliography_entries = 34
+TARGETED_V3_PRIOR_ART_AUDIT = COMPLETED
+new_verified_sources_added = 13
+total_verified_sources_currently_available = 47
+exact_V3_combination_found_in_prior_art = PARTIAL
+finite_SU2_V3_application_classification = KNOWN_BUT_APPLICATION_APPEARS_DISTINCT
+BCRD_specific_conjunction_classification = KNOWN_BUT_APPLICATION_APPEARS_DISTINCT
 priority_claim_established = NO
+priority_language_authorized = NONE
 ```
 
-It supplies literature grounding for standard Racah/Wigner/6j recoupling; endpoint rephasing and the isolated 2x2 obstruction; structural/algebraic identifiability; elimination/model-variety methods; parameter-free polynomial model discrimination; quantum-system identification; rigorous numerical certification; and prior operational F/R extraction and Racah-as-quantum-operation work.
+The safe contribution posture is application-level synthesis only: DESIGN_V3 specializes established ideas from quantum Hamiltonian identification, algebraic/structural identifiability, predictive validation, matched-model discrimination, and blind analysis to a finite ordinary-SU(2) multipath recoupling observable architecture. Do not use `first`, `novel`, `unprecedented`, or `to our knowledge, the first` as priority claims.
 
-Broad novelty claims remain unsupported. Preserve separately:
+## Intentionally unresolved placeholders
 
-`[V3-PENDING: targeted frozen-V3 prior-art addendum]`.
+- `[V3-PENDING: value-free native exact-capability route if separately authorized]`
+- `[V3-PENDING: native N=6 execution authority]`
+- `[V3-PENDING: native fingerprint/result]`
+- `[V3-PENDING: raw native execution SHA/hashes]`
+- `[V3-PENDING: native exact certificates]`
+- `[V3-PENDING: native execution gate outcomes]`
+- `[V3-PENDING: post-execution hostile scientific review]`
+- `[V3-PENDING: post-execution scientific reconciliation]`
+- `[V3-PENDING: final result-dependent manuscript authority]`
+- `[V3-PENDING: final hostile publication claim audit]`
+- `[V3-PENDING: final publication-readiness authority]`
+- `[V3-PENDING: public frozen commit A]`
+- `[V3-PENDING: release tag]`
+- `[V3-PENDING: archive DOI]`
+
+Do not attempt to drive the placeholder count to zero at this stage.
 
 ## Required release chain
 
-The final release must preserve this provenance direction:
-
 ```text
 final scientific authorities
-  -> frozen final manuscript source
-  -> exact-copy verification
+  -> frozen manuscript source
+  -> exact-byte verification
   -> public frozen commit A
-  -> frozen non-moving release tag on commit A by project policy
-  -> archive deposit of that exact target
-  -> archive DOI
-  -> DOI recorded back into metadata-only commit B
+  -> frozen non-moving release tag by project policy
+  -> archive/DOI
+  -> metadata-only commit B
 ```
 
-The DOI may point back to the frozen GitHub target, but commit A must not be rewritten after the archive snapshot and the project release tag must remain on commit A. See `REPRODUCIBILITY.md` and `RELEASE-CHECKLIST.md`.
-
-## Tag and release naming convention
-
-Until the final authority chain resolves, **no tag is to be created**.
-
-Proposed final convention:
-
-```text
-Git tag:      paper/coherent-recoupling/vMAJOR.MINOR.PATCH
-Release name: PAPER-BCRD-COHERENT-RECOUPLING-001 vMAJOR.MINOR.PATCH
-Archive title: [V3-PENDING: final paper title] — reproducibility release vMAJOR.MINOR.PATCH
-```
-
-Recommended first frozen public version, if and only if the final publication gate passes:
-
-```text
-paper/coherent-recoupling/v1.0.0
-```
-
-By project policy, a release tag is non-moving after creation. This is a project custody rule, not a claim that Git technically prevents tag mutation. Use a new semantic version for every scientific or reproducibility change; never intentionally retarget an existing release tag.
-
-## Stop rule
-
-Do not perform or authorize governance or execution, infer native N=6 results, create a DOI, tag, GitHub Release, Figshare item, arXiv submission, journal submission, or final public-paper entry while the required execution/result/review/readiness fields remain unresolved.
+No tag, release, DOI, Figshare item, arXiv submission, journal submission, or main merge is authorized or performed by this staging lane.
