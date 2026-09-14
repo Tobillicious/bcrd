@@ -1,0 +1,20 @@
+% Banked hostile-reviewed upper bounds only. Scale: 1 vertical unit = 0.001 error.
+\begin{tikzpicture}[x=1.35cm,y=0.55cm]
+  \draw[->] (0,0) -- (7,0);
+  \draw[->] (0,0) -- (0,11);
+  \draw[dashed] (0,10) -- (6.7,10) node[right] {$10^{-2}$};
+  \foreach \y/\lab in {2/0.002,4/0.004,6/0.006,8/0.008,10/0.010}{
+    \draw (-0.08,\y) -- (0.08,\y) node[left=3pt] {\small \lab};
+  }
+  \foreach \x/\h/\name in {
+    1/1.7360413721420206/T0,
+    2/1.7902995810885707/T1,
+    3/1.7010819506354795/H1,
+    4/2.2602480754981130/H2,
+    5/4.5826386489339540/F1,
+    6/4.4800043819739690/F2}{
+    \draw[fill=black!15] (\x-0.28,0) rectangle (\x+0.28,\h);
+    \node[below] at (\x,0) {\small \name};
+  }
+  \node[rotate=90] at (-0.8,5.4) {rigorous upper on $e_j(\Phi_6)$};
+\end{tikzpicture}

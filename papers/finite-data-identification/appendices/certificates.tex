@@ -1,0 +1,47 @@
+\section{Certificate summary}
+\label{app:certificates}
+
+This appendix records which numerical statements are load-bearing.  The curated publication packet described in \cref{app:provenance} contains immutable copies of the two map artifacts, the six-transition dataset, certificate summaries and reviewer-owned machine-readable verification outputs; the full development history remains in the frozen repository authority chain.
+
+\subsection{Four-transition constructive upper}
+
+The K=4 witness $\Phi_4$ is represented by explicit dyadic Kraus data plus a physical trace-defect completion.  The hostile review independently reimplemented the conservative U1 certificate based on block Choi matrices $J_b$ of the complete source-channel residual and
+\begin{equation}
+\|J_b\|_1\le \sqrt{\operatorname{rank}J_b}\,\|J_b\|_F.
+\end{equation}
+Outward exact arithmetic and model padding give
+\begin{equation}
+U_4=0.006670414972746646\ldots<10^{-2}.
+\end{equation}
+The K=4 existence PASS therefore does not depend on convergence of the optimizer that proposed the candidate.
+
+\subsection{Prospective frozen-map lower}
+
+For the same exact $\Phi_4$, the forward-test certificate uses the unnormalized complete-source Choi residual.  For source dimension two,
+\begin{equation}
+e_j(\Phi_4)=\frac12\|\Delta_j\|_\diamond
+\ge\frac14\|J_j\|_1
+\ge\frac14\|J_j\|_F,
+\end{equation}
+with the final route evaluated using exact integer Frobenius arithmetic and outward model padding.  Hostile-reviewed values are
+\begin{align}
+L_{F_1}&=0.6246936110454476,\\
+L_{F_2}&=0.6217658417777687.
+\end{align}
+These alone certify failure at $10^{-2}$.
+
+\subsection{Six-transition constructive upper}
+
+The accepted K=6 witness $\Phi_6$ is again structural CP and exactly physically TP through a positive trace-defect completion.  The load-bearing reviewer recomputation derives rigorous U2/U3-style complete-channel upper certificates with outward model enclosure, producing the six values in \cref{tab:k6-uppers}.  The maximum is
+\begin{equation}
+U_6=0.004582638648933954\ldots<10^{-2}.
+\end{equation}
+Older pseudo-exact spectral paths identified in the historical PR \#210/\#213 chain are excluded from this certificate.
+
+\subsection{Six-transition universal lower}
+
+The strongest accepted lower uses the subset TRAIN0+$F_1$+$F_2$.  A repaired feasible dual point is lifted to the ambient whole-algebra minimax problem and checked with genuine integer arithmetic.  Weak duality then gives
+\begin{equation}
+L_6=0.002306082156934015\ldots\le\eps_*^{(6)}.
+\end{equation}
+The lower is not needed to prove existence, but it converts the constructive PASS into the rigorous bracket in \cref{eq:k6-bracket}.

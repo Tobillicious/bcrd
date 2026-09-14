@@ -1,0 +1,58 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools,amsthm}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,capitalize]{cleveref}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+
+\newcommand{\A}{\mathcal A}
+\newcommand{\C}{\mathfrak C}
+\newcommand{\F}{\mathcal F}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\diam}{\operatorname{diam}}
+
+\title{Finite-Data Non-Identification of Effective Quantum Coarse Dynamics}
+\author{Tobias Croydon-McRae}
+\date{Working manuscript --- 14 September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study finite-data identification of a common effective update from a coarse quantum record.  In a fixed finite system ($N=8$), we consider the full class of source-independent, time-independent, whole-algebra completely positive trace-preserving (CPTP) maps on the proper coarse record $R2_{07}$, assessed by complete-source half-diamond error.  A rigorously certified map $\Phi_4$ fits four exposed transitions below tolerance $10^{-2}$.  That exact witness is frozen before two genuinely unseen transitions, selected by an outcome-blind schedule and provenance audit, are opened; it then fails both prospectively, with reviewed lower bounds $e_{F_1}(\Phi_4)\ge0.6246936110$ and $e_{F_2}(\Phi_4)\ge0.6217658418$.  After those failed predictions are added as constraints, the unchanged full physical map class remains feasible on all six transitions, with the hostile-reviewed bracket
+\[
+0.002306082156934015\ldots\le \eps_*^{(6)}\le
+0.004582638648933954\ldots < 10^{-2}.
+\]
+Because the six-transition feasible set is a subset of the four-transition feasible set, the accepted six-transition witness is also four-transition feasible, while $\Phi_4$ is excluded by the two added constraints.  Thus the four-transition data do not uniquely identify a tolerance-feasible physical map: the finite model set contains at least two admissible maps with sharply different certified prospective errors.  We describe this as finite-data non-identification, or set-membership ambiguity.  The result is finite-system and finite-sample; it does not establish universal estimator failure, map-class misspecification, arbitrary-time autonomy, Markovianity or non-Markovianity, a semigroup, hidden-state necessity, or any continuum or gravitational claim.
+\end{abstract}
+
+\input{sections/introduction}
+\input{sections/framework}
+\input{sections/physical-setting}
+\input{sections/results}
+\input{sections/identification}
+\input{sections/literature}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+\appendix
+\input{appendices/map-class-reduction}
+\input{appendices/certificates}
+\input{appendices/provenance}
+
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+\end{document}

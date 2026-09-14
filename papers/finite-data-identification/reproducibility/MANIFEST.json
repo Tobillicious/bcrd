@@ -1,0 +1,70 @@
+{
+  "packet_id": "PAPER-BCRD-FINITE-DATA-IDENTIFICATION-001-REPRODUCIBILITY",
+  "status": "PREPARED_NOT_PUBLICLY_PROMOTED",
+  "scientific_cutoff": {
+    "pr": 223,
+    "sha": "0a598dceefff780ccb1e1a25caceda4d30643997"
+  },
+  "manuscript_review_authority": {
+    "pr": 253,
+    "sha": "846267c2abb15c8e659aeeec08efc2ed4dd9ce58"
+  },
+  "new_science_performed": false,
+  "map_artifacts_altered": false,
+  "items": [
+    {
+      "path": "maps/Phi4-candidate-map-dyadic.npz",
+      "kind": "exact_copy_binary",
+      "source_pr": 213,
+      "source_sha": "1ad514541a6c8977db80a6ab7ac1a2bda3257107",
+      "source_path": "orthogonal-validation/bcrd-r207-four-transition-common-cptp-2026-09-13/artifacts/candidate-map-dyadic.npz",
+      "source_git_blob": "302991a3f3737bcfc3920fa8d7f5a6611feb6b62",
+      "bytes": 2618568,
+      "sha256": "48abd5f52812ef7503cfdde92fe630b99ded9c10c4ef35d2c4edc8d934028125"
+    },
+    {
+      "path": "maps/Phi6-C-S2-frob-pr213.npz",
+      "kind": "exact_copy_binary",
+      "source_pr": 222,
+      "source_sha": "bdf8597aa427abb789805fb331c32932bf97de28",
+      "source_path": "orthogonal-validation/bcrd-r207-n8-six-transition-common-cptp-2026-09-13/artifacts/candidates/C-S2-frob-pr213.npz",
+      "source_git_blob": "3c16236a601745b1b55d766bc6fa5a5177c81a78",
+      "bytes": 28128167,
+      "sha256": "c674e471c6bbad2e3376e53315d8e1e5cb83dbbb85f4120c7b5b8602b78f7e0a"
+    },
+    {
+      "path": "verification/prospective-hostile-certificate.json",
+      "kind": "exact_copy_text",
+      "source_pr": 220,
+      "source_sha": "069b9edba77358bcedc9fffe256ecf006c846bc0",
+      "source_path": "orthogonal-validation/review-bcrd-r207-n8-pristine-forward-confirmation-2026-09-13/results/hostile-certificate.json",
+      "source_git_blob": "e54250c2d36400029a42d8117468ab756b0e147c"
+    },
+    {
+      "path": "verification/k6-reviewer-recomputation-summary.json",
+      "kind": "exact_copy_text",
+      "source_pr": 223,
+      "source_sha": "0a598dceefff780ccb1e1a25caceda4d30643997",
+      "source_path": "orthogonal-validation/bcrd-r207-n8-six-transition-common-cptp-hostile-review-2026-09-13/results/reviewer-recomputation-summary.json",
+      "source_git_blob": "48772b4800e3c489d399b5aeb132d6178cddd71b"
+    },
+    {
+      "path": "verification/k6-L6-AUDIT.md",
+      "kind": "exact_copy_text",
+      "source_pr": 223,
+      "source_sha": "0a598dceefff780ccb1e1a25caceda4d30643997",
+      "source_path": "orthogonal-validation/bcrd-r207-n8-six-transition-common-cptp-hostile-review-2026-09-13/L6-AUDIT.md",
+      "source_git_blob": "fdbb565cd4b71bcf64ae37cff43ca7adf6f2b518"
+    },
+    {
+      "path": "transition-dataset.csv",
+      "kind": "curated_publication_data",
+      "sha256": "b745076767b1f6520bc4f9ba0196b157ed75d998f3ac217f5d0ae7540412d770"
+    },
+    {
+      "path": "certificate-summary.json",
+      "kind": "curated_publication_data",
+      "sha256": "2446be933616da201fb47c68c2d74a1610e22e2515e3e9f12c6a6f8f8586af58"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "paper_id": "PAPER-BCRD-FINITE-DATA-IDENTIFICATION-001",
+  "scientific_cutoff": {
+    "pr": 223,
+    "sha": "0a598dceefff780ccb1e1a25caceda4d30643997"
+  },
+  "physical_setting": {
+    "N": 8,
+    "record": "R2_07",
+    "source": "complete source qubit",
+    "delta": 0.1,
+    "epsilon": 0.01
+  },
+  "error_normalization": "e_j(Phi) = (1/2) || Lambda_next - Phi o Lambda_cur ||_diamond",
+  "K4": {
+    "map": "maps/Phi4-candidate-map-dyadic.npz",
+    "sha256": "48abd5f52812ef7503cfdde92fe630b99ded9c10c4ef35d2c4edc8d934028125",
+    "reviewed_existence_upper": 0.006670414972746646,
+    "claim": "Phi4 is in F_4(0.01)"
+  },
+  "prospective_Phi4": {
+    "F1_lower": 0.6246936110454476,
+    "F2_lower": 0.6217658417777687,
+    "claim": "The exact frozen Phi4 fails both prospective transitions at epsilon=0.01",
+    "review_output": "verification/prospective-hostile-certificate.json"
+  },
+  "K6": {
+    "map": "maps/Phi6-C-S2-frob-pr213.npz",
+    "sha256": "c674e471c6bbad2e3376e53315d8e1e5cb83dbbb85f4120c7b5b8602b78f7e0a",
+    "reviewed_uppers": {
+      "TRAIN0": 0.0017360413721420206,
+      "TRAIN1": 0.0017902995810885707,
+      "H1": 0.0017010819506354795,
+      "H2": 0.002260248075498113,
+      "F1": 0.004582638648933954,
+      "F2": 0.004480004381973969
+    },
+    "universal_lower": 0.002306082156934015,
+    "existence_upper": 0.004582638648933954,
+    "claim": "F_6(0.01) is nonempty"
+  },
+  "set_membership": {
+    "nesting": "F_6(0.01) subseteq F_4(0.01)",
+    "deduction": "Phi6 is also K=4 feasible; Phi4 is K=4 feasible but not K=6 feasible; therefore Phi4 != Phi6 and the K=4 tolerance-feasible set contains at least two distinct maps."
+  },
+  "not_claimed": [
+    "universal estimator failure",
+    "map-class misspecification",
+    "non-Markovianity",
+    "hidden memory",
+    "unique effective map",
+    "semigroup",
+    "arbitrary-time autonomy",
+    "continuum limit",
+    "geometry",
+    "gravity",
+    "quantum gravity"
+  ]
+}

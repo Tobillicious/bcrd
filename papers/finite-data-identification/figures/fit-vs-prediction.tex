@@ -1,0 +1,24 @@
+% Schematic custody/inference figure. Vertical layout prevents clipping and does not imply uniqueness.
+\begin{tikzpicture}[
+  node distance=0.55cm,
+  >=Stealth,
+  box/.style={draw,rounded corners,align=center,text width=0.80\linewidth,inner sep=5pt},
+  arrow/.style={->,thick}
+]
+\node[box] (d4) {\textbf{Four exposed constraints}\\TRAIN0, TRAIN1, $H_1$, $H_2$};
+\node[box,below=of d4] (p4) {$\exists\,\Phi_4\in\F_4(10^{-2})$\\selected physical CPTP witness};
+\node[box,below=of p4] (freeze) {\textbf{Freeze $\Phi_4$ before unseen outcomes}\\then open prospectively selected $F_1,F_2$};
+\node[box,below=of freeze] (fail) {\textbf{Prospective witness failure}\\
+$e_{F_1}(\Phi_4)\ge 0.62469$, \quad
+$e_{F_2}(\Phi_4)\ge 0.62177$};
+\node[box,below=of fail] (d6) {\textbf{Only now enlarge the constraint set}\\TRAIN0, TRAIN1, $H_1$, $H_2$, $F_1$, $F_2$};
+\node[box,below=of d6] (p6) {\textbf{Class remains compatible}\\
+$\exists\,\Phi_6\in\F_6(10^{-2})$, \quad
+$\max_j e_j(\Phi_6)\le0.00458264$};
+
+\draw[arrow] (d4) -- node[right]{fit / certify} (p4);
+\draw[arrow] (p4) -- (freeze);
+\draw[arrow] (freeze) -- (fail);
+\draw[arrow] (fail) -- node[right]{add opened tests as constraints} (d6);
+\draw[arrow] (d6) -- node[right]{full unchanged class} (p6);
+\end{tikzpicture}

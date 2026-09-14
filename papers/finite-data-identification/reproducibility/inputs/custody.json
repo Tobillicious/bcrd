@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "scientific_cutoff_sha": "0a598dceefff780ccb1e1a25caceda4d30643997",
+  "files": {
+    "maps/Phi4-candidate-map-dyadic.npz": {
+      "git_blob_sha1": "302991a3f3737bcfc3920fa8d7f5a6611feb6b62",
+      "sha256": "48abd5f52812ef7503cfdde92fe630b99ded9c10c4ef35d2c4edc8d934028125",
+      "source_pr": 213
+    },
+    "maps/Phi6-C-S2-frob-pr213.npz": {
+      "git_blob_sha1": "3c16236a601745b1b55d766bc6fa5a5177c81a78",
+      "sha256": "c674e471c6bbad2e3376e53315d8e1e5cb83dbbb85f4120c7b5b8602b78f7e0a",
+      "source_pr": 222
+    },
+    "inputs/pr201-certified-map-dyadic.npz": {
+      "git_blob_sha1": "836b4406bb5fc9acabdfc89dbe27932afcbb6c7a",
+      "sha256": "979b67b27608c551341c5856e6062b1072f9968bf73fc5f704b34608b2dfaa19",
+      "source_pr": 201,
+      "role": "frozen W-block record coordinates only"
+    },
+    "inputs/model-enclosure.npz": {
+      "git_blob_sha1": "c13ba148bdfcd061770448efb5d286e046553ec0",
+      "sha256": "df9a564deeb4aafb2365aa5617d2c6099a52353dc6c6dae7c732d623a07c3f5c",
+      "source_pr": 201
+    },
+    "inputs/model-enclosure.json": {
+      "git_blob_sha1": "70b5f0180361f3054e9a5343d114d5ad6b657ed2",
+      "sha256": "4074600c993e7dc50687f33fced8d43adb5f63fc71835f2d76d4b50b52bd5149",
+      "source_pr": 201
+    },
+    "inputs/forward-endpoints.npz": {
+      "git_blob_sha1": "e152e10a7317bb1318e2a8d87abb810c0e6e9c8d",
+      "sha256": "10b4c5dcbf82aa17f3f49f70388eb5611c8c19e247ff14889717bc3167dfa70f",
+      "source_pr": 219
+    },
+    "inputs/l6-dual-TRAIN0+F1+F2.npz": {
+      "git_blob_sha1": "6ff60a70faad819cb29872392dfd9e696ecfb873",
+      "sha256": null,
+      "source_pr": 222,
+      "role": "frozen dual point; Git-blob identity is the pre-execution custody check"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+\section{Compatibility versus identification}
+\label{sec:identification}
+
+\subsection{What the four-transition fit identified}
+
+The K=4 result establishes a nonempty feasible subset of the physical map class, not a unique law.  At tolerance $10^{-2}$, both $\Phi_4$ and $\Phi_6$ satisfy the first four constraints, yet only $\Phi_6$ satisfies the added $F_1,F_2$ constraints.  The finite K=4 observations therefore do not collapse the tolerance-feasible model set to a singleton, and unconstrained map freedom matters on the later certified transitions.
+
+We call this \emph{finite-data non-identification}, equivalently a \emph{set-membership ambiguity} at the declared tolerance.  The statement is relative to the chosen physical class, observation family and tolerance: the data admit distinguishable physical maps whose certified errors differ sharply on later admissible transitions.  It should not be read as a claim that the microscopic model itself is ambiguous, that every K=4 selection rule must fail, or that no alternative experiment could identify an effective map more tightly.
+
+Nor is ``overfitting'' the right primary technical term.  Classical overfitting normally invokes a specified estimator, a stochastic data-generating model, model complexity and an out-of-sample risk distribution.  Here the load-bearing statements are deterministic: membership in a finite feasible set, custody of a frozen witness, a prospective failure certificate, and survival of the full feasible class after the constraints are enlarged.  ``Prospective failure of the frozen selected witness'' is therefore the precise event; finite-data non-identification is the set-level interpretation.
+
+\subsection{Feasible-set motion as the natural next diagnostic}
+
+The certified sequence motivates, but does not yet numerically determine, the geometry of $\F_K(\eps)$.  For a metric $d$ on physical maps one might study
+\begin{equation}
+D_K^d(\eps)=\sup_{\Phi,\Psi\in\F_K(\eps)}d(\Phi,\Psi),
+\label{eq:diameter-diagnostic}
+\end{equation}
+together with directed displacement or Hausdorff-like quantities between nested feasible sets.  Because $\F_{K+r}\subseteq\F_K$, ordinary symmetric Hausdorff distance reduces to the maximum distance of a point in the larger set $\F_K$ from the smaller surviving set $\F_{K+r}$, provided the sets are nonempty and the metric topology is specified.
+
+Two metric choices should be kept distinct.  A \emph{whole-algebra map metric} probes differences on all directions in $\A_{R2_{07}}$, including directions not reached by the finite source family at the sampled times.  A \emph{reachable-domain metric} restricts attention to the physically source-accessible/channel-reachable subset.  A map pair can be far apart globally while agreeing closely on the observed domain, so these diagnostics answer different identification questions.
+
+One may also define a canonical selector $S_K$---for example a regularized minimax center fixed before seeing later data---and inspect
+\begin{equation}
+d\bigl(S_K(D_K),S_{K+r}(D_{K+r})\bigr).
+\end{equation}
+No such selector is analyzed here.  In particular, the historical $\Phi_4$ and $\Phi_6$ should not be promoted into a general canonical-estimator theorem merely because they provide a concrete example of feasible-set contraction.
+
+\subsection{Compatibility obstruction versus identification contraction}
+
+The monotone scalar $\eps_*^{(K)}$ and the structure of $\F_K(\eps)$ encode different information.  The former asks how close the best common map can come to the accumulated constraints.  The latter asks how much freedom remains among maps that meet a chosen tolerance.  It is possible for $\eps_*^{(K)}$ to remain below tolerance while the feasible set contracts substantially, or for a non-singleton feasible set to persist until a new constraint makes it empty.
+
+The present K=4-to-K=6 sequence establishes only the finite set-membership fact needed here.  The K=6 optimum is still below $0.01$, while one previously valid point is excluded by the new constraints.  Future nested-K work could quantify feasible-set motion, but no diameter, Hausdorff distance, volume or canonical-selector stability value is computed in this paper.
+
+\subsection{Empty sets are incompatibility, not identification}
+
+If a later nested dataset yields $\F_K(\eps)=\varnothing$, the correct conclusion is model-class incompatibility at that tolerance.  Geometric identification measures that presuppose a nonempty feasible set must then be marked undefined.  Assigning an empty-set diameter of zero and calling it ``perfect identification'' would reverse the scientific meaning of the result.
