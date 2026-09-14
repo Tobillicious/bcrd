@@ -4,6 +4,14 @@ Paper ID: `PAPER-BCRD-FINITE-DATA-IDENTIFICATION-001`
 
 Formal author name: **Tobias Croydon-McRae**
 
+## Publication
+
+**Published preprint:** 14 September 2026  
+**DOI:** https://doi.org/10.6084/m9.figshare.33727360  
+**Licence:** CC BY 4.0
+
+The Figshare record contains the rendered paper PDF and the complete frozen 29-file reproducibility packet, including all six NPZ binary artifacts.
+
 ## Frozen lineage
 
 ```text
@@ -31,9 +39,12 @@ historical incomplete custody attempt PR #1 terminal:
 
 binary transport remediation:
 eeb07cc701775cf7d2feda9b606d3ba618c83a09
+
+public promotion terminal:
+3d2b2781c1b20f04639d338263f1bc1f3f0363f7
 ```
 
-The manuscript source was verified as an exact custody copy before this public landing-metadata update. The executable `reproducibility/` tree was promoted by exact Git transfer and matches the frozen packet tree byte-for-byte. This README is public landing metadata; no scientific manuscript content or reproducibility semantics are changed here.
+The manuscript source was verified as an exact custody copy before the public landing-metadata update. The executable `reproducibility/` tree was promoted by exact Git transfer and matches the frozen packet tree byte-for-byte. Publication metadata changes do not alter scientific manuscript content or reproducibility semantics.
 
 ## Publication-safe contribution
 
@@ -52,13 +63,13 @@ Primary terminology: **finite-data non-identification** / **set-membership ambig
 
 ## Literature positioning
 
-The revision now directly engages incomplete quantum process tomography (Ziman 2008; Teo et al. 2011) and the classical set-membership identification literature (Milanese & Novara 2004, 2011). The generic phenomenon of non-unique compatible model sets under incomplete/finite data is prior art. The BCRD contribution is the frozen, custody-preserved finite case and its certified prospective/refit sequence.
+The revision directly engages incomplete quantum process tomography (Ziman 2008; Teo et al. 2011) and the classical set-membership identification literature (Milanese & Novara 2004, 2011). The generic phenomenon of non-unique compatible model sets under incomplete/finite data is prior art. The BCRD contribution is the frozen, custody-preserved finite case and its certified prospective/refit sequence.
 
 ## Reproducibility
 
-`reproducibility/` is a curated publication-ready packet containing the exact `Phi_4` and `Phi_6` map artifacts, reviewed machine outputs, transition metadata, class definition, authority manifest, SHA-256 checksums, and a mechanical packaging verifier.
+`reproducibility/` is the frozen publication packet containing the exact `Phi_4` and `Phi_6` map artifacts, reviewed machine outputs, transition metadata, class definition, authority manifest, SHA-256 checksums, and mechanical verification tooling.
 
-The packet is publicly staged in this repository by exact custody transfer. Paper-specific DOI assignment and public release remain separate decisions and are not performed by this promotion lane.
+The packet is publicly staged in this repository by exact custody transfer and is also deposited with the paper at DOI `10.6084/m9.figshare.33727360`.
 
 ## Build
 
