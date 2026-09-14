@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "Pre-V3 staging metadata only. Do not cite this directory as a final released result."
+title: "Conditional BCRD Coherent-Recoupling Paper — Pre-V3 Staging Package"
+authors:
+  - family-names: "Croydon-McRae"
+    given-names: "Tobias"
+repository-code: "https://github.com/Tobillicious/bcrd"
+url: "https://github.com/Tobillicious/bcrd/tree/main/papers/coherent-recoupling"
+version: "pre-v3"
+keywords:
+  - BCRD
+  - quantum dynamics
+  - quantum information
+  - Racah recoupling
+  - Wigner 6j symbols
+  - coherent recoupling
+  - structural identifiability
+  - rephasing invariants
+abstract: >
+  Release-engineering metadata for a conditional BCRD coherent-recoupling
+  manuscript. The package records only frozen pre-V3 scientific authorities and
+  reserves all DESIGN_V3-dependent claims and release fields as explicit pending
+  placeholders. No DOI or final publication metadata has been assigned.
