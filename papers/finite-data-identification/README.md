@@ -17,13 +17,23 @@ governing hostile manuscript review PR #253:
 846267c2abb15c8e659aeeec08efc2ed4dd9ce58
 ```
 
-Current revision branch:
+## Public promotion custody
 
 ```text
-sol/revise-paper-finite-data-identification-after-review-2026-09-14
+frozen manuscript authority:
+53e365b6c947d5abd672c9b02f905e0175d6176a
+
+frozen executable reproducibility packet:
+0155ec7f1c765b41737322837f3266337626c201
+
+historical incomplete custody attempt PR #1 terminal:
+88f3706ae0972a9040f5ca8fbf42bf15a19de44f
+
+binary transport remediation:
+eeb07cc701775cf7d2feda9b606d3ba618c83a09
 ```
 
-This branch is a bounded publication revision. **No new physics, transition opening, map optimization, lower-bound search, K>6 execution, N10/N12 import, or later BCRD scientific result is authorized.**
+The manuscript source was verified as an exact custody copy before this public landing-metadata update. The executable `reproducibility/` tree was promoted by exact Git transfer and matches the frozen packet tree byte-for-byte. This README is public landing metadata; no scientific manuscript content or reproducibility semantics are changed here.
 
 ## Publication-safe contribution
 
@@ -48,7 +58,7 @@ The revision now directly engages incomplete quantum process tomography (Ziman 2
 
 `reproducibility/` is a curated publication-ready packet containing the exact `Phi_4` and `Phi_6` map artifacts, reviewed machine outputs, transition metadata, class definition, authority manifest, SHA-256 checksums, and a mechanical packaging verifier.
 
-The packet is **prepared but not promoted** to a public repository in this lane.
+The packet is publicly staged in this repository by exact custody transfer. Paper-specific DOI assignment and public release remain separate decisions and are not performed by this promotion lane.
 
 ## Build
 
