@@ -1,0 +1,35 @@
+\section{Physical map class and reduction/extension statement}
+\label{app:map-class}
+
+For completeness we state the structural map class used by every load-bearing result in the manuscript.  With
+\begin{equation}
+\A=\bigoplus_{a=0}^{6}M_{d_a},
+\end{equation}
+every linear map has a unique component form
+\begin{equation}
+(\Phi(x))_b=\sum_{a=0}^{6}\Phi_{ba}(x_a).
+\end{equation}
+If $\Phi$ is completely positive then every component $\Phi_{ba}$ is completely positive, because inclusion of one input summand and projection onto one output summand are CP.  Conversely, if all 49 component maps are CP, then their direct-sum/sum assembly is CP at every matrix level.  In the input-tensor-output Choi convention,
+\begin{equation}
+C_{ba}=\sum_{ij}E_{ij}\otimes\Phi_{ba}(E_{ij})\succeq0
+\end{equation}
+for all $(b,a)$ is therefore equivalent to complete positivity of the global map.
+
+Physical trace preservation is not ordinary unweighted trace preservation.  With
+\begin{equation}
+\tau(x)=\sum_a m_a\Tr(x_a),
+\end{equation}
+the map is physical TP iff
+\begin{equation}
+\tau(\Phi(x))=\tau(x)
+\qquad\text{for all }x\in\A.
+\end{equation}
+The reviewed implementations enforce these weighted equations, or equivalently work in density coordinates $y_a=m_ax_a$ where the trace becomes the ordinary direct-sum trace.
+
+The ambient optimization over all 49 component Choi matrices is large.  The computational studies therefore use joint source-support compression and output-support coordinates.  The hostile reviews establish the load-bearing relation at the level needed here:
+
+\begin{quote}
+The reduced P/Q problem is exact \emph{minimax-equivalent} to the whole-algebra physical CPTP problem through explicit CPTP extension/retraction arguments.  The reduced and global \emph{map sets} are not asserted to be literally equal.
+\end{quote}
+
+Every constructive PASS reported in the main text is ultimately represented by a whole-algebra CPTP map, including a common completion on unsupported input directions.  Thus the scientific class is never narrowed to a dictionary family, a low-rank ansatz, a single Kraus template, an optimizer basin, or a transition-dependent family.

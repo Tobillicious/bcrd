@@ -1,0 +1,104 @@
+{
+  "Q_projection_leak": 1.2854191785057385e-11,
+  "Q_gram_defect": 9.000814945017374e-12,
+  "Q_exact_polar_distance_bound": 4.885745156512689e-11,
+  "sector_bounds": [
+    {
+      "label": [
+        0,
+        0,
+        1
+      ],
+      "projection_seed_residual": 3.90412762605815e-12,
+      "seed_gram": 8.921315865532606e-13,
+      "aligned_residual": 5.769308525532193e-12,
+      "isometry_error_bound": 3.4981590665217176e-08
+    },
+    {
+      "label": [
+        0,
+        1,
+        1
+      ],
+      "projection_seed_residual": 7.44548118415903e-12,
+      "seed_gram": 2.4902416781698537e-13,
+      "aligned_residual": 5.4381547152026035e-12,
+      "isometry_error_bound": 3.5211781834713936e-08
+    },
+    {
+      "label": [
+        0,
+        1,
+        3
+      ],
+      "projection_seed_residual": 5.33036912313676e-12,
+      "seed_gram": 7.11874511350362e-13,
+      "aligned_residual": 0.0,
+      "isometry_error_bound": 8.399230540186066e-09
+    },
+    {
+      "label": [
+        1,
+        0,
+        1
+      ],
+      "projection_seed_residual": 6.560867184730609e-12,
+      "seed_gram": 2.005905313630424e-13,
+      "aligned_residual": 4.0274172788581964e-12,
+      "isometry_error_bound": 3.514944240711917e-08
+    },
+    {
+      "label": [
+        1,
+        0,
+        3
+      ],
+      "projection_seed_residual": 5.907849345495766e-12,
+      "seed_gram": 2.3894816806467385e-13,
+      "aligned_residual": 0.0,
+      "isometry_error_bound": 8.407155998595309e-09
+    },
+    {
+      "label": [
+        1,
+        1,
+        1
+      ],
+      "projection_seed_residual": 6.4781598008017915e-12,
+      "seed_gram": 6.402143852347532e-13,
+      "aligned_residual": 8.510730961736363e-12,
+      "isometry_error_bound": 3.515533560035552e-08
+    },
+    {
+      "label": [
+        1,
+        1,
+        3
+      ],
+      "projection_seed_residual": 6.112248523502556e-12,
+      "seed_gram": 6.315465200208724e-13,
+      "aligned_residual": 0.0,
+      "isometry_error_bound": 8.412201178030057e-09
+    }
+  ],
+  "U_exact_distance_bound": 1.6571673822421722e-07,
+  "Hamiltonian_error_bound": 1.628889915522444e-09,
+  "initial_isometry_error_bound": 7.796128202186059e-11,
+  "H_abs_norm_bound": 19.069907267331477,
+  "taylor_beta_bound": 0.3098859930941365,
+  "taylor_steps": 64,
+  "taylor_order": 32,
+  "taylor_roundoff_and_tail_bound": 8.276816232516509e-11,
+  "state_error_bounds": [
+    3.5488204686337094e-09,
+    3.5488204686337094e-09,
+    3.5488204686337094e-09
+  ],
+  "channel_diamond_error_bounds": [
+    6.699647060472756e-07,
+    6.699647060472756e-07,
+    6.699647060472756e-07
+  ],
+  "arithmetic": "exact integer seed/projector bounds; IEEE binary64 gamma_n forward-error Taylor bound; outward spare factor 1.1",
+  "holdout_access": "NO"
+}

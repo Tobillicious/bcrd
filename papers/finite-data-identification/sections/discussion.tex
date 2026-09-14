@@ -1,0 +1,34 @@
+\section{Discussion and limitations}
+\label{sec:discussion}
+
+\subsection{What has been learned}
+
+The main scientific lesson is narrower than ``the effective dynamics failed'' and more informative than ``one fit was bad.''  At K=4, the physical common-map class is compatible with the data and contains at least two distinct tolerance-feasible maps.  The historically selected $\Phi_4$ is one such map.  When subjected without refitting to genuinely unseen transitions, it fails strongly.  Yet those same new transitions do not invalidate the map class: a second physical map fits all six, with a hostile-reviewed minimax optimum bounded strictly below the same tolerance.
+
+The clean interpretation is therefore a separation of \emph{compatibility}, \emph{finite-data identification}, and \emph{prospective prediction}.  The four finite constraints do not uniquely identify a tolerance-feasible map and do not force the selected witness's behavior on the later transitions.  Adding the later constraints contracts the feasible set and excludes $\Phi_4$, but does not make the set empty.
+
+This distinction also clarifies why a negative prospective test remains informative when the class subsequently survives.  The prospective failure rules out a particular frozen candidate as an accurate predictor for $F_1,F_2$ and demonstrates that its earlier fit did not by itself warrant that extrapolation.  The six-transition compatibility result then localizes the conclusion: at this finite stage, fitting the newly opened transitions does not require enlarging the physical record or abandoning the full common-CPTP class.  It does not show that the class will survive further constraints.
+
+\subsection{Finite scope}
+
+The result concerns exactly one finite system ($N=8$), one proper coarse record ($R2_{07}$), one complete source family, six sampled transitions and tolerance $10^{-2}$.  It does not establish persistence as more transitions are accumulated.  In particular, $\eps_*^{(K)}$ is monotone nondecreasing under nested constraints, so a later K may still cross the tolerance.  The present paper stops at the reviewed K=6 cutoff.
+
+Likewise, no cross-$N$ statement follows.  Even if the same record construction can be defined at other system sizes, compatibility, feasible-set structure and prospective behavior must be established independently there.  No large-$N$ or continuum conclusion is drawn.
+
+\subsection{No autonomy or memory claim}
+
+Finite sampled common-map compatibility does not imply an arbitrary-time autonomous effective law.  The six-transition result says only that a single physical map can jointly approximate those six one-step channels.
+
+Prospective failure of $\Phi_4$ also does not establish memory.  A memory interpretation would require an operational multitime test or an independently justified state-augmentation theorem.  It is logically possible for a different one-step map on the same record to fit the enlarged finite set---indeed that is what the K=6 certificate proves.  Hidden-state necessity, minimal augmentation and Markov order therefore remain open.
+
+\subsection{Computational reductions and certificate hygiene}
+
+The accepted six-transition result is a statement about the whole-algebra class.  The P/Q support construction used to make the optimization tractable is described only as exact minimax-equivalent through CPTP extension/retraction.  It is not a literal equality between the reduced and global map sets.  The certified witness itself is explicitly completed to a whole-algebra physical CPTP map.
+
+The review chain also identified pseudo-exact arithmetic in older auxiliary spectral routines based on object arrays that still contained binary floating-point values.  Those routines are excluded from the load-bearing K=6 upper and universal-lower certificates.  This matters methodologically: optimizer status and nominally ``exact'' code are not evidential substitutes for an independently auditable physical witness and outward certificate.
+
+\subsection{Future discriminators}
+
+Two natural next experiments follow from the present paper, but neither is executed here.  First, if pristine data remain, a separately preregistered study could freeze $\Phi_6$ and test it prospectively without refitting.  Second, a controlled nested-K study could track $\eps_*^{(K)}$ and feasible-set motion under a preregistered sequence of additional constraints.
+
+A complementary theoretical program is to study feasible-set geometry in physically meaningful metrics and identify transition designs that contract uncertainty.  Such quantities remain prospective here: no feasible-set diameter, Hausdorff diagnostic, canonical-estimator stability, arbitrary-time persistence, or cross-$N$ persistence is reported.

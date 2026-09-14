@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "authority_sha": "0a598dceefff780ccb1e1a25caceda4d30643997",
+  "order": [
+    "TRAIN0",
+    "TRAIN1",
+    "H1",
+    "H2",
+    "F1",
+    "F2"
+  ],
+  "transitions": [
+    {
+      "label": "TRAIN0",
+      "current_time": "0.832388182473",
+      "next_time": "0.9323881824729999"
+    },
+    {
+      "label": "TRAIN1",
+      "current_time": "0.9323881824729999",
+      "next_time": "1.032388182473"
+    },
+    {
+      "label": "H1",
+      "current_time": "1.232388182473",
+      "next_time": "1.332388182473"
+    },
+    {
+      "label": "H2",
+      "current_time": "1.382388182473",
+      "next_time": "1.482388182473"
+    },
+    {
+      "label": "F1",
+      "current_time": "24.232388182473",
+      "next_time": "24.332388182473"
+    },
+    {
+      "label": "F2",
+      "current_time": "24.532388182473",
+      "next_time": "24.632388182473"
+    }
+  ]
+}

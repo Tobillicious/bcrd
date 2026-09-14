@@ -1,0 +1,43 @@
+\section{Relation to process tomography and system identification}
+\label{sec:literature}
+
+\subsection{Incomplete and finite quantum-process identification}
+
+Quantum process tomography asks how an unknown channel can be reconstructed from controlled preparations and measurements.  Foundational prescriptions show how informationally complete experiments can characterize an arbitrary open-system process \cite{ChuangNielsen1997,PoyatosCiracZoller1997}; later work analyzes resource costs and structured reductions such as compressive process tomography \cite{MohseniRezakhaniLidar2008,ShabaniEtAl2011}.  Gate-set tomography addresses a related self-consistency problem in which state preparation, gates and measurement cannot be treated as independently calibrated objects \cite{BlumeKohoutEtAl2017}.
+
+Directly relevant here is the literature on \emph{incomplete} quantum process data.  Ziman studies process estimation when the available information does not determine a unique channel and uses a maximum-entropy principle to select an estimate from the remaining compatible possibilities \cite{Ziman2008}.  Teo \emph{et al.} likewise treat incomplete process-tomography data for which the observations do not uniquely specify the process, introducing an additional maximum-likelihood/maximum-entropy selection procedure \cite{TeoEtAl2011}.  These works make the general quantum identification point explicit: incomplete process information can define a non-singleton compatible set, while a unique reported estimator requires an additional selection rule.
+
+Our setting differs in both data source and error model.  The microscopic evolution is known and the finite source-to-record channels are computed and certified; the uncertainty is which effective \emph{common} CPTP map is identified by a finite set of deterministic complete-source transition constraints.  The finite constraints are not an informationally complete tomography experiment for $\Phi$ on the whole record algebra.  Accordingly, non-uniqueness of the compatible quantum process set is not claimed as novel.
+
+Finite CPTP interpolation provides a neighboring mathematical perspective.  Alberti--Uhlmann-type questions ask whether a CPTP map can send prescribed input states to prescribed output states; modern refinements give sharp conditions in specialized cases \cite{ChakrabortyEtAl2020}.  The BCRD optimization can be viewed as an approximate, complete-channel, repeated-common-map interpolation problem with a physically weighted direct-sum algebra.  Again, nothing in the present result claims novelty for the generic fact that finite interpolation constraints may admit multiple CPTP maps.
+
+\subsection{System identification and set membership}
+
+Quantum system identification studies what features of an underlying dynamical system are estimable from available input-output experiments \cite{BurgarthYuasa2012}.  Classical set-membership identification supplies the closest terminology for the present deterministic inference: finite or uncertainty-bounded data define a feasible model set, and identification and prediction are distinct questions posed over that set \cite{MilaneseNovara2004,MilaneseNovara2011}.  In this language, $\F_K(\eps)$ is a finite quantum feasible-model set and the prospective $F_1,F_2$ experiment tests one previously selected point from that set.
+
+The analogy has limits.  Our tolerance is a deterministic complete-channel error threshold rather than a probabilistic confidence region; the admissible set is constrained by complete positivity and physical trace preservation; and the transition channels are derived from a fixed finite quantum model rather than noisy laboratory samples in the present study.  These differences are why we retain the precise CPTP/diamond-norm formulation rather than translating the result wholesale into classical identification terminology.
+
+\subsection{Why the result is not a Markovianity test}
+
+A one-step map that fits finitely many transitions is much weaker than a multitime Markov property.  Process-tensor approaches characterize a quantum process operationally through interventions across multiple times and make memory statements at that level \cite{PollockEtAl2018ProcessTensor,PollockEtAl2018Markov}.  Non-Markovian process tomography similarly requires multitime information beyond a list of compatible one-step transitions \cite{WhiteEtAl2022}.  Therefore neither the K=6 compatibility result nor the prospective failure of $\Phi_4$ is a valid standalone test of Markovianity.
+
+The same caution applies to semigroup language.  We do not establish $\Phi_{t+s}=\Phi_t\Phi_s$, CP-divisibility, a Lindblad generator, or even that the same map describes every interval of length $\Delta$ outside the six sampled transitions.  ``Common-map compatibility'' in this paper always means compatibility on the explicitly listed finite transition family.
+
+\subsection{Contribution relative to prior art}
+
+The general framework is known: finite or incomplete data can leave a model set non-unique, including in quantum process estimation.  The BCRD-specific contribution is the reviewed finite conjunction
+\[
+\begin{gathered}
+\text{K=4 compatibility}
+\to
+\text{exact witness frozen}
+\to
+\text{pristine prospective failure}
+\\
+\to
+\text{unchanged-class K=6 compatibility}.
+\end{gathered}
+\]
+with explicit physical map artifacts, rigorous prospective lower certificates, a hostile-reviewed K=6 lower/upper minimax bracket, and custody that fixes when the later transition outcomes became available.
+
+We therefore present the result as a controlled certified case study.  We make no priority claim for finite-data non-identification, set-membership ambiguity, incomplete process tomography, prospective validation, or the elementary nesting lemma.  The evidential architecture is documented so that the finite case can be audited, not advertised as a new general theorem.

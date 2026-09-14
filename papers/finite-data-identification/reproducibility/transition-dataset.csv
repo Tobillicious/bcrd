@@ -1,0 +1,7 @@
+label,current_time,next_time,evidential_role
+TRAIN0,0.832388182473,0.9323881824729999,original exposed fit data
+TRAIN1,0.9323881824729999,1.032388182473,original exposed fit data
+H1,1.232388182473,1.332388182473,exposed K=4 fit data
+H2,1.382388182473,1.482388182473,exposed K=4 fit data
+F1,24.232388182473,24.332388182473,prospectively selected pristine transition
+F2,24.532388182473,24.632388182473,prospectively selected pristine transition

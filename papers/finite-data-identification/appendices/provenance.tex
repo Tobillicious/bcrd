@@ -1,0 +1,49 @@
+\section{Provenance and reproducibility ledger}
+\label{app:provenance}
+
+The scientific manuscript cutoff is the terminal hostile-review commit
+\begin{center}
+\texttt{0a598dceefff780ccb1e1a25caceda4d30643997}
+\end{center}
+on PR \#223.  The development repository is not itself required as the intended public reproduction surface for this paper.  A curated publication-ready packet is prepared under
+\begin{center}
+\texttt{reproducibility/}
+\end{center}
+in the manuscript tree.  It contains the exact six-transition metadata, the full physical map-class definition, immutable copies of the frozen $\Phi_4$ and accepted $\Phi_6$ artifacts, their scientific SHA-256 digests and source Git identities, the reviewed certificate values, reviewer-owned machine-readable summaries, and a mechanical packet verifier.  The packet does not expose unrelated development branches and is not promoted to a public repository in this revision lane.
+
+The load-bearing author/review identities are:
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+stage & author terminal & hostile/reconciliation terminal\\
+\midrule
+K=4 common map & \texttt{1ad514541a6c8977...} & \texttt{683e83807df92666...}\\
+prospective $\Phi_4$ test & \texttt{4de999a05a0173b5...} & \texttt{069b9edba77358bc...}\\
+recompute reconciliation & -- & \texttt{dc782001d75247ab...}\\
+K=6 common map & \texttt{bdf8597aa427abb7...} & \texttt{0a598dceefff780c...}\\
+\bottomrule
+\end{tabular}
+\end{center}
+The full 40-character SHAs, contract freezes, PR numbers and artifact identities are recorded without abbreviation in \texttt{AUTHORITIES.md} and in the packet's \texttt{authority-manifest.md}.
+
+The exact frozen K=4 candidate SHA-256 is
+\begin{center}
+\texttt{48abd5f52812ef7503cfdde92fe630b99ded9c10c4ef35d2c4edc8d934028125},
+\end{center}
+and the accepted K=6 candidate SHA-256 is
+\begin{center}
+\texttt{c674e471c6bbad2e3376e53315d8e1e5cb83dbbb85f4120c7b5b8602b78f7e0a}.
+\end{center}
+The hostile K=6 exact channel digest is
+\begin{center}
+\texttt{9d8afea27ddb3582ab9aaecbf3c3614bba23a04ef45b16f3cc9c9b0748641331}.
+\end{center}
+
+Prospective custody is part of the result rather than an administrative afterthought.  The forward schedule rule was frozen in PR \#215 before candidate future values were known.  Independent provenance reconciliation in PR \#218 fixed the exposure frontier at $t=24$ and mechanically selected
+\begin{align*}
+F_1 &: 24.232388182473\to24.332388182473,\\
+F_2 &: 24.532388182473\to24.632388182473.
+\end{align*}
+The exact frozen K=4 map was then evaluated on the atomic pair in PR \#219; hostile review \#220 certified the failures, and reconciliation \#221 confirmed that the reviewer-owned full recomputation executed and agreed.
+
+No new physical time, state propagation, map optimization, lower-bound search, candidate witness or architecture modification is performed in this manuscript revision.  The publication packet reorganizes and hashes already-banked evidence; it does not create a new scientific certificate.

@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "frozen_before_public_rerun": true,
+  "scientific_epsilon": "1/100",
+  "targets": {
+    "U4": {
+      "certificate_id": "U4",
+      "certificate_type": "UPPER CERTIFICATE",
+      "expected_exact": "176380873491429077542494228311481860270053991534552491599896796886644345047170766796941793327559452694862287010549721180426457111/26442263968893909650543308179896505685049022569604381869271819297884010366714387591222359722719014520249658597242848128532480000000",
+      "expected_float": 0.006670414972746646,
+      "comparison_semantics": "absolute_difference <= tolerance_for_reproduction_comparison",
+      "tolerance_for_reproduction_comparison": "0",
+      "authority_sha": "683e83807df926664268fd6600d8900972485fd5",
+      "authority_artifact": "hostile-review/bcrd-r207-four-transition-common-cptp-2026-09-13/machine-results.json",
+      "scientific_role": "K=4 physical common-map existence upper; worst H2"
+    },
+    "PHI4_F1_LOWER": {
+      "certificate_id": "Phi4_F1_lower",
+      "certificate_type": "LOWER CERTIFICATE",
+      "expected_exact": "1651831336294526769248090348503409134334629873114808731503367912739009220994799635278224324025995608169141107607425807127587377700457339/2644226396889390965054330817989650568504902256960438186927181929788401036671438759122235972271901452024965859724284812853248000000000000",
+      "expected_float": 0.6246936110454476,
+      "comparison_semantics": "absolute_difference <= tolerance_for_reproduction_comparison",
+      "tolerance_for_reproduction_comparison": "0",
+      "authority_sha": "069b9edba77358bcedc9fffe256ecf006c846bc0",
+      "authority_artifact": "orthogonal-validation/review-bcrd-r207-n8-pristine-forward-confirmation-2026-09-13/results/hostile-certificate.json",
+      "scientific_role": "prospective fixed-Phi4 F1 failure lower"
+    },
+    "PHI4_F2_LOWER": {
+      "certificate_id": "Phi4_F2_lower",
+      "certificate_type": "LOWER CERTIFICATE",
+      "expected_exact": "48355577985674370948604667591000394017323769084379893713477890964947048523083849336710655958304460730913663304918645686590224808879387/77771364614393851913362671117342663779555948734130534909622997934952971666807022327124587419761807412498995874243670966272000000000000",
+      "expected_float": 0.6217658417777687,
+      "comparison_semantics": "absolute_difference <= tolerance_for_reproduction_comparison",
+      "tolerance_for_reproduction_comparison": "0",
+      "authority_sha": "069b9edba77358bcedc9fffe256ecf006c846bc0",
+      "authority_artifact": "orthogonal-validation/review-bcrd-r207-n8-pristine-forward-confirmation-2026-09-13/results/hostile-certificate.json",
+      "scientific_role": "prospective fixed-Phi4 F2 failure lower"
+    },
+    "K6_CONSTRUCTIVE_UPPER": {
+      "certificate_id": "K6_constructive_upper",
+      "certificate_type": "UPPER CERTIFICATE",
+      "expected_exact": "104088924455424342051067106931388905033459528452990356739992644948019089582889313086698609160615422518168666973801383474985576737772805003592599/22713753457222343966423245177939016287610182810802629777273189551241070131853944747819965063962243963780977674584976557729548108562432000000000000",
+      "expected_float": 0.004582638648933954,
+      "comparison_semantics": "absolute_difference <= tolerance_for_reproduction_comparison",
+      "tolerance_for_reproduction_comparison": "1/1000000000000",
+      "authority_sha": "0a598dceefff780ccb1e1a25caceda4d30643997",
+      "authority_artifact": "Actions artifact 10317216300/reviewer-recomputation.json",
+      "scientific_role": "K=6 constructive physical common-map upper; worst F1"
+    },
+    "L6": {
+      "certificate_id": "L6",
+      "certificate_type": "LOWER CERTIFICATE",
+      "expected_exact": "31445648551196949629595402237058584978152859914775981896341182631844383598854849261094705462091141579186978899727736920133484860179590586154033190378260850602203963956888503338653924388226989042776429449892094340293906640131614700783742554452637053776159178102072427568676828103558849/13635961952459055888933345270763429026632066516627636557724164649215459095842342553657584750092768969508566171973536793967608709104035005216395115278815038979252840299026224027921972728794960799655732453425977922043819526928815749546963362421693304687718715364970297498271744000000000000",
+      "expected_float": 0.002306082156934015,
+      "comparison_semantics": "absolute_difference <= tolerance_for_reproduction_comparison",
+      "tolerance_for_reproduction_comparison": "1/1000000000000",
+      "authority_sha": "0a598dceefff780ccb1e1a25caceda4d30643997",
+      "authority_artifact": "orthogonal-validation/bcrd-r207-n8-six-transition-common-cptp-2026-09-13/results/lower/TRAIN0+F1+F2.json",
+      "scientific_role": "universal K=6 lower via subset TRAIN0+F1+F2"
+    }
+  }
+}

@@ -1,0 +1,103 @@
+\section{Finite-data common-map identification}
+\label{sec:framework}
+
+\subsection{Transition channels and admissible maps}
+
+Let $\A$ be a finite-dimensional $C^*$-algebra representing the retained coarse record, equipped with its physical trace $\tau$.  A complete source experiment at time $t$ is represented by a channel
+\begin{equation}
+\Lambda_t:M_2\longrightarrow \A,
+\end{equation}
+where the two-dimensional source is probed on all four matrix units, including its off-diagonal coherences.  For a sampled transition $j$ from $t_j$ to $t_j+\Delta$, write
+\begin{equation}
+\Lambda_j^{\mathrm{cur}}=\Lambda_{t_j},\qquad
+\Lambda_j^{\mathrm{next}}=\Lambda_{t_j+\Delta}.
+\end{equation}
+
+The admissible class $\C$ consists of physical CPTP maps
+\begin{equation}
+\Phi:\A\to\A
+\end{equation}
+that are source-independent, time-independent and common to every transition in the dataset.  ``Physical'' refers to complete positivity together with preservation of the physical trace $\tau$ of the represented record algebra.  The map is defined on the whole algebra; computational support reductions are permitted only when accompanied by a CPTP extension/retraction argument establishing minimax equivalence to this whole-algebra problem.
+
+For each transition define
+\begin{equation}
+e_j(\Phi)
+=\frac12\left\|
+\Lambda_j^{\mathrm{next}}
+-\Phi\circ\Lambda_j^{\mathrm{cur}}
+\right\|_\diamond .
+\label{eq:error}
+\end{equation}
+The diamond norm retains the complete source-channel scope and the explicit factor $1/2$ is part of the frozen error convention.
+
+For a finite transition dataset $D_K$ of cardinality $K$, define the minimax incompatibility
+\begin{equation}
+\eps_*^{(K)}
+=\inf_{\Phi\in\C}\max_{j\in D_K}e_j(\Phi),
+\label{eq:minimax}
+\end{equation}
+and, at tolerance $\eps\ge0$, the feasible set
+\begin{equation}
+\F_K(\eps)
+=\left\{\Phi\in\C:
+\max_{j\in D_K}e_j(\Phi)\le\eps
+\right\}.
+\label{eq:feasible-set}
+\end{equation}
+The compatibility question at tolerance $\eps$ is simply whether $\F_K(\eps)$ is nonempty.  It is logically distinct from whether the finite data identify a unique or predictively stable representative.
+
+\subsection{Accumulating constraints}
+
+The useful ordering variable is not a solver objective from one run but the minimax value of the full physical class under a genuinely nested data sequence.
+
+\begin{lemma}[Nested feasible sets]
+\label{lem:nesting}
+If $D_K\subseteq D_{K+r}$ for $r>0$, with the same admissible class $\C$, error definition and tolerance, then
+\begin{equation}
+\F_{K+r}(\eps)\subseteq\F_K(\eps).
+\label{eq:set-nesting}
+\end{equation}
+Consequently,
+\begin{equation}
+\eps_*^{(K)}\le\eps_*^{(K+r)}.
+\label{eq:minimax-monotonicity}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+If $\Phi\in\F_{K+r}(\eps)$, then $e_j(\Phi)\le\eps$ for every $j\in D_{K+r}$.  Since $D_K\subseteq D_{K+r}$, the same inequalities hold for every $j\in D_K$, hence $\Phi\in\F_K(\eps)$.  For the minimax values, for every fixed $\Phi$,
+\[
+\max_{j\in D_K}e_j(\Phi)
+\le
+\max_{j\in D_{K+r}}e_j(\Phi).
+\]
+Taking the infimum over the same class $\C$ preserves the inequality.
+\end{proof}
+
+The lemma is elementary, but it prevents a recurrent interpretive error.  A particular witness may leave the feasible set when new constraints are added without the enlarged feasible set becoming empty.  Specifically,
+\begin{equation}
+\Phi_K\notin\F_{K+r}(\eps)
+\qquad\not\Rightarrow\qquad
+\F_{K+r}(\eps)=\varnothing.
+\label{eq:witness-not-class}
+\end{equation}
+This distinction is the central logical point of the present example.
+
+\subsection{Empty-feasible-set semantics}
+
+A nonempty feasible set describes models compatible with the sampled data at the declared tolerance.  An empty feasible set has the opposite meaning: the entire model class is incompatible with those constraints at that tolerance.  Accordingly, geometric quantities such as $\diam\F_K(\eps)$ are left undefined (or explicitly marked inapplicable) when $\F_K(\eps)=\varnothing$.  We do not assign the empty set diameter zero and interpret this as perfect identification.
+
+\subsection{Three questions}
+
+We distinguish three levels throughout:
+
+\paragraph{Class compatibility.}
+Does there exist at least one $\Phi\in\C$ satisfying all observed transition constraints?  This is equivalent to $\F_K(\eps)\neq\varnothing$.
+
+\paragraph{Witness identification or selection.}
+How tightly do the finite observations constrain the map, and by what rule is a representative $\Phi_K$ selected?  A feasible point is not necessarily unique, minimax-optimal, statistically optimal, or stable outside the constrained domain.
+
+\paragraph{Prospective prediction.}
+Does a previously frozen $\Phi_K$ accurately reproduce genuinely unseen transitions without refitting?  This is an out-of-sample test of that fixed witness, not an all-map existence test unless an additional universal certificate is supplied.
+
+No implication among these questions should be assumed beyond what is proved from the data and class definitions.

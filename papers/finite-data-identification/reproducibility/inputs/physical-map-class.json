@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "authority_sha": "0a598dceefff780ccb1e1a25caceda4d30643997",
+  "class_id": "FULL_PHYSICAL_SOURCE_INDEPENDENT_TIME_INDEPENDENT_WHOLE_ALGEBRA_CPTP",
+  "N": 8,
+  "record": "R2_07",
+  "source": "complete source qubit",
+  "source_dimension": 2,
+  "source_matrix_units": [
+    "E00",
+    "E01",
+    "E10",
+    "E11"
+  ],
+  "whole_algebra": true,
+  "CPTP": true,
+  "source_independent": true,
+  "time_independent": true,
+  "same_map_all_transitions": true,
+  "central_transfers_allowed": 49,
+  "sector_n": [
+    2,
+    2,
+    1,
+    2,
+    1,
+    2,
+    1
+  ],
+  "sector_m": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2
+  ],
+  "ambient_dimensions": [
+    64,
+    64,
+    32,
+    64,
+    32,
+    64,
+    32
+  ],
+  "trace_functional": "sum_a m_a Tr(x_a)",
+  "map_scaling": {
+    "numerator": 1048577,
+    "denominator": 1048576
+  },
+  "physical_epsilon": {
+    "numerator": 1,
+    "denominator": 100
+  },
+  "restrictions_not_present": [
+    "dictionary",
+    "low_rank",
+    "nearby_map",
+    "fixed_kraus_family",
+    "optimizer_basin",
+    "hidden_state",
+    "transition_labelled_map"
+  ]
+}
