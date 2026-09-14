@@ -1,16 +1,20 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "paper_id": "PAPER-BCRD-COHERENT-RECOUPLING-001",
   "author": "Tobias Croydon-McRae",
-  "status": "PRE_V3_STAGING_ONLY",
+  "status": "V3_DESIGN_AND_REVIEW_EXIST__RECONCILIATION_PENDING__STAGING_ONLY",
   "source_repository": "Tobillicious/physics-lane",
   "public_repository": "Tobillicious/bcrd",
   "authority_policy": {
-    "rule": "Scientific claims are bounded by the strongest reconciled or independently reviewed authority applicable to that claim. Design and scout artifacts are never upgraded into scientific evidence.",
+    "rule": "Scientific claims are bounded by the strongest reconciled or independently reviewed authority applicable to that claim. Design and scout artifacts are never upgraded into scientific evidence. Provisional V3 author/review custody is noncanonical until reconciliation freezes.",
     "current_maximum_programme_claim_level": "L2",
     "native_N6_target_outcome_inspected": "NO",
-    "new_N6_physics_executed_in_pre_v3_chain": "NO",
-    "design_v3_status": "NOT_YET_AUTHORITY"
+    "native_N6_execution_completed": "NO",
+    "execution_authorized": "NO",
+    "DESIGN_V3_AUTHOR_DESIGN_EXISTS": "YES",
+    "DESIGN_V3_HOSTILE_REVIEW_EXISTS": "YES",
+    "DESIGN_V3_RECONCILIATION_FROZEN": "NO",
+    "DESIGN_V3_CANONICAL_AUTHORITY": "PENDING"
   },
   "pre_v3_authorities": [
     {
@@ -110,30 +114,66 @@
       "pr": 275,
       "sha": "f30ce29373dba21febf8d8106ea87e800852b09c",
       "role": "DESIGN_V2_DUAL_REVIEW_RECONCILIATION",
-      "status": "CURRENT_PRE_V3_TERMINAL_AUTHORITY",
+      "status": "FROZEN_PRE_V3_DESIGN_FAILURE_AUTHORITY",
       "disposition": "DESIGN_V2_NOT_EXECUTION_READY__HELD_R1_EXACT_BUT_NOT_RACAH_IDENTIFYING__GATE_D_STRUCTURALLY_INCONSISTENT__RACAH_SPECIFIC_ATTRIBUTION_REJECTED_WITHOUT_REJECTING_N6_ARCHITECTURE__NUMERICAL_CERTIFICATION_REQUIRES_REDESIGN"
     }
   ],
+  "provisional_noncanonical_v3_custody": {
+    "author_design": {
+      "pr": 276,
+      "design_contract_sha": "a7c86f23bf674063f52f261636a4d15a4bec6a47",
+      "scientific_terminal_sha": "1104eebd9724cbaa44cce886e5c6968b558932ec",
+      "metadata_head_sha": "030eff9cffc9353c0604f3632e2c39e70cb15810",
+      "role": "DESIGN_V3_AUTHOR_DESIGN_CUSTODY_ONLY",
+      "canonical_status": "[V3-RECONCILIATION-PENDING: final canonical design disposition]"
+    },
+    "blind_hostile_design_review": {
+      "pr": 277,
+      "review_contract_sha": "bff8c7d7fcb613dd0138528a25a6bcc8c927311a",
+      "scientific_review_terminal_sha": "52b7bd5f72927d1fc76be16b14f1542a00a1372d",
+      "blind_review_integrity": "CLEAN",
+      "role": "DESIGN_V3_HOSTILE_REVIEW_CUSTODY_ONLY",
+      "canonical_status": "[V3-RECONCILIATION-PENDING: final canonical design disposition]"
+    },
+    "explicit_nonpromotion_rule": "No scientific content from PR #276 or PR #277 is canonical in this staging manifest until design reconciliation freezes."
+  },
+  "pre_result_literature_authority": {
+    "PRE_RESULT_LITERATURE_AUDIT": "COMPLETED",
+    "verified_bibliography_entries": 34,
+    "priority_claim_established": "NO",
+    "grounding_scope": [
+      "standard Racah/Wigner/6j recoupling",
+      "endpoint rephasing and the isolated 2x2 obstruction",
+      "structural/algebraic identifiability",
+      "elimination/model-variety methods",
+      "parameter-free polynomial model discrimination",
+      "quantum-system identification",
+      "rigorous numerical certification",
+      "prior operational F/R extraction and Racah-as-quantum-operation work"
+    ],
+    "broad_novelty_claims_supported": "NO",
+    "future_targeted_addendum": "[V3-PENDING: design/result-specific targeted novelty addendum after reconciliation]"
+  },
   "v3_authority_slots": {
-    "design": "[V3-PENDING: DESIGN_V3 frozen design PR, contract SHA, and terminal SHA]",
-    "design_hostile_review": "[V3-PENDING: independent hostile design review PR and terminal SHA]",
-    "design_reconciliation": "[V3-PENDING: design reconciliation authority if required]",
+    "design_canonical_reconciliation": "[V3-PENDING: frozen reconciliation authority for PR #276/#277 and final canonical design disposition]",
     "execution_governance": "[V3-PENDING: prospective execution/interface governance authority and terminal SHA]",
     "execution": "[V3-PENDING: native N=6 execution PR, raw-result SHA, controls SHA, and terminal author SHA]",
     "hostile_scientific_review_1": "[V3-PENDING: first independent hostile scientific review terminal SHA]",
     "hostile_scientific_review_2": "[V3-PENDING: second independent review terminal SHA if commissioned]",
     "scientific_reconciliation": "[V3-PENDING: final scientific reconciliation terminal SHA]",
-    "literature_novelty_audit": "[V3-PENDING: final literature/novelty authority applicable to the V3 result]",
+    "targeted_novelty_addendum": "[V3-PENDING: design/result-specific targeted novelty addendum after reconciliation]",
     "final_manuscript": "[V3-PENDING: frozen final manuscript source SHA]",
     "final_publication_hostile_claim_audit": "[V3-PENDING: terminal publication-level hostile claim audit SHA]",
     "publication_readiness": "[V3-PENDING: final build/render/reproducibility/readiness authority SHA]"
   },
-  "forbidden_inferences_before_v3": [
+  "forbidden_inferences_before_v3_reconciliation_and_execution": [
     "Do not infer any native N=6 target outcome.",
     "Do not infer that DESIGN_V2's exact HELD-R1 relation identifies a Racah-specific mechanism.",
     "Do not treat Gate D as a valid positive test for the frozen G_R class.",
     "Do not treat finite |R| < tau as an exact certificate of R = 0.",
+    "Do not promote PR #276 or PR #277 scientific content into canonical claims before design reconciliation freezes.",
     "Do not claim a physical coherent F-move, pentagon/Pachner dynamics, Regge/Ponzano-Regge physics, continuum gravity, or quantum gravity.",
+    "Do not establish a priority claim from the completed general literature audit.",
     "Do not raise the programme ceiling above L2."
   ]
 }
