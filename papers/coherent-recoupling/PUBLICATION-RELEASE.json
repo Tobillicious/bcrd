@@ -3,7 +3,7 @@
   "working_title": "Conditional BCRD Coherent-Recoupling Paper",
   "final_title": "[V3-PENDING: final paper title after reconciled V3 disposition]",
   "author": "Tobias Croydon-McRae",
-  "release_status": "NOT_RELEASED_PRE_V3",
+  "release_status": "NOT_RELEASED__V3_RECONCILIATION_PENDING",
   "publication_type": "[V3-PENDING: preprint/article release type]",
   "publication_date": "[V3-PENDING: release date]",
   "license": "[V3-PENDING: final release licence]",
@@ -17,24 +17,56 @@
   "public_repository": "Tobillicious/bcrd",
   "paper_directory": "papers/coherent-recoupling",
   "source_repository": "Tobillicious/physics-lane",
-  "pre_v3_terminal_authority": {
+  "pre_v3_design_v2_reconciliation_custody": {
     "pr": 275,
     "sha": "f30ce29373dba21febf8d8106ea87e800852b09c",
     "role": "DESIGN_V2_DUAL_REVIEW_RECONCILIATION"
   },
-  "v3_design_authority": "[V3-PENDING: DESIGN_V3 PR and frozen terminal SHA]",
+  "programme_state": {
+    "DESIGN_V3_AUTHOR_DESIGN_EXISTS": "YES",
+    "DESIGN_V3_HOSTILE_REVIEW_EXISTS": "YES",
+    "DESIGN_V3_RECONCILIATION_FROZEN": "NO",
+    "DESIGN_V3_CANONICAL_AUTHORITY": "PENDING",
+    "native_N6_target_outcome_inspected": "NO",
+    "native_N6_execution_completed": "NO",
+    "execution_authorized": "NO",
+    "maximum_programme_claim": "L2"
+  },
+  "v3_author_design_provisional_custody": {
+    "pr": 276,
+    "design_contract_sha": "a7c86f23bf674063f52f261636a4d15a4bec6a47",
+    "scientific_terminal_sha": "1104eebd9724cbaa44cce886e5c6968b558932ec",
+    "metadata_head_sha": "030eff9cffc9353c0604f3632e2c39e70cb15810",
+    "canonical_disposition": "[V3-RECONCILIATION-PENDING: final canonical design disposition]"
+  },
+  "v3_hostile_design_review_provisional_custody": {
+    "pr": 277,
+    "review_contract_sha": "bff8c7d7fcb613dd0138528a25a6bcc8c927311a",
+    "scientific_review_terminal_sha": "52b7bd5f72927d1fc76be16b14f1542a00a1372d",
+    "blind_review_integrity": "CLEAN",
+    "canonical_disposition": "[V3-RECONCILIATION-PENDING: final canonical design disposition]"
+  },
+  "v3_design_reconciliation_authority": "[V3-RECONCILIATION-PENDING: frozen reconciliation PR/SHA and final canonical design disposition]",
+  "pre_result_literature_authority": {
+    "status": "COMPLETED",
+    "verified_bibliography_entries": 34,
+    "priority_claim_established": "NO",
+    "broad_novelty_claims_supported": "NO"
+  },
+  "targeted_v3_novelty_addendum": "[V3-PENDING: design/result-specific targeted novelty addendum after reconciliation]",
   "v3_execution_authority": "[V3-PENDING: V3 execution-governance PR and frozen terminal SHA]",
   "v3_author_result_authority": "[V3-PENDING: native N=6 author result PR and frozen terminal SHA]",
   "v3_independent_review_authority": "[V3-PENDING: independent hostile scientific review PR and frozen terminal SHA]",
-  "v3_reconciliation_authority": "[V3-PENDING: final V3 reconciliation PR and frozen terminal SHA]",
+  "v3_scientific_reconciliation_authority": "[V3-PENDING: final V3 scientific reconciliation PR and frozen terminal SHA]",
   "final_manuscript_authority": "[V3-PENDING: exact frozen final manuscript source SHA after all publication revisions]",
   "final_claim_audit_authority": "[V3-PENDING: final hostile claim-audit terminal SHA]",
   "public_frozen_target_sha": "[V3-PENDING: exact bcrd commit archived externally]",
-  "git_tag": "[V3-PENDING: immutable paper/coherent-recoupling/vMAJOR.MINOR.PATCH tag]",
+  "git_tag": "[V3-PENDING: paper/coherent-recoupling/vMAJOR.MINOR.PATCH]",
+  "git_tag_policy": "FROZEN_NON_MOVING_RELEASE_TAG_BY_PROJECT_POLICY__NO_TECHNICAL_IMMUTABILITY_CLAIM_UNLESS_PROTECTION_INDEPENDENTLY_VERIFIED",
   "artifact_manifest_sha256": "[V3-PENDING: SHA256 of final ARTIFACT-MANIFEST.sha256 file]",
   "release_archive_sha256": "[V3-PENDING: SHA256 of deposited release archive, if an archive file is used]",
   "scientific_content_modified_for_release": "NO",
   "release_action_executed": "NO",
   "doi_created": "NO",
-  "notes": "Template only. Do not populate V3-dependent fields before the relevant authority is frozen and reconciled."
+  "notes": "Staging metadata only. PR #276/#277 are provisional noncanonical custody facts. Do not populate canonical V3 result fields before reconciliation freezes. No release action is authorized."
 }
