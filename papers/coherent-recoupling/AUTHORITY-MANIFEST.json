@@ -1,125 +1,37 @@
 {
-  "schema_version": "1.2",
+  "schema_version": "1.3",
   "paper_id": "PAPER-BCRD-COHERENT-RECOUPLING-001",
   "author": "Tobias Croydon-McRae",
-  "status": "V3_DESIGN_RECONCILIATION_FROZEN__EXECUTION_GOVERNANCE_PENDING__STAGING_ONLY",
+  "status": "V3_DESIGN_RECONCILED__GOVERNANCE_FROZEN__EXACT_CAPABILITY_BLOCKED__NATIVE_EXECUTION_NOT_AUTHORIZED__STAGING_ONLY",
   "source_repository": "Tobillicious/physics-lane",
   "public_repository": "Tobillicious/bcrd",
   "authority_policy": {
-    "rule": "Scientific claims are bounded by the strongest frozen reconciled authority applicable to that claim. DESIGN_V3 design-side scope is canonical through PR #278; this does not authorize governance, execution, or any native N=6 inference.",
+    "rule": "Scientific claims are bounded by the strongest frozen reconciled authority applicable to that claim. DESIGN_V3 design-side scope is canonical through PR #278. PR #279 governs physical-interface/execution readiness only. PR #280 and PR #281 establish a value-free exact-capability readiness limitation only. None authorizes native execution or permits native N=6 inference.",
     "current_maximum_programme_claim_level": "L2",
     "native_N6_target_outcome_inspected": "NO",
+    "native_coefficient_values_inspected": "NO",
+    "native_fingerprint_inspected": "NO",
     "native_N6_execution_completed": "NO",
+    "V3_execution_performed": "NO",
     "execution_authorized": "NO",
-    "DESIGN_V3_AUTHOR_DESIGN_EXISTS": "YES",
-    "DESIGN_V3_HOSTILE_REVIEW_EXISTS": "YES",
     "DESIGN_V3_RECONCILIATION_FROZEN": "YES",
     "DESIGN_V3_CANONICAL_AUTHORITY": "PR_278",
-    "DESIGN_V3_EXECUTION_GOVERNANCE_FROZEN": "NO",
+    "DESIGN_V3_EXECUTION_GOVERNANCE_FROZEN": "YES",
     "DESIGN_V3_NATIVE_EXECUTION_COMPLETED": "NO"
   },
-  "pre_v3_authorities": [
-    {
-      "id": "DES-QG-BCRD-COHERENT-RACAH-INTERFERENCE-001",
-      "pr": 238,
-      "sha": "767ceca87f9e1190c18a459fb23dd55b40dc22a6",
-      "role": "N4_PROSPECTIVE_DESIGN",
-      "status": "DESIGN_AUTHORITY_ONLY"
-    },
-    {
-      "id": "RC-GOV-BCRD-N4-EXECUTION-AUTHORITY-001",
-      "pr": 250,
-      "sha": "82c9ba0c7aff08017a4f876b0b042d3254de2f34",
-      "role": "N4_EXECUTION_GOVERNANCE_RECONCILIATION",
-      "status": "EXECUTION_AUTHORITY_ONLY"
-    },
-    {
-      "id": "EXE-QG-BCRD-COHERENT-RACAH-INTERFERENCE-001",
-      "pr": 255,
-      "sha": "9a9c9140add6c1b8e411ad697b85fcdb1dc01b53",
-      "role": "N4_AUTHOR_RESULT",
-      "status": "REVIEWED_DOWNSTREAM"
-    },
-    {
-      "id": "HR-QG-BCRD-COHERENT-RACAH-INTERFERENCE-001-SOL",
-      "pr": 257,
-      "sha": "d1fc55ac1d6c2cd583daf91fa1244e8e93eb1121",
-      "role": "N4_HOSTILE_REVIEW_1",
-      "status": "ACCEPT_WITH_SCOPE_HARDENING"
-    },
-    {
-      "id": "HR-QG-BCRD-COHERENT-RACAH-INTERFERENCE-002-OPUS",
-      "pr": 261,
-      "sha": "0bb4315468b7718a3d832f00877be0606d0e9b59",
-      "role": "N4_HOSTILE_REVIEW_2",
-      "status": "ACCEPT_WITH_SCOPE_HARDENING"
-    },
-    {
-      "id": "RC-HR-QG-BCRD-COHERENT-RACAH-DUAL-REVIEW-001",
-      "pr": 262,
-      "sha": "1da3ef733abda67e0662aea5ebf4f9abf0d1c33f",
-      "role": "N4_DUAL_REVIEW_RECONCILIATION",
-      "status": "L2_ACCEPTED_WITH_SCOPE_HARDENING"
-    },
-    {
-      "id": "MECH-BCRD-N4-L2-SECOND-DERIVATIVE-001",
-      "pr": 263,
-      "sha": "e741085039318773490a1f318ddb7c8d92df3500",
-      "role": "N4_MECHANISM_DECOMPOSITION_AUTHOR_STUDY",
-      "status": "REVIEWED_DOWNSTREAM"
-    },
-    {
-      "id": "HR-MECH-BCRD-N4-L2-SECOND-DERIVATIVE-001",
-      "pr": 269,
-      "sha": "d577262f659447dce0ae8b7f89475fae4cfd6b10",
-      "role": "N4_MECHANISM_HOSTILE_REVIEW",
-      "status": "ACCEPT_WITH_SCOPE_HARDENING"
-    },
-    {
-      "id": "CANONICAL_PROGRAMME_STATE_AFTER_N4_MECHANISM_RECONCILIATION",
+  "pre_v3_and_v2_authorities": {
+    "canonical_pre_n6_programme_state": {
       "pr": 270,
       "sha": "beb7370e5cf2cf990cfbdda0a13fc9f9c41e756a",
-      "role": "PRE_N6_CANONICAL_PROGRAMME_STATE",
       "status": "L2_CANONICAL_CEILING"
     },
-    {
-      "id": "DES-BCRD-COHERENT-RACAH-AMPLITUDE-IDENTIFIABILITY-001",
-      "pr": 271,
-      "sha": "e575c52173f1d4cece6abd267d130fd136f80ea8",
-      "role": "N6_MULTIPATH_DESIGN_V1",
-      "status": "DESIGN_ONLY_SUPERSEDED_BY_REVIEW_AND_V2"
-    },
-    {
-      "id": "HR-DES-BCRD-COHERENT-RACAH-AMPLITUDE-IDENTIFIABILITY-001",
-      "pr": 272,
-      "sha": "75c62082a52846d5d8ba889c9284b39e2b1704e8",
-      "role": "N6_DESIGN_V1_HOSTILE_REVIEW",
-      "status": "ARCHITECTURE_ACCEPTED_DESIGN_REQUIRES_REVISION"
-    },
-    {
-      "id": "REV-DES-BCRD-N6-MULTIPATH-RACAH-CONSEQUENTIALITY-001",
-      "pr": 273,
-      "scientific_terminal_sha": "8def1e7232822ef9146973837a3571b34a5c0c9d",
-      "metadata_head_sha": "026bdfde78f94f7973e24806dd2aaf72e561638a",
-      "role": "N6_MULTIPATH_DESIGN_V2",
-      "status": "DESIGN_ONLY_REVIEWED_DOWNSTREAM"
-    },
-    {
-      "id": "HR-DES-BCRD-N6-MULTIPATH-RACAH-CONSEQUENTIALITY-V2-001",
-      "pr": 274,
-      "sha": "966027f4c66260a2dd3c4f34523cf2d54dfe6dc9",
-      "role": "DESIGN_V2_HOSTILE_REVIEW",
-      "status": "NOT_EXECUTION_READY"
-    },
-    {
-      "id": "RC-DES-BCRD-N6-MULTIPATH-RACAH-V2-DUAL-REVIEW-001",
+    "design_v2_reconciliation": {
       "pr": 275,
       "sha": "f30ce29373dba21febf8d8106ea87e800852b09c",
-      "role": "DESIGN_V2_DUAL_REVIEW_RECONCILIATION",
-      "status": "FROZEN_PRE_V3_DESIGN_FAILURE_AUTHORITY",
+      "status": "FROZEN_DESIGN_V2_FAILURE_AUTHORITY",
       "disposition": "DESIGN_V2_NOT_EXECUTION_READY__HELD_R1_EXACT_BUT_NOT_RACAH_IDENTIFYING__GATE_D_STRUCTURALLY_INCONSISTENT__RACAH_SPECIFIC_ATTRIBUTION_REJECTED_WITHOUT_REJECTING_N6_ARCHITECTURE__NUMERICAL_CERTIFICATION_REQUIRES_REDESIGN"
     }
-  ],
+  },
   "canonical_v3_design_chain": {
     "DESIGN_V3_AUTHOR_DESIGN": {
       "pr": 276,
@@ -193,47 +105,139 @@
     "gravity": "NOT_ESTABLISHED",
     "quantum_gravity": "NOT_ESTABLISHED"
   },
-  "pre_result_literature_authority": {
-    "PRE_RESULT_LITERATURE_AUDIT": "COMPLETED",
-    "verified_bibliography_entries": 34,
-    "priority_claim_established": "NO",
-    "grounding_scope": [
-      "standard Racah/Wigner/6j recoupling",
-      "endpoint rephasing and the isolated 2x2 obstruction",
-      "structural/algebraic identifiability",
-      "elimination/model-variety methods",
-      "parameter-free polynomial model discrimination",
-      "quantum-system identification",
-      "rigorous numerical certification",
-      "prior operational F/R extraction and Racah-as-quantum-operation work"
-    ],
-    "broad_novelty_claims_supported": "NO",
-    "future_targeted_addendum": "[V3-PENDING: targeted frozen-V3 prior-art addendum]"
+  "execution_interface_governance": {
+    "pr": 279,
+    "governance_ID": "GOV-BCRD-N6-V3-INTERFACE-EXECUTION-READINESS-001",
+    "governance_contract_sha": "38aa43646893f68a4f956063cf404dc9ba0b89e9",
+    "scientific_governance_terminal_sha": "b0c2c32b0eaf7020a1f42f0d23aecc0eedc4b20f",
+    "metadata_head_sha": "b574356e94329f4b0a224845cae654aef55a90c3",
+    "native_target_firewall": "CLEAN",
+    "physical_interface_otherwise_governed": "YES",
+    "new_interface_resources_declared": "NO",
+    "independent_interface_review_required": "NO",
+    "G0": "PASS",
+    "G1": "PASS",
+    "G2": "PASS",
+    "G3": "PASS",
+    "G4": "PASS",
+    "G5": "PASS",
+    "G6": "BLOCKED_PENDING_PRECHECK",
+    "G7": "BLOCKED_PENDING_PRECHECK",
+    "G8": "PASS",
+    "G9": "PASS",
+    "G10": "PASS",
+    "all_execution_gates_pass": "NO",
+    "ready_for_native_execution": "NO",
+    "execution_authorized_by_governance": "NO",
+    "final_governance_disposition": "GOVERNANCE_REVISE__EXACT_CERTIFICATE_ROUTE_UNRESOLVED__PHYSICAL_INTERFACE_OTHERWISE_GOVERNED__NON_OUTCOME_PRECHECK_REQUIRED",
+    "semantic_classification": "EXECUTION_READINESS_STATE__NOT_NATIVE_PHYSICS_FAILURE"
   },
-  "v3_authority_slots": {
-    "execution_governance": "[V3-PENDING: execution/interface governance authority]",
-    "execution": "[V3-PENDING: native N=6 execution authority]",
+  "non_outcome_exact_representation_precheck": {
+    "pr": 280,
+    "precheck_ID": "PRECHECK-BCRD-N6-V3-EXACT-REPRESENTATION-001",
+    "precheck_contract_sha": "c5e7876ef9f79f391808ae91861ba88762c5048b",
+    "scientific_precheck_terminal_sha": "cbd2367103654c13f351bf0d97f4d632d2e82636",
+    "metadata_head_sha": "1988625d41d7c2f1a8bf4707b2e3de0c5cbdd8f3",
+    "native_target_firewall": "CLEAN",
+    "precheck_status": "FAIL_VALUE_FIREWALL",
+    "execution_authorized_by_precheck": "NO",
+    "value_free_native_adapter_found": "NO",
+    "metadata_resolvable_without_value_exposure": "NO",
+    "scalar_representation_class": "OTHER__MEANS_UNRESOLVED_WITHOUT_CROSSING_VALUE_FIREWALL",
+    "exact_matrix_operation_support": "NO__NOT_ESTABLISHED_VALUE_FREE",
+    "exact_commutator_support": "NO__NOT_ESTABLISHED_VALUE_FREE",
+    "exact_t0_differentiation_support": "NO__NOT_ESTABLISHED_VALUE_FREE",
+    "exact_zero_decision_support": "NO__NOT_ESTABLISHED_VALUE_FREE",
+    "strict_positivity_certificate_support": "NO__NOT_ESTABLISHED_VALUE_FREE",
+    "independent_certificate_serialization_available": "NO__NOT_ESTABLISHED_VALUE_FREE",
+    "independent_checker_available": "NO__NOT_ESTABLISHED_VALUE_FREE",
+    "G6_precheck_disposition": "CAPABILITY_REQUIREMENT_NOT_SATISFIED__NATIVE_EXACT_DERIVATIVE_ROUTE_NOT_ESTABLISHED_VALUE_FREE",
+    "G7_precheck_disposition": "CAPABILITY_REQUIREMENT_NOT_SATISFIED__NATIVE_EXACT_CERTIFICATE_ROUTE_NOT_ESTABLISHED_VALUE_FREE",
+    "final_precheck_disposition": "PRECHECK_FAIL__VALUE_FIREWALL__NATIVE_REPRESENTATION_METADATA_UNRESOLVABLE_WITHOUT_VALUE_EXPOSURE__EXECUTION_NOT_AUTHORIZED"
+  },
+  "independent_precheck_verification": {
+    "pr": 281,
+    "verification_ID": "IV-PRECHECK-BCRD-N6-V3-EXACT-REPRESENTATION-001",
+    "verification_contract_sha": "a10a584f1779af2bca6c96eb0950be3381b6b508",
+    "independent_authority_surface_audit_sha": "b3198e9d1a45d397b7147235faed7d210ebab831",
+    "scientific_verification_terminal_sha": "b06319c30b78b772aedd1fb7fc5850b2dfa3edb3",
+    "metadata_head_sha": "cbefaac65d237b3a4cd1e07c7865aabba372bfef",
+    "verification_firewall": "CLEAN",
+    "precheck_status_independently_supported": "YES",
+    "final_verification_disposition": "PRECHECK_VERIFIED_WITH_SCOPE_HARDENING",
+    "value_free_native_adapter_found": "NO",
+    "metadata_resolvable_without_value_exposure": "NO",
+    "native_target_load_required_for_metadata": "UNRESOLVED_SAFELY",
+    "coefficient_value_exposure_required": "UNRESOLVED_SAFELY",
+    "representation_semantics_correct": "YES",
+    "capability_NO_semantics_correct": "YES",
+    "pass_rule_correctly_applied": "YES",
+    "precheck_native_firewall_integrity": "CLEAN",
+    "failure_is_epistemic_not_impossibility": "YES",
+    "execution_authorized_by_verification": "NO"
+  },
+  "current_execution_readiness": {
+    "physical_interface_otherwise_governed": "YES",
+    "new_interface_resources_declared": "NO",
+    "G6_status": "BLOCKED",
+    "G7_status": "BLOCKED",
+    "all_execution_gates_pass": "NO",
+    "ready_for_native_execution": "NO",
+    "execution_authorized": "NO",
+    "native_N6_target_outcome_inspected": "NO",
+    "native_coefficient_values_inspected": "NO",
+    "native_fingerprint_inspected": "NO",
+    "new_native_N6_physics_executed": "NO",
+    "V3_execution_performed": "NO",
+    "maximum_programme_claim": "L2",
+    "high_level_state": {
+      "V3_DESIGN_SCIENCE": "FROZEN_AND_RECONCILED",
+      "V3_PHYSICAL_INTERFACE": "GOVERNED_EXCEPT_EXACT_CAPABILITY_READINESS",
+      "NATIVE_EXACT_CAPABILITY": "NOT_ESTABLISHED_VALUE_FREE",
+      "EXECUTION": "BLOCKED_NOT_AUTHORIZED"
+    }
+  },
+  "future_readiness_dependency": "[V3-PENDING: value-free native exact-capability route if separately authorized]",
+  "future_readiness_dependency_note": "Clearing G6/G7 would require a separately prospectively frozen non-outcome-bearing native adapter/capability manifest and independently checkable exact certificate/checker path with independent verification. This staging lane does not construct, require, or authorize such a route.",
+  "literature_authority": {
+    "PRE_RESULT_LITERATURE_AUDIT": "COMPLETED",
+    "general_verified_bibliography_entries": 34,
+    "TARGETED_V3_PRIOR_ART_AUDIT": "COMPLETED",
+    "new_verified_sources_added": 13,
+    "total_verified_sources_currently_available": 47,
+    "exact_V3_combination_found_in_prior_art": "PARTIAL",
+    "finite_SU2_V3_application_classification": "KNOWN_BUT_APPLICATION_APPEARS_DISTINCT",
+    "BCRD_specific_conjunction_classification": "KNOWN_BUT_APPLICATION_APPEARS_DISTINCT",
+    "priority_claim_established": "NO",
+    "priority_language_authorized": "NONE",
+    "safe_contribution_posture": "DESIGN_V3 specializes established ideas from quantum Hamiltonian identification, algebraic/structural identifiability, predictive validation, matched-model discrimination, and blind analysis to a finite ordinary-SU(2) multipath recoupling observable architecture. Application-level synthesis only. No priority claim."
+  },
+  "unresolved_authority_slots": {
+    "value_free_native_exact_capability_route": "[V3-PENDING: value-free native exact-capability route if separately authorized]",
+    "native_execution": "[V3-PENDING: native N=6 execution authority]",
     "native_fingerprint_result": "[V3-PENDING: native fingerprint/result]",
-    "raw_result_certificate_authorities": "[V3-PENDING: raw result/certificate authorities]",
-    "hostile_scientific_review": "[V3-PENDING: post-execution hostile scientific review]",
-    "scientific_reconciliation": "[V3-PENDING: post-execution scientific reconciliation]",
-    "targeted_novelty_addendum": "[V3-PENDING: targeted frozen-V3 prior-art addendum]",
-    "final_result_specific_literature_novelty_disposition": "[V3-PENDING: final result-specific literature/novelty disposition]",
-    "final_manuscript": "[V3-PENDING: final manuscript authority]",
+    "raw_native_execution_sha_hashes": "[V3-PENDING: raw native execution SHA/hashes]",
+    "native_exact_certificates": "[V3-PENDING: native exact certificates]",
+    "native_execution_gate_outcomes": "[V3-PENDING: native execution gate outcomes]",
+    "post_execution_hostile_review": "[V3-PENDING: post-execution hostile scientific review]",
+    "post_execution_scientific_reconciliation": "[V3-PENDING: post-execution scientific reconciliation]",
+    "final_result_dependent_manuscript": "[V3-PENDING: final result-dependent manuscript authority]",
     "final_publication_hostile_claim_audit": "[V3-PENDING: final hostile publication claim audit]",
-    "publication_readiness": "[V3-PENDING: publication readiness]",
+    "publication_readiness": "[V3-PENDING: final publication-readiness authority]",
     "public_frozen_commit_A": "[V3-PENDING: public frozen commit A]",
     "release_tag": "[V3-PENDING: release tag]",
     "archive_doi": "[V3-PENDING: archive DOI]"
   },
-  "forbidden_inferences_before_execution": [
-    "Do not infer any native N=6 target outcome from DESIGN_V3 design-side authority.",
-    "Do not treat prospective future exact-pass semantics as achieved native results.",
+  "forbidden_inferences": [
+    "Do not infer any native N=6 target outcome.",
+    "Do not inspect or infer native coefficients, matrices, fingerprints, derivatives, spectra, or coefficient strata.",
+    "Do not collapse the readiness state into V3_FAILED, NATIVE_N6_FAILED, or EXACT_ARITHMETIC_IMPOSSIBLE.",
+    "Do not state that loading the native target was proved to expose coefficient values or that the native target requires value exposure.",
     "Do not infer microscopic membership from effective compatibility.",
-    "Do not claim full-chart C1 exclusion; the exact collision locus must be preserved.",
+    "Do not claim full-chart C1 exclusion; preserve the exact collision locus and stratification.",
+    "Do not erase DESIGN_V2 failure, PR #279 readiness blocker, PR #280 failed value-free precheck, or PR #281 epistemic scope hardening from later publication history.",
+    "Do not claim first, novel, unprecedented, or to-our-knowledge-the-first priority language.",
     "Do not claim a physical coherent F-move, pentagon/Pachner dynamics, Regge/Ponzano-Regge dynamics, gravity, or quantum gravity.",
-    "Do not establish a priority claim from the completed general literature audit.",
-    "Do not authorize governance or execution from this release-engineering lane.",
     "Do not raise the programme ceiling above L2."
   ]
 }
