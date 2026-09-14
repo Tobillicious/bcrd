@@ -4,7 +4,23 @@
 
 **Exact Reconstructive Autonomous Closure in Finite Singlet Quantum Systems**
 
-Status: **focused manuscript reconciliation complete at the scientific/novelty wording level; final clean-build/render gate still required before promotion**.
+Status: **publication-ready manuscript publicly staged; final clean-build/render gate cleared**.
+
+Final publication-readiness closure:
+
+```text
+build certificate commit =
+1af614a7f06b186ce3f7a4cbad3e38a230906db8
+
+publication-readiness PR =
+#268
+
+publication-readiness terminal SHA =
+342ca267c21a98d428ce90847296892898c065cb
+
+final disposition =
+MANUSCRIPT_READY_FOR_PUBLIC_PROMOTION
+```
 
 This lane performs no new physics, new theorem, or new literature search.
 
@@ -53,4 +69,4 @@ pdflatex -interaction=nonstopmode -halt-on-error main.tex
 pdflatex -interaction=nonstopmode -halt-on-error main.tex
 ```
 
-The frozen #256 candidate previously passed this gate, but that PDF is not treated as representative of the reconciled source. A new clean build and all-page render inspection are mandatory before `MANUSCRIPT_READY_FOR_PROMOTION` can be assigned.
+The exact reconciled source was subsequently subjected to the required clean build and all-page render inspection. The custody build certificate is directly parented by the frozen manuscript head and records LaTeX/BibTeX PASS, zero undefined references or citations, zero overfull boxes, two nonmaterial underfull boxes, and successful inspection of all 19 pages. Final publication-readiness closure PR #268 assigned `MANUSCRIPT_READY_FOR_PUBLIC_PROMOTION` without modifying scientific manuscript content.
