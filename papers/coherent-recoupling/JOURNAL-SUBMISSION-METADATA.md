@@ -2,9 +2,29 @@
 
 Paper ID: `PAPER-BCRD-COHERENT-RECOUPLING-001`
 
-Status: **PRE-V3 — NO FINAL VENUE SELECTED — NO SUBMISSION AUTHORIZED**
+Status: **V3 RECONCILIATION PENDING — NO FINAL VENUE SELECTED — NO SUBMISSION AUTHORIZED**
 
 Venue scope checked against official publisher/journal pages on 2026-09-15. Recheck immediately before submission because scope and policies can change.
+
+## Current authority state relevant to venue selection
+
+```text
+DESIGN_V3 author design exists = YES (PR #276; provisional custody only)
+DESIGN_V3 blind hostile design review exists = YES (PR #277; provisional custody only)
+DESIGN_V3 reconciliation frozen = NO
+native N=6 target outcome inspected = NO
+native N=6 execution completed = NO
+execution authorized = NO
+maximum programme claim = L2
+
+PRE_RESULT_LITERATURE_AUDIT = COMPLETED
+verified_bibliography_entries = 34
+priority_claim_established = NO
+```
+
+The completed general literature audit grounds the pre-result manuscript against standard Racah/Wigner/6j recoupling, endpoint rephasing, structural/algebraic identifiability, elimination/model-variety methods, parameter-free polynomial model discrimination, quantum-system identification, rigorous numerical certification, and prior operational F/R extraction/Racah-as-quantum-operation work. It does not establish a broad novelty or priority claim and does not replace:
+
+`[V3-PENDING: design/result-specific targeted novelty addendum after reconciliation]`.
 
 ## Common submission metadata
 
@@ -90,7 +110,7 @@ Official criteria source: https://quantum-journal.org/instructions/authors/
 | V3 is null/negative but sharp, independently reviewed, and produces a significant general obstruction | **Strong to moderate** | Moderate to strong if physically important | Low to moderate unless broadly consequential |
 | V3 remains largely model-specific/inconclusive and the paper is mainly a documented design progression | Moderate only if exact pre-V3 mathematics itself constitutes a significant contribution | Low to moderate | Low |
 
-This matrix is advisory, not a venue decision. Final venue: `[V3-PENDING: choose only after final scientific reconciliation, novelty audit, and publication-level hostile claim audit]`.
+This matrix is advisory, not a venue decision. Final venue: `[V3-PENDING: choose only after final scientific reconciliation, the design/result-specific targeted novelty addendum, and publication-level hostile claim audit]`.
 
 ## Submission-specific final checks
 
@@ -100,6 +120,7 @@ Before selecting any venue:
 2. Compare final manuscript length and format with the journal's current article types.
 3. Confirm the archive/arXiv chronology is compatible with journal policy.
 4. Ensure the title/abstract/cover letter do not imply quantum gravity unless explicitly established by final authority.
-5. Ensure the claimed novelty is no stronger than the independent literature audit.
-6. Ensure the exact public reproducibility packet is available or the journal's data policy is otherwise satisfied.
-7. Record the final selection and rationale as `[V3-PENDING: venue-selection disposition]`.
+5. Ensure the claimed novelty is no stronger than the completed general literature audit plus the design/result-specific targeted novelty addendum.
+6. Ensure `priority_claim_established = NO` is preserved unless an explicit later authority changes it.
+7. Ensure the exact public reproducibility packet is available or the journal's data policy is otherwise satisfied.
+8. Record the final selection and rationale as `[V3-PENDING: venue-selection disposition]`.
