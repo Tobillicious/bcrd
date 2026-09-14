@@ -26,12 +26,12 @@ Negative results and scope ceilings are retained as part of the scientific recor
 
 ## Papers
 
-Full publication manuscripts are currently in preparation.
+Publication manuscripts are being staged for public review. Paper-specific DOI and release decisions are handled separately from manuscript custody promotion.
 
 Initial papers include:
 
 1. **Exact Autonomous Closure from Known-Spin Erasure in Finite Singlet Quantum Systems**
-2. **Finite-Data Underidentification of Effective Quantum Coarse Dynamics**
+2. **Finite-Data Non-Identification of Effective Quantum Coarse Dynamics**
 
 Additional papers on locality, transport, operational recoupling, and process/intervention structure are in development.
 
