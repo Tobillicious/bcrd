@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use BCRD materials, please cite the relevant paper or archival release."
+title: "Boundary-Complete Relational Dynamics (BCRD)"
+authors:
+  - family-names: "Croydon-McRae"
+    given-names: "Tobias"
+repository-code: "https://github.com/Tobillicious/bcrd"
+url: "https://github.com/Tobillicious/bcrd"
+identifiers:
+  - type: doi
+    value: "10.6084/m9.figshare.33716677"
+    description: "Current public archival BCRD release on Figshare"
+keywords:
+  - quantum dynamics
+  - coarse-graining
+  - quantum channels
+  - relational dynamics
+  - quantum information
+  - Racah recoupling
+  - BCRD
+abstract: >
+  Boundary-Complete Relational Dynamics (BCRD) is a finite quantum-dynamics
+  research programme studying when relationally accessible records inside
+  closed quantum systems can support effective dynamics of their own. This
+  public repository contains publication manuscripts, reviewed results,
+  reproducibility artifacts, and frozen provenance.
