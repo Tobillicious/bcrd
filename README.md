@@ -26,7 +26,7 @@ Negative results and scope ceilings are retained as part of the scientific recor
 
 ## Papers
 
-1. **Exact Reconstructive Autonomous Closure in Finite Singlet Quantum Systems** — publication-ready manuscript publicly staged.
+1. **Exact Reconstructive Autonomous Closure in Finite Singlet Quantum Systems** — published preprint: https://doi.org/10.6084/m9.figshare.33730069
 2. **Finite-Data Non-Identification of Effective Quantum Coarse Dynamics** — published preprint: https://doi.org/10.6084/m9.figshare.33727360
 
 Additional papers on locality, transport, operational recoupling, and process/intervention structure are in development.
@@ -45,4 +45,4 @@ Aotearoa New Zealand
 
 ## Citation
 
-Repository-level citation metadata are maintained in `CITATION.cff`. Individual papers and releases should be cited using their own DOI or bibliographic record where available; paper-specific metadata for the finite-data paper are in `papers/finite-data-identification/CITATION.cff`.
+Repository-level citation metadata are maintained in `CITATION.cff`. Individual papers and releases should be cited using their own DOI or bibliographic record where available. Paper-specific citation metadata are maintained within each published paper directory.
