@@ -1,6 +1,6 @@
 # Reproducibility and release custody
 
-Status: **PRE-V3 TEMPLATE — NO RELEASE ACTION AUTHORIZED**
+Status: **STAGING TEMPLATE — NO RELEASE ACTION AUTHORIZED**
 
 This document defines the mechanical custody path for `PAPER-BCRD-COHERENT-RECOUPLING-001`. It does not authorize physics execution, publication, DOI creation, or archival deposition.
 
@@ -10,7 +10,7 @@ A public release is valid only if a third party can identify exactly:
 
 1. the frozen scientific authorities;
 2. the frozen manuscript source commit;
-3. the exact public-repository target commit and immutable tag;
+3. the exact public-repository target commit and frozen non-moving release tag by project policy;
 4. the exact files deposited in the archive;
 5. the SHA-256 of every deposited artifact;
 6. the archive DOI that resolves to those exact artifacts; and
@@ -18,23 +18,26 @@ A public release is valid only if a third party can identify exactly:
 
 No result may be reconstructed from conversation history, private-machine paths, or undocumented repository archaeology when a public reproducibility artifact is required.
 
+A release tag is treated as non-moving by project policy. This document does **not** claim that repository technology or rulesets independently prevent tag mutation unless such protection is separately verified.
+
 ## 2. Required final provenance chain
 
 The non-circular release chain is:
 
 ```text
-scientific authorities
+final scientific authority
   -> [V3-PENDING: final reconciled V3 scientific authority]
   -> [V3-PENDING: frozen final manuscript source SHA in physics-lane]
   -> exact-copy verification
   -> [V3-PENDING: frozen public target commit A in Tobillicious/bcrd]
-  -> immutable tag paper/coherent-recoupling/vMAJOR.MINOR.PATCH -> commit A
+  -> frozen non-moving release tag by project policy:
+     paper/coherent-recoupling/vMAJOR.MINOR.PATCH -> commit A
   -> archive deposit containing bytes from commit A
   -> [V3-PENDING: archive DOI D]
   -> metadata-only GitHub commit B records DOI D + points back to commit A/tag
 ```
 
-**Commit A is the scientific/reproducibility target. Commit B is only the DOI backlink.** The DOI backlink must never rewrite, retag, or replace commit A.
+**Commit A is the scientific/reproducibility target. Commit B is only the DOI backlink.** The DOI backlink must never rewrite, retag, or replace commit A. The project release tag remains on commit A by custody policy.
 
 ## 3. Exact-copy verification procedure
 
@@ -188,7 +191,7 @@ Before the public target is frozen:
 - record overfull/underfull boxes and adjudicate whether any are material;
 - SHA-256 the final PDF;
 - verify every figure/table shown in the PDF comes from the frozen source tree;
-- verify every `[V3-PENDING: ...]` token is absent from the release candidate.
+- verify every `[V3-PENDING: ...]` and `[V3-RECONCILIATION-PENDING: ...]` token is absent from the release candidate.
 
 Exact commands depend on the production manuscript tree and are `[V3-PENDING: final build instructions from the frozen production manuscript]`.
 
@@ -201,7 +204,7 @@ After upload but before final publication of the archive record:
 1. download every uploaded file back from the archive if the platform permits a draft verification round;
 2. recompute SHA-256;
 3. compare against `ARTIFACT-MANIFEST.sha256`;
-4. confirm the archive metadata names `PUBLIC_FROZEN_TARGET_SHA` and immutable tag;
+4. confirm the archive metadata names `PUBLIC_FROZEN_TARGET_SHA` and the frozen non-moving release tag by project policy;
 5. only then finalize the archive record and accept the DOI.
 
 If the archive service mutates uploaded bytes, do not claim byte-identical deposit; document the transformation explicitly and preserve the original exact artifact separately.
@@ -213,7 +216,8 @@ Once DOI `[V3-PENDING: archive DOI D]` exists, make one metadata-only commit B t
 ```text
 archive_doi = D
 public_frozen_target_sha = commit A
-immutable_tag = paper/coherent-recoupling/vMAJOR.MINOR.PATCH
+release_tag = paper/coherent-recoupling/vMAJOR.MINOR.PATCH
+release_tag_policy = FROZEN_NON_MOVING_BY_PROJECT_POLICY
 scientific_content_modified = NO
 reproducibility_content_modified = NO
 ```
@@ -232,7 +236,7 @@ all_page_render_inspection = PASS
 public_frozen_target_identified = YES
 archive_files_match_frozen_target = YES
 DOI_points_to_correct_version = YES
-V3_pending_tokens_in_release = 0
+pending_tokens_in_release = 0
 scientific_claim_audit = PASS
 ```
 
