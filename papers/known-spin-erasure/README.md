@@ -4,7 +4,24 @@
 
 **Exact Reconstructive Autonomous Closure in Finite Singlet Quantum Systems**
 
-Status: **publication-ready manuscript publicly staged; final clean-build/render gate cleared**.
+Status: **published preprint**.
+
+## Publication
+
+**Figshare DOI:** https://doi.org/10.6084/m9.figshare.33730069  
+**Author:** Tobias Croydon-McRae  
+**Licence:** CC BY 4.0  
+**Published:** 2026-09-14
+
+The published Figshare item contains the certified 19-page PDF and a frozen 25-file source archive.
+
+```text
+certified_pdf_sha256 =
+12fdfc5eb1f76fd6374c9de3096c4d32e8d22812821b93659351002e506017a7
+
+source_archive_sha256 =
+e12f28d6f57ef57770a4281364c202c3327869783facc495c282b473c174c7fa
+```
 
 Final publication-readiness closure:
 
