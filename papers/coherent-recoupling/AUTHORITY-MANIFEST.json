@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0",
+  "paper_id": "PAPER-BCRD-COHERENT-RECOUPLING-001",
+  "author": "Tobias Croydon-McRae",
+  "status": "PRE_V3_STAGING_ONLY",
+  "source_repository": "Tobillicious/physics-lane",
+  "public_repository": "Tobillicious/bcrd",
+  "authority_policy": {
+    "rule": "Scientific claims are bounded by the strongest reconciled or independently reviewed authority applicable to that claim. Design and scout artifacts are never upgraded into scientific evidence.",
+    "current_maximum_programme_claim_level": "L2",
+    "native_N6_target_outcome_inspected": "NO",
+    "new_N6_physics_executed_in_pre_v3_chain": "NO",
+    "design_v3_status": "NOT_YET_AUTHORITY"
+  },
+  "pre_v3_authorities": [
+    {
+      "id": "DES-QG-BCRD-COHERENT-RACAH-INTERFERENCE-001",
+      "pr": 238,
+      "sha": "767ceca87f9e1190c18a459fb23dd55b40dc22a6",
+      "role": "N4_PROSPECTIVE_DESIGN",
+      "status": "DESIGN_AUTHORITY_ONLY"
+    },
+    {
+      "id": "RC-GOV-BCRD-N4-EXECUTION-AUTHORITY-001",
+      "pr": 250,
+      "sha": "82c9ba0c7aff08017a4f876b0b042d3254de2f34",
+      "role": "N4_EXECUTION_GOVERNANCE_RECONCILIATION",
+      "status": "EXECUTION_AUTHORITY_ONLY"
+    },
+    {
+      "id": "EXE-QG-BCRD-COHERENT-RACAH-INTERFERENCE-001",
+      "pr": 255,
+      "sha": "9a9c9140add6c1b8e411ad697b85fcdb1dc01b53",
+      "role": "N4_AUTHOR_RESULT",
+      "status": "REVIEWED_DOWNSTREAM"
+    },
+    {
+      "id": "HR-QG-BCRD-COHERENT-RACAH-INTERFERENCE-001-SOL",
+      "pr": 257,
+      "sha": "d1fc55ac1d6c2cd583daf91fa1244e8e93eb1121",
+      "role": "N4_HOSTILE_REVIEW_1",
+      "status": "ACCEPT_WITH_SCOPE_HARDENING"
+    },
+    {
+      "id": "HR-QG-BCRD-COHERENT-RACAH-INTERFERENCE-002-OPUS",
+      "pr": 261,
+      "sha": "0bb4315468b7718a3d832f00877be0606d0e9b59",
+      "role": "N4_HOSTILE_REVIEW_2",
+      "status": "ACCEPT_WITH_SCOPE_HARDENING"
+    },
+    {
+      "id": "RC-HR-QG-BCRD-COHERENT-RACAH-DUAL-REVIEW-001",
+      "pr": 262,
+      "sha": "1da3ef733abda67e0662aea5ebf4f9abf0d1c33f",
+      "role": "N4_DUAL_REVIEW_RECONCILIATION",
+      "status": "L2_ACCEPTED_WITH_SCOPE_HARDENING"
+    },
+    {
+      "id": "MECH-BCRD-N4-L2-SECOND-DERIVATIVE-001",
+      "pr": 263,
+      "sha": "e741085039318773490a1f318ddb7c8d92df3500",
+      "role": "N4_MECHANISM_DECOMPOSITION_AUTHOR_STUDY",
+      "status": "REVIEWED_DOWNSTREAM"
+    },
+    {
+      "id": "HR-MECH-BCRD-N4-L2-SECOND-DERIVATIVE-001",
+      "pr": 269,
+      "sha": "d577262f659447dce0ae8b7f89475fae4cfd6b10",
+      "role": "N4_MECHANISM_HOSTILE_REVIEW",
+      "status": "ACCEPT_WITH_SCOPE_HARDENING"
+    },
+    {
+      "id": "CANONICAL_PROGRAMME_STATE_AFTER_N4_MECHANISM_RECONCILIATION",
+      "pr": 270,
+      "sha": "beb7370e5cf2cf990cfbdda0a13fc9f9c41e756a",
+      "role": "PRE_N6_CANONICAL_PROGRAMME_STATE",
+      "status": "L2_CANONICAL_CEILING"
+    },
+    {
+      "id": "DES-BCRD-COHERENT-RACAH-AMPLITUDE-IDENTIFIABILITY-001",
+      "pr": 271,
+      "sha": "e575c52173f1d4cece6abd267d130fd136f80ea8",
+      "role": "N6_MULTIPATH_DESIGN_V1",
+      "status": "DESIGN_ONLY_SUPERSEDED_BY_REVIEW_AND_V2"
+    },
+    {
+      "id": "HR-DES-BCRD-COHERENT-RACAH-AMPLITUDE-IDENTIFIABILITY-001",
+      "pr": 272,
+      "sha": "75c62082a52846d5d8ba889c9284b39e2b1704e8",
+      "role": "N6_DESIGN_V1_HOSTILE_REVIEW",
+      "status": "ARCHITECTURE_ACCEPTED_DESIGN_REQUIRES_REVISION"
+    },
+    {
+      "id": "REV-DES-BCRD-N6-MULTIPATH-RACAH-CONSEQUENTIALITY-001",
+      "pr": 273,
+      "scientific_terminal_sha": "8def1e7232822ef9146973837a3571b34a5c0c9d",
+      "metadata_head_sha": "026bdfde78f94f7973e24806dd2aaf72e561638a",
+      "role": "N6_MULTIPATH_DESIGN_V2",
+      "status": "DESIGN_ONLY_REVIEWED_DOWNSTREAM"
+    },
+    {
+      "id": "HR-DES-BCRD-N6-MULTIPATH-RACAH-CONSEQUENTIALITY-V2-001",
+      "pr": 274,
+      "sha": "966027f4c66260a2dd3c4f34523cf2d54dfe6dc9",
+      "role": "DESIGN_V2_HOSTILE_REVIEW",
+      "status": "NOT_EXECUTION_READY"
+    },
+    {
+      "id": "RC-DES-BCRD-N6-MULTIPATH-RACAH-V2-DUAL-REVIEW-001",
+      "pr": 275,
+      "sha": "f30ce29373dba21febf8d8106ea87e800852b09c",
+      "role": "DESIGN_V2_DUAL_REVIEW_RECONCILIATION",
+      "status": "CURRENT_PRE_V3_TERMINAL_AUTHORITY",
+      "disposition": "DESIGN_V2_NOT_EXECUTION_READY__HELD_R1_EXACT_BUT_NOT_RACAH_IDENTIFYING__GATE_D_STRUCTURALLY_INCONSISTENT__RACAH_SPECIFIC_ATTRIBUTION_REJECTED_WITHOUT_REJECTING_N6_ARCHITECTURE__NUMERICAL_CERTIFICATION_REQUIRES_REDESIGN"
+    }
+  ],
+  "v3_authority_slots": {
+    "design": "[V3-PENDING: DESIGN_V3 frozen design PR, contract SHA, and terminal SHA]",
+    "design_hostile_review": "[V3-PENDING: independent hostile design review PR and terminal SHA]",
+    "design_reconciliation": "[V3-PENDING: design reconciliation authority if required]",
+    "execution_governance": "[V3-PENDING: prospective execution/interface governance authority and terminal SHA]",
+    "execution": "[V3-PENDING: native N=6 execution PR, raw-result SHA, controls SHA, and terminal author SHA]",
+    "hostile_scientific_review_1": "[V3-PENDING: first independent hostile scientific review terminal SHA]",
+    "hostile_scientific_review_2": "[V3-PENDING: second independent review terminal SHA if commissioned]",
+    "scientific_reconciliation": "[V3-PENDING: final scientific reconciliation terminal SHA]",
+    "literature_novelty_audit": "[V3-PENDING: final literature/novelty authority applicable to the V3 result]",
+    "final_manuscript": "[V3-PENDING: frozen final manuscript source SHA]",
+    "final_publication_hostile_claim_audit": "[V3-PENDING: terminal publication-level hostile claim audit SHA]",
+    "publication_readiness": "[V3-PENDING: final build/render/reproducibility/readiness authority SHA]"
+  },
+  "forbidden_inferences_before_v3": [
+    "Do not infer any native N=6 target outcome.",
+    "Do not infer that DESIGN_V2's exact HELD-R1 relation identifies a Racah-specific mechanism.",
+    "Do not treat Gate D as a valid positive test for the frozen G_R class.",
+    "Do not treat finite |R| < tau as an exact certificate of R = 0.",
+    "Do not claim a physical coherent F-move, pentagon/Pachner dynamics, Regge/Ponzano-Regge physics, continuum gravity, or quantum gravity.",
+    "Do not raise the programme ceiling above L2."
+  ]
+}
