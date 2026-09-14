@@ -1,0 +1,16 @@
+# TEMPLATE ONLY — PRE-V3 — NOT A VALID RELEASE MANIFEST
+# Generate this file mechanically only after the exact final release tree is frozen.
+# Canonical format: <64 lowercase hex SHA256><two spaces><relative POSIX path>
+# Do not hash this manifest into itself; record the manifest's own SHA256 separately
+# in PUBLICATION-RELEASE.json.
+#
+# Expected final classes include, as applicable:
+# [V3-PENDING: final rendered manuscript PDF]
+# [V3-PENDING: final LaTeX/source package]
+# [V3-PENDING: final figures and tables]
+# [V3-PENDING: public reproducibility code/data/results]
+# [V3-PENDING: final authority and claim ledgers]
+# [V3-PENDING: build/readiness certificates]
+#
+# Example syntax only — replace, do not uncomment as-is:
+# 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef  path/to/artifact.ext
