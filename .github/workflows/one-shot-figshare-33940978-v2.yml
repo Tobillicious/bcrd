@@ -1,0 +1,61 @@
+name: One-shot release Figshare 33940978 v2
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/one-shot-figshare-33940978-v2.yml
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create frozen tag and GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          TARGET: 7bf8121da633538e5c856c752250772599c2b21e
+          TAG: four-simplex-asymptotics-figshare-v2
+        run: |
+          set -euo pipefail
+
+          # Fail closed if the target commit is not present.
+          gh api "repos/$REPO/git/commits/$TARGET" >/dev/null
+
+          # Create a lightweight tag exactly at the frozen publication commit.
+          if ! gh api "repos/$REPO/git/ref/tags/$TAG" >/dev/null 2>&1; then
+            gh api --method POST "repos/$REPO/git/refs" \
+              -f ref="refs/tags/$TAG" \
+              -f sha="$TARGET" >/dev/null
+          fi
+
+          # Fail if an existing tag points anywhere else.
+          ACTUAL="$(gh api "repos/$REPO/git/ref/tags/$TAG" --jq '.object.sha')"
+          test "$ACTUAL" = "$TARGET"
+
+          # Create the GitHub release if absent; never retarget an existing release.
+          if ! gh release view "$TAG" --repo "$REPO" >/dev/null 2>&1; then
+            cat > /tmp/release-notes.md <<'EOF'
+          Frozen public GitHub release corresponding to Figshare Version 2 of:
+
+          **Oriented Area-Regge Asymptotics of a Native Four-Simplex Vertex**
+
+          - Figshare item DOI: https://doi.org/10.6084/m9.figshare.33940978
+          - Version-specific DOI: https://doi.org/10.6084/m9.figshare.33940978.v2
+          - Companion W2 vertex: https://doi.org/10.6084/m9.figshare.33936508
+          - Frozen Git commit: 7bf8121da633538e5c856c752250772599c2b21e
+
+          Scope: Riemannian, leading-large-spin, single-vertex result for coherent nondegenerate boundary data. No continuum/refinement limit, bulk-spin-sum control, Lorentzian or nonlinear dynamics, or derivation of four-dimensional general relativity is claimed.
+
+          The complete five-file publication bundle is authoritative on Figshare. GitHub freezes the exact LaTeX source snapshot, checksums, licence, provenance, and release metadata without importing private development history.
+          EOF
+            gh release create "$TAG" \
+              --repo "$REPO" \
+              --target "$TARGET" \
+              --title "Oriented Area-Regge Asymptotics — Figshare v2" \
+              --notes-file /tmp/release-notes.md
+          fi
