@@ -1,0 +1,2013 @@
+W2 ASYMPTOTICS — REPRODUCIBILITY EVIDENCE BUNDLE
+Generated 2026-09-19 for publications/papers/bcrd-w2-gr
+
+This bundle collects the scripts, logs and exact certificate behind the computer-assisted checks cited by the manuscript. The Hessian nondegeneracy theorem at the regular/DK scope is not inferred from floating-point spectra: the exact real-Hessian kernel certificate included below supplies the proof. Numerical Hessian files remain independent cross-checks.
+
+Each entry records the immutable source ref and Git blob SHA.
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/w2_hessian.py
+GIT BLOB SHA: d154beac7c9bdc5ae75385a50ddbfcfd7a6b2416
+================================================================================
+"""S4: the chiral Hessian block of the W2 coherent action at the geometric saddle.
+
+CONSTRUCTION
+------------
+Take five unit normals N_a on S^3 with sum_a N_a = 0 (regular 4-simplex).
+Bivectors B_ab = N_a ^ N_b; self-dual parts b+_ab in R^3.
+
+Two facts hold identically and are checked below:
+  b+_ab = -b+_ba                                   (antisymmetry)
+  sum_b B_ab = N_a ^ (sum_b N_b) = 0               (closure, since sum N = 0)
+
+Set n_ab = b+_ab/|b+_ab| and k_ab = |b+_ab|.  Then X_a = 1 is a critical point of
+
+    S_+(X) = sum_{a<b} 2 k_ab log <m_ab| X_a^{-1} X_b |m_ab>,   m_ab = n_ba,
+
+because at X = 1 every overlap saturates, |z_ab| = 1.
+
+Expanding X_a = exp(i theta_a . sigma / 2) gives a 15x15 Hessian.  The gauge
+X_a -> Y X_a leaves every X_a^{-1}X_b invariant, so the three directions with all
+theta_a equal are exactly null.
+
+FALSIFIERS, NAMED BEFORE RUNNING
+--------------------------------
+  * exactly 3 null eigenvalues and 12 bounded-away-from-zero ones  -> the chiral
+    block is nondegenerate, S4 passes for this configuration;
+  * more than 3 null directions, or nonzero eigenvalues that approach zero under
+    refinement -> a flat direction the power counting missed, and the
+    lambda^{-12/2} Gaussian estimate is wrong.
+"""
+import numpy as np
+
+PAULI = [np.array([[0, 1], [1, 0]], dtype=complex),
+         np.array([[0, -1j], [1j, 0]], dtype=complex),
+         np.array([[1, 0], [0, -1]], dtype=complex)]
+
+
+def regular_five():
+    M = np.eye(5) - np.ones((5, 5)) / 5.0
+    _, V = np.linalg.eigh(M)
+    B = V[:, 1:]
+    return B / np.linalg.norm(B, axis=1, keepdims=True)
+
+
+def selfdual(u, v):
+    """Self-dual part of the bivector u ^ v in R^4, as a 3-vector.
+
+    B_{mu nu} = u_mu v_nu - u_nu v_mu ; b+_i = (B_{0i} + (1/2) eps_ijk B_jk)/2.
+    """
+    B = np.outer(u, v) - np.outer(v, u)
+    b = np.empty(3)
+    eps = [(0, 1, 2), (1, 2, 0), (2, 0, 1)]
+    for i, (i0, j0, k0) in enumerate(eps):
+        b[i] = 0.5 * (B[0, i + 1] + 0.5 * (B[j0 + 1, k0 + 1] - B[k0 + 1, j0 + 1]))
+    return b
+
+
+def spinor(n):
+    """|n> with n.sigma |n> = |n>."""
+    nx, ny, nz = n
+    th = np.arccos(np.clip(nz, -1, 1))
+    ph = np.arctan2(ny, nx)
+    return np.array([np.cos(th / 2), np.exp(1j * ph) * np.sin(th / 2)])
+
+
+def su2(theta):
+    t = np.linalg.norm(theta)
+    if t < 1e-14:
+        return np.eye(2, dtype=complex)
+    n = theta / t
+    return (np.cos(t / 2) * np.eye(2)
+            + 1j * np.sin(t / 2) * sum(n[i] * PAULI[i] for i in range(3)))
+
+
+PAIRS = [(a, b) for a in range(5) for b in range(a + 1, 5)]
+
+N = regular_five()
+print("S4 — CHIRAL HESSIAN BLOCK AT THE GEOMETRIC SADDLE")
+print()
+print(f"  sum_a N_a = {np.linalg.norm(N.sum(axis=0)):.3e}  (closure prerequisite)")
+
+bplus = {}
+for a in range(5):
+    for b in range(5):
+        if a != b:
+            bplus[(a, b)] = selfdual(N[a], N[b])
+
+anti = max(np.linalg.norm(bplus[(a, b)] + bplus[(b, a)]) for a, b in PAIRS)
+clos = max(np.linalg.norm(sum(bplus[(a, b)] for b in range(5) if b != a))
+           for a in range(5))
+print(f"  max |b+_ab + b+_ba|            = {anti:.3e}   (antisymmetry)")
+print(f"  max |sum_b b+_ab|              = {clos:.3e}   (closure)")
+
+k = {p: np.linalg.norm(bplus[p]) for p in bplus}
+n = {p: bplus[p] / k[p] for p in bplus}
+print(f"  areas k_ab: min {min(k.values()):.6f}  max {max(k.values()):.6f}")
+print()
+
+M = {p: spinor(n[(p[1], p[0])]) for p in PAIRS}      # m_ab = n_ba
+
+
+def action(thetas):
+    X = [su2(thetas[3 * a:3 * a + 3]) for a in range(5)]
+    s = 0.0 + 0j
+    for (a, b) in PAIRS:
+        g = np.conj(X[a]).T @ X[b]
+        z = np.vdot(M[(a, b)], g @ M[(a, b)])
+        s += 2.0 * k[(a, b)] * np.log(z)
+    return s
+
+
+s0 = action(np.zeros(15))
+print(f"  action at X = 1 : {s0.real:+.3e} {s0.imag:+.3e}i   "
+      f"(should be ~0, every overlap saturated)")
+
+h = 1e-4
+H = np.zeros((15, 15), dtype=complex)
+for i in range(15):
+    for j in range(15):
+        ei = np.zeros(15); ei[i] = h
+        ej = np.zeros(15); ej[j] = h
+        H[i, j] = (action(ei + ej) - action(ei - ej)
+                   - action(-ei + ej) + action(-ei - ej)) / (4 * h * h)
+H = 0.5 * (H + H.T)
+
+ev = np.linalg.eigvals(H)
+ev = ev[np.argsort(np.abs(ev))]
+print()
+print("  15x15 Hessian eigenvalues, by |.|:")
+for i, e in enumerate(ev):
+    tag = "  <- expected null (gauge)" if i < 3 else ""
+    print(f"    {i:2d}  {e.real:+12.6f} {e.imag:+12.6f}i   |.| = {abs(e):.3e}{tag}")
+
+nulls = int(np.sum(np.abs(ev) < 1e-6 * max(np.abs(ev))))
+print()
+print(f"  null directions at 1e-6 relative tolerance : {nulls}")
+print(f"  smallest nonzero |eigenvalue|              : {np.abs(ev[nulls]):.6e}")
+print(f"  largest |eigenvalue|                       : {np.abs(ev[-1]):.6e}")
+print(f"  conditioning of the nonzero block          : "
+      f"{np.abs(ev[-1])/np.abs(ev[nulls]):.3e}")
+print()
+if nulls == 3:
+    print("  RESULT = exactly 3 null directions (the gauge orbit), 12 nonzero.")
+    print("  The chiral block is NONDEGENERATE at this saddle, and the")
+    print("  lambda^{-12/2} Gaussian estimate for one chiral factor is justified.")
+else:
+    print(f"  RESULT = {nulls} null directions, not 3. There is a flat direction")
+    print("  beyond gauge, and the Gaussian power counting must be redone.")
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/W2-HESSIAN-REGULAR.log
+GIT BLOB SHA: 4de99d308aa25aba447f206d03b2c2e9d19e659f
+================================================================================
+S4 — CHIRAL HESSIAN BLOCK AT THE GEOMETRIC SADDLE
+
+  sum_a N_a = 3.886e-16  (closure prerequisite)
+  max |b+_ab + b+_ba|            = 0.000e+00   (antisymmetry)
+  max |sum_b b+_ab|              = 1.841e-16   (closure)
+  areas k_ab: min 0.484123  max 0.484123
+
+  action at X = 1 : +2.150e-16 +0.000e+00i   (should be ~0, every overlap saturated)
+
+  15x15 Hessian eigenvalues, by |.|:
+     0     -0.000000    +0.000000i   |.| = 5.589e-10  <- expected null (gauge)
+     1     -0.000000    +0.000000i   |.| = 4.182e-09  <- expected null (gauge)
+     2     +0.000000    -0.000000i   |.| = 4.711e-09  <- expected null (gauge)
+     3     -0.564810    +0.312500i   |.| = 6.455e-01
+     4     -0.564810    +0.312500i   |.| = 6.455e-01
+     5     -0.564810    +0.312500i   |.| = 6.455e-01
+     6     -0.564810    +0.312500i   |.| = 6.455e-01
+     7     -0.564810    +0.312500i   |.| = 6.455e-01
+     8     -0.806872    -0.625000i   |.| = 1.021e+00
+     9     -0.806872    -0.625000i   |.| = 1.021e+00
+    10     -0.806872    -0.625000i   |.| = 1.021e+00
+    11     -0.806872    -0.625000i   |.| = 1.021e+00
+    12     -1.210307    +0.312500i   |.| = 1.250e+00
+    13     -1.210307    +0.312500i   |.| = 1.250e+00
+    14     -1.210307    +0.312500i   |.| = 1.250e+00
+
+  null directions at 1e-6 relative tolerance : 3
+  smallest nonzero |eigenvalue|              : 6.454972e-01
+  largest |eigenvalue|                       : 1.250000e+00
+  conditioning of the nonzero block          : 1.936e+00
+
+  RESULT = exactly 3 null directions (the gauge orbit), 12 nonzero.
+  The chiral block is NONDEGENERATE at this saddle, and the
+  lambda^{-12/2} Gaussian estimate for one chiral factor is justified.
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/w2_hessian_dk.py
+GIT BLOB SHA: 10ab7e95b6e25cd68f02909ff4ddb8b6c90314e7
+================================================================================
+"""S4 on the actual DK simplex, not the regular one.
+
+The Dittrich-Kogios background is a centrally subdivided hypercubic lattice; the
+relevant 4-simplex is {0, 1, 3, 7, m0} -- three hypercube corners in the binary
+labelling plus the cube centre.
+
+For an IRREGULAR simplex sum_a N_hat_a != 0; the correct closure statement is
+Minkowski's, sum_a V_a N_hat_a = 0, where V_a is the 3-volume of the facet
+opposite vertex a.  So use the volume-weighted normals
+
+    W_a = V_a * N_hat_a ,      sum_a W_a = 0 ,
+
+and build bivectors from those.  Closure of the face bivectors then still holds
+identically:  sum_b W_a ^ W_b = W_a ^ (sum_b W_b) = W_a ^ (-W_a) = 0.
+
+Everything else is as in the regular case: X_a = 1 is the critical point, and the
+15x15 Hessian should have exactly 3 null directions.
+
+FALSIFIER: more than 3 nulls, or a nonzero eigenvalue orders of magnitude below
+the others, means the DK geometry carries a flat or near-flat direction that the
+regular case hides -- which would invalidate the lambda^{-6} estimate on exactly
+the background the GR crosswalk uses.
+"""
+import numpy as np
+
+PAULI = [np.array([[0, 1], [1, 0]], dtype=complex),
+         np.array([[0, -1j], [1j, 0]], dtype=complex),
+         np.array([[1, 0], [0, -1]], dtype=complex)]
+PAIRS = [(a, b) for a in range(5) for b in range(a + 1, 5)]
+
+
+def facet_data(V):
+    """Volume-weighted outward normals W_a for a 4-simplex with vertices V."""
+    W = []
+    centroid = V.mean(axis=0)
+    for a in range(5):
+        others = [i for i in range(5) if i != a]
+        P = V[others]
+        E = P[1:] - P[0]                      # 3 edge vectors spanning the facet
+        # normal via the generalised cross product in R^4
+        nvec = np.zeros(4)
+        for i in range(4):
+            M = np.delete(E, i, axis=1)
+            nvec[i] = ((-1) ** i) * np.linalg.det(M)
+        vol = np.linalg.norm(nvec) / 6.0      # 3-volume of the tetrahedron
+        nhat = nvec / np.linalg.norm(nvec)
+        if np.dot(nhat, P[0] - centroid) < 0:  # make it outward
+            nhat = -nhat
+        W.append(vol * nhat)
+    return np.array(W)
+
+
+def selfdual(u, v):
+    B = np.outer(u, v) - np.outer(v, u)
+    b = np.empty(3)
+    for i, (j0, k0) in enumerate([(1, 2), (2, 0), (0, 1)]):
+        b[i] = 0.5 * (B[0, i + 1] + 0.5 * (B[j0 + 1, k0 + 1] - B[k0 + 1, j0 + 1]))
+    return b
+
+
+def spinor(n):
+    nx, ny, nz = n
+    th = np.arccos(np.clip(nz, -1, 1))
+    ph = np.arctan2(ny, nx)
+    return np.array([np.cos(th / 2), np.exp(1j * ph) * np.sin(th / 2)])
+
+
+def su2(theta):
+    t = np.linalg.norm(theta)
+    if t < 1e-14:
+        return np.eye(2, dtype=complex)
+    nn = theta / t
+    return (np.cos(t / 2) * np.eye(2)
+            + 1j * np.sin(t / 2) * sum(nn[i] * PAULI[i] for i in range(3)))
+
+
+# DK simplex: hypercube corners 0, 1, 3, 7 in binary, plus the centre
+V = np.array([
+    [0., 0., 0., 0.],      # 0000
+    [1., 0., 0., 0.],      # 1000
+    [1., 1., 0., 0.],      # 1100
+    [1., 1., 1., 0.],      # 1110
+    [.5, .5, .5, .5],      # centre m0
+])
+
+print("S4 ON THE DK SIMPLEX {0,1,3,7,m0}")
+print()
+W = facet_data(V)
+print(f"  Minkowski closure  |sum_a W_a| = {np.linalg.norm(W.sum(axis=0)):.3e}")
+print(f"  facet 3-volumes: " + "  ".join(f"{np.linalg.norm(w):.5f}" for w in W))
+print()
+
+bp = {}
+for a in range(5):
+    for b in range(5):
+        if a != b:
+            bp[(a, b)] = selfdual(W[a], W[b])
+anti = max(np.linalg.norm(bp[(a, b)] + bp[(b, a)]) for a, b in PAIRS)
+clos = max(np.linalg.norm(sum(bp[(a, b)] for b in range(5) if b != a))
+           for a in range(5))
+print(f"  max |b+_ab + b+_ba| = {anti:.3e}     max |sum_b b+_ab| = {clos:.3e}")
+
+k = {p: np.linalg.norm(bp[p]) for p in bp}
+n = {p: bp[p] / k[p] for p in bp}
+ks = sorted(k[p] for p in PAIRS)
+print(f"  face areas k_ab (sorted): " + "  ".join(f"{x:.5f}" for x in ks))
+print(f"  area spread max/min = {ks[-1]/ks[0]:.4f}   (1.0 would be regular)")
+print()
+
+M = {p: spinor(n[(p[1], p[0])]) for p in PAIRS}
+
+
+def action(th):
+    X = [su2(th[3 * a:3 * a + 3]) for a in range(5)]
+    s = 0j
+    for (a, b) in PAIRS:
+        g = np.conj(X[a]).T @ X[b]
+        z = np.vdot(M[(a, b)], g @ M[(a, b)])
+        s += 2.0 * k[(a, b)] * np.log(z)
+    return s
+
+
+print(f"  action at X = 1 : {action(np.zeros(15)).real:+.3e}"
+      f" {action(np.zeros(15)).imag:+.3e}i")
+
+h = 1e-4
+H = np.zeros((15, 15), dtype=complex)
+for i in range(15):
+    for j in range(15):
+        ei = np.zeros(15); ei[i] = h
+        ej = np.zeros(15); ej[j] = h
+        H[i, j] = (action(ei + ej) - action(ei - ej)
+                   - action(-ei + ej) + action(-ei - ej)) / (4 * h * h)
+H = 0.5 * (H + H.T)
+ev = np.linalg.eigvals(H)
+ev = ev[np.argsort(np.abs(ev))]
+
+print()
+print("  eigenvalues by |.|:")
+for i, e in enumerate(ev):
+    print(f"    {i:2d}  {e.real:+11.6f} {e.imag:+11.6f}i   |.| = {abs(e):.4e}")
+nulls = int(np.sum(np.abs(ev) < 1e-6 * max(np.abs(ev))))
+print()
+print(f"  null directions = {nulls}")
+print(f"  smallest nonzero |ev| = {np.abs(ev[nulls]):.6e}")
+print(f"  conditioning of nonzero block = "
+      f"{np.abs(ev[-1])/np.abs(ev[nulls]):.4e}")
+print()
+print("  RESULT = " + ("nondegenerate, 3 gauge nulls + 12 good directions."
+                       if nulls == 3 else
+                       f"{nulls} nulls -- a flat direction beyond gauge."))
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/W2-HESSIAN-DK.log
+GIT BLOB SHA: bf9b50d4b623d303784c8069b72e275782026551
+================================================================================
+S4 ON THE DK SIMPLEX {0,1,3,7,m0}
+
+  Minkowski closure  |sum_a W_a| = 0.000e+00
+  facet 3-volumes: 0.11785  0.11785  0.11785  0.11785  0.16667
+
+  max |b+_ab + b+_ba| = 0.000e+00     max |sum_b b+_ab| = 0.000e+00
+  face areas k_ab (sorted): 0.00601  0.00601  0.00601  0.00601  0.00694  0.00694  0.00694  0.00694  0.00982  0.00982
+  area spread max/min = 1.6330   (1.0 would be regular)
+
+  action at X = 1 : +0.000e+00 +0.000e+00i
+
+  eigenvalues by |.|:
+     0    -0.000000   +0.000000i   |.| = 7.5006e-12
+     1    -0.000000   +0.000000i   |.| = 7.2818e-11
+     2    +0.000000   -0.000000i   |.| = 7.9925e-11
+     3    -0.003984   +0.003111i   |.| = 5.0547e-03
+     4    -0.005662   +0.001321i   |.| = 5.8144e-03
+     5    -0.008047   -0.004166i   |.| = 9.0613e-03
+     6    -0.010095   +0.003490i   |.| = 1.0682e-02
+     7    -0.011620   +0.001764i   |.| = 1.1753e-02
+     8    -0.009644   +0.008055i   |.| = 1.2565e-02
+     9    -0.011619   -0.006447i   |.| = 1.3287e-02
+    10    -0.011865   -0.009513i   |.| = 1.5208e-02
+    11    -0.018545   +0.003237i   |.| = 1.8825e-02
+    12    -0.018711   +0.002538i   |.| = 1.8882e-02
+    13    -0.017433   +0.008105i   |.| = 1.9225e-02
+    14    -0.015728   -0.011495i   |.| = 1.9481e-02
+
+  null directions = 3
+  smallest nonzero |ev| = 5.054706e-03
+  conditioning of nonzero block = 3.8540e+00
+
+  RESULT = nondegenerate, 3 gauge nulls + 12 good directions.
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/re_hessian_definite.py
+GIT BLOB SHA: 2ba13dfa09414afcfdd00561bc61c77336d9ed98
+================================================================================
+"""Two checks needed by the W2 paper (bcrd-w2-gr), sections 7 and 8.
+
+(1) CONDITION NUMBER, CORRECTLY NAMED. The chiral Hessian H is complex symmetric
+    and NOT normal, so |eigenvalue| ratios and singular-value ratios differ.
+    Earlier logs quoted kappa = max|ev|/min|ev| (1.936 regular, 3.854 DK). Report
+    both, on the gauge-fixed 12x12 (X_0 = 1), and Richardson-extrapolate the
+    smallest singular value in the finite-difference step h.
+
+(2) REAL-PART DEFINITENESS. The rank-one bound of Theorem 7.1 is an absolute-value
+    estimate: |integrand| <= poly * exp(lambda Re S), so it needs Re S to have a
+    NONDEGENERATE maximum modulo gauge at every chiral solution, i.e. Re H
+    negative definite on the gauge-fixed 12x12. Both chiral solutions are
+    checked: self-dual data at X = 1 and anti-self-dual data at X = 1 (the parity
+    partner, in the gauge where it sits at the identity).
+
+FALSIFIERS (named first): any gauge-fixed Re H eigenvalue >= -1e-6 * scale at
+either chirality on either simplex => a real flat direction, the absolute-value
+bound fails and Theorem 7.1's rank-one estimate needs a different proof. Any
+nonzero gradient at X = 1 => the configuration is not a critical point and the
+test is INVALID.
+"""
+import numpy as np
+
+PAULI = [np.array([[0, 1], [1, 0]], dtype=complex),
+         np.array([[0, -1j], [1j, 0]], dtype=complex),
+         np.array([[1, 0], [0, -1]], dtype=complex)]
+PAIRS = [(a, b) for a in range(5) for b in range(a + 1, 5)]
+
+
+def su2(t):
+    nt = np.linalg.norm(t)
+    if nt < 1e-14:
+        return np.eye(2, dtype=complex)
+    u = t / nt
+    return (np.cos(nt / 2) * np.eye(2)
+            + 1j * np.sin(nt / 2) * sum(u[i] * PAULI[i] for i in range(3)))
+
+
+def spinor(n):
+    th = np.arccos(np.clip(n[2], -1, 1))
+    ph = np.arctan2(n[1], n[0])
+    return np.array([np.cos(th / 2), np.exp(1j * ph) * np.sin(th / 2)])
+
+
+def chiral(u, v, s):
+    """s=+1 self-dual, s=-1 anti-self-dual part of u^v, as a 3-vector."""
+    B = np.outer(u, v) - np.outer(v, u)
+    b = np.empty(3)
+    for i, (j0, k0) in enumerate([(1, 2), (2, 0), (0, 1)]):
+        b[i] = 0.5 * (B[0, i + 1] + s * 0.5 * (B[j0 + 1, k0 + 1] - B[k0 + 1, j0 + 1]))
+    return b
+
+
+def regular_normals():
+    M = np.eye(5) - np.ones((5, 5)) / 5.0
+    _, V = np.linalg.eigh(M)
+    B = V[:, 1:]
+    return B / np.linalg.norm(B, axis=1, keepdims=True)
+
+
+def dk_normals():
+    V = np.array([[0., 0, 0, 0], [1, 0, 0, 0], [1, 1, 0, 0],
+                  [1, 1, 1, 0], [.5, .5, .5, .5]])
+    W, cen = [], V.mean(axis=0)
+    for a in range(5):
+        P = V[[i for i in range(5) if i != a]]
+        E = P[1:] - P[0]
+        nv = np.array([((-1) ** i) * np.linalg.det(np.delete(E, i, axis=1))
+                       for i in range(4)])
+        nh = nv / np.linalg.norm(nv)
+        if np.dot(nh, P[0] - cen) < 0:
+            nh = -nh
+        W.append(np.linalg.norm(nv) / 6.0 * nh)
+    return np.array(W)
+
+
+def make_action(W, s):
+    bp = {(a, b): chiral(W[a], W[b], s) for a in range(5) for b in range(5) if a != b}
+    k = {p: np.linalg.norm(bp[p]) for p in bp}
+    M = {p: spinor(bp[(p[1], p[0])] / k[(p[1], p[0])]) for p in PAIRS}
+
+    def S(th):
+        X = [su2(th[3 * a:3 * a + 3]) for a in range(5)]
+        out = 0j
+        for (a, b) in PAIRS:
+            out += 2 * k[(a, b)] * np.log(np.vdot(M[(a, b)],
+                                                  np.conj(X[a]).T @ X[b] @ M[(a, b)]))
+        return out
+    return S
+
+
+def hessian(S, h):
+    H = np.zeros((15, 15), dtype=complex)
+    for i in range(15):
+        for j in range(i, 15):
+            ei = np.zeros(15); ei[i] = h
+            ej = np.zeros(15); ej[j] = h
+            H[i, j] = H[j, i] = (S(ei + ej) - S(ei - ej) - S(-ei + ej)
+                                 + S(-ei - ej)) / (4 * h * h)
+    return H
+
+
+def grad(S, h=1e-6):
+    return np.array([(S(e) - S(-e)) / (2 * h) for e in h * np.eye(15)])
+
+
+print("W2 chiral Hessian: singular-value conditioning and Re-part definiteness")
+print()
+fails = []
+for name, W in (("regular", regular_normals()), ("DK", dk_normals())):
+    for s, lab in ((+1, "self-dual"), (-1, "anti-self-dual")):
+        S = make_action(W, s)
+        g = np.abs(grad(S)).max()
+        Hs = {h: hessian(S, h) for h in (4e-4, 2e-4, 1e-4)}
+        H = Hs[1e-4]
+        scale = np.abs(H).max()
+        Hg = H[3:, 3:]                                   # gauge fixed: X_0 = 1
+        ev = np.linalg.eigvals(Hg)
+        sv = np.linalg.svd(Hg, compute_uv=False)
+        smin = {h: np.linalg.svd(Hs[h][3:, 3:], compute_uv=False).min() for h in Hs}
+        rich = (4 * smin[1e-4] - smin[2e-4]) / 3          # O(h^2) extrapolation
+        reH = np.linalg.eigvalsh(Hg.real)
+        re15 = np.linalg.eigvalsh(H.real)
+        ok = reH.max() < -1e-6 * scale and g < 1e-6 * scale
+        if not ok:
+            fails.append((name, lab))
+        print(f"  [{name}, {lab}]   max|grad S| at X=1 = {g:.1e}")
+        print(f"    gauge-fixed 12x12: |ev| ratio = {np.abs(ev).max()/np.abs(ev).min():.4f}"
+              f"   singular-value ratio = {sv.max()/sv.min():.4f}")
+        print(f"    sigma_min(h=4e-4, 2e-4, 1e-4) = {smin[4e-4]:.9f} {smin[2e-4]:.9f} "
+              f"{smin[1e-4]:.9f}   Richardson -> {rich:.9f}   spread {abs(rich-smin[1e-4]):.1e}")
+        print(f"    Re H, gauge-fixed: max eigenvalue = {reH.max():+.6e}   "
+              f"min = {reH.min():+.6e}")
+        print(f"    Re H, 15x15: eigenvalues within 1e-6*scale of 0: "
+              f"{int(np.sum(np.abs(re15) < 1e-6 * scale))} (expect 3 gauge)")
+        print()
+if fails:
+    print(f"  RESULT = FALSIFIED at {fails}: Re H has a flat or positive direction.")
+else:
+    print("  RESULT = Re H is negative definite modulo gauge at both chiral solutions")
+    print("  on both simplices; the absolute-value rank-one bound of Theorem 7.1")
+    print("  applies. Gradients vanish, so every tested point is critical.")
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/RE-HESSIAN-DEFINITE.log
+GIT BLOB SHA: d48251680b08b70357b5e8f1d503e59148ea04c5
+================================================================================
+W2 chiral Hessian: singular-value conditioning and Re-part definiteness
+
+  [regular, self-dual]   max|grad S| at X=1 = 1.1e-10
+    gauge-fixed 12x12: |ev| ratio = 5.3117   singular-value ratio = 6.3423
+    sigma_min(h=4e-4, 2e-4, 1e-4) = 0.181240392 0.181240390 0.181240384   Richardson -> 0.181240382   spread 2.1e-09
+    Re H, gauge-fixed: max eigenvalue = -1.445631e-01   min = -1.095121e+00
+    Re H, 15x15: eigenvalues within 1e-6*scale of 0: 3 (expect 3 gauge)
+
+  [regular, anti-self-dual]   max|grad S| at X=1 = 1.1e-10
+    gauge-fixed 12x12: |ev| ratio = 5.3117   singular-value ratio = 6.3423
+    sigma_min(h=4e-4, 2e-4, 1e-4) = 0.181240391 0.181240389 0.181240380   Richardson -> 0.181240377   spread 3.2e-09
+    Re H, gauge-fixed: max eigenvalue = -1.445631e-01   min = -1.095121e+00
+    Re H, 15x15: eigenvalues within 1e-6*scale of 0: 3 (expect 3 gauge)
+
+  [DK, self-dual]   max|grad S| at X=1 = 1.3e-12
+    gauge-fixed 12x12: |ev| ratio = 12.2467   singular-value ratio = 15.1374
+    sigma_min(h=4e-4, 2e-4, 1e-4) = 0.001417801 0.001417801 0.001417801   Richardson -> 0.001417801   spread 1.6e-11
+    Re H, gauge-fixed: max eigenvalue = -1.128825e-03   min = -2.002064e-02
+    Re H, 15x15: eigenvalues within 1e-6*scale of 0: 3 (expect 3 gauge)
+
+  [DK, anti-self-dual]   max|grad S| at X=1 = 1.3e-12
+    gauge-fixed 12x12: |ev| ratio = 12.5359   singular-value ratio = 15.4874
+    sigma_min(h=4e-4, 2e-4, 1e-4) = 0.001391203 0.001391202 0.001391202   Richardson -> 0.001391202   spread 1.1e-11
+    Re H, gauge-fixed: max eigenvalue = -1.107353e-03   min = -2.014474e-02
+    Re H, 15x15: eigenvalues within 1e-6*scale of 0: 3 (expect 3 gauge)
+
+  RESULT = Re H is negative definite modulo gauge at both chiral solutions
+  on both simplices; the absolute-value rank-one bound of Theorem 7.1
+  applies. Gradients vanish, so every tested point is critical.
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/nongeometric_criticals.py
+GIT BLOB SHA: 16b573f4fdc1a026e247ff06929a1bd452353105
+================================================================================
+"""#1 - are there NON-GEOMETRIC critical points for the DK boundary data?
+
+Sol's uniqueness token reads UNIQUE_FOR_GEOMETRIC_COHERENT_DATA. That says: among
+GEOMETRIC critical points, D_sigma holds one cross orbit. It does not say
+non-geometric critical points are absent, and that is exactly where the F1
+families would live (Muse m5: "vector geometries / rank-4 non-parallel
+non-geometric critical points for fixed H-shapes never analysed").
+
+SHARP VERSION OF THE QUESTION
+-----------------------------
+Fix the boundary data (n_ab, k_ab) from the DK simplex. The chiral critical
+equation is the gluing condition
+
+    R(X_a) n_ab = - R(X_b) n_ba        for all a < b.
+
+Count its DISTINCT solutions modulo the gauge X_a -> Y X_a.
+
+  * exactly 2 (the geometric configuration and its parity image) => pairing the
+    two chiralities gives 4 combinations, of which same/same have Omega = 0 and
+    the two cross pairings are the opposite orientations. No non-geometric
+    critical point exists, and F1's families cannot be critical for this data.
+  * more than 2 => the extras are non-geometric, and each must be checked for
+    membership in D_sigma.
+
+METHOD. Minimise the gluing residual from many random starts, keep solutions
+below tolerance, and cluster them modulo gauge by fixing X_0 = 1.
+
+FALSIFIER NAMED FIRST: finding a third gauge-inequivalent solution refutes the
+clean picture and reopens F1.
+"""
+import numpy as np
+from scipy.optimize import minimize
+
+rng = np.random.default_rng(4242)
+PAULI = [np.array([[0, 1], [1, 0]], dtype=complex),
+         np.array([[0, -1j], [1j, 0]], dtype=complex),
+         np.array([[1, 0], [0, -1]], dtype=complex)]
+PAIRS = [(a, b) for a in range(5) for b in range(a + 1, 5)]
+
+
+def su2(t):
+    nt = np.linalg.norm(t)
+    if nt < 1e-15:
+        return np.eye(2, dtype=complex)
+    u = t / nt
+    return (np.cos(nt / 2) * np.eye(2)
+            + 1j * np.sin(nt / 2) * sum(u[i] * PAULI[i] for i in range(3)))
+
+
+def rot(X):
+    """SO(3) matrix of an SU(2) element."""
+    R = np.empty((3, 3))
+    for i in range(3):
+        M = X @ PAULI[i] @ np.conj(X).T
+        for jj in range(3):
+            R[jj, i] = np.real(np.trace(M @ PAULI[jj])) / 2
+    return R
+
+
+def facet_normals(V):
+    W = []
+    cen = V.mean(axis=0)
+    for a in range(5):
+        P = V[[i for i in range(5) if i != a]]
+        E = P[1:] - P[0]
+        nv = np.zeros(4)
+        for i in range(4):
+            nv[i] = ((-1) ** i) * np.linalg.det(np.delete(E, i, axis=1))
+        vol = np.linalg.norm(nv) / 6.0
+        nh = nv / np.linalg.norm(nv)
+        if np.dot(nh, P[0] - cen) < 0:
+            nh = -nh
+        W.append(vol * nh)
+    return np.array(W)
+
+
+def selfdual(u, v):
+    B = np.outer(u, v) - np.outer(v, u)
+    b = np.empty(3)
+    for i, (j0, k0) in enumerate([(1, 2), (2, 0), (0, 1)]):
+        b[i] = 0.5 * (B[0, i + 1] + 0.5 * (B[j0 + 1, k0 + 1] - B[k0 + 1, j0 + 1]))
+    return b
+
+
+V = np.array([[0., 0, 0, 0], [1, 0, 0, 0], [1, 1, 0, 0],
+              [1, 1, 1, 0], [.5, .5, .5, .5]])
+W = facet_normals(V)
+bp = {(a, b): selfdual(W[a], W[b]) for a in range(5) for b in range(5) if a != b}
+k = {p: np.linalg.norm(bp[p]) for p in bp}
+n = {p: bp[p] / k[p] for p in bp}
+
+print("#1 - NON-GEOMETRIC CRITICAL POINTS ON THE DK BOUNDARY DATA")
+print()
+print(f"  boundary data fixed from the DK simplex; 10 faces")
+print(f"  area ratios: " + "  ".join(
+    f"{x/min(k[p] for p in PAIRS):.4f}" for x in sorted(k[p] for p in PAIRS)))
+print()
+
+
+def residual(x):
+    """Gluing residual with X_0 = 1 (gauge fixed); x has 12 components."""
+    X = [np.eye(2, dtype=complex)] + [su2(x[3 * i:3 * i + 3]) for i in range(4)]
+    R = [rot(Xa) for Xa in X]
+    s = 0.0
+    for (a, b) in PAIRS:
+        s += np.sum((R[a] @ n[(a, b)] + R[b] @ n[(b, a)]) ** 2)
+    return s
+
+
+sols = []
+for trial in range(4000):
+    x0 = rng.uniform(-np.pi, np.pi, 12)
+    r = minimize(residual, x0, method="L-BFGS-B",
+                 options={"maxiter": 4000, "ftol": 1e-18, "gtol": 1e-14})
+    if r.fun < 1e-14:
+        Rs = [np.eye(3)] + [rot(su2(r.x[3 * i:3 * i + 3])) for i in range(4)]
+        sig = np.concatenate([R.ravel() for R in Rs])
+        if not any(np.linalg.norm(sig - s) < 1e-5 for s in sols):
+            sols.append(sig)
+
+print(f"  random starts                    : 4000")
+print(f"  distinct gauge-fixed solutions   : {len(sols)}")
+print()
+for i, s in enumerate(sols):
+    Rs = [s[9 * a:9 * a + 9].reshape(3, 3) for a in range(5)]
+    dets = [np.linalg.det(R) for R in Rs]
+    # reconstruct the bivectors this solution produces
+    B = {p: k[p] * (Rs[p[0]] @ n[p]) for p in PAIRS}
+    span = np.linalg.matrix_rank(np.array([B[p] for p in PAIRS]), tol=1e-8)
+    print(f"    solution {i}: det(R_a) = "
+          + " ".join(f"{d:+.3f}" for d in dets)
+          + f"   rank of bivector span = {span}")
+print()
+if len(sols) == 2:
+    print("  RESULT = exactly two gauge-inequivalent chiral solutions.")
+    print("  Pairing the chiralities gives four combinations; same/same carry")
+    print("  Omega = 0 and the two cross pairings are the opposite 4D")
+    print("  orientations. NO non-geometric critical point exists for this")
+    print("  boundary data, and F1's families cannot be critical here.")
+else:
+    print(f"  RESULT = {len(sols)} solutions. Any beyond the geometric pair are")
+    print("  non-geometric and must each be tested for D_sigma membership.")
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/NONGEOMETRIC-CRITICALS.log
+GIT BLOB SHA: 31a7d57900aad40a38e9dc08e823bd76cac3a26f
+================================================================================
+#1 - NON-GEOMETRIC CRITICAL POINTS ON THE DK BOUNDARY DATA
+
+  boundary data fixed from the DK simplex; 10 faces
+  area ratios: 1.0000  1.0000  1.0000  1.0000  1.1547  1.1547  1.1547  1.1547  1.6330  1.6330
+
+  random starts                    : 4000
+  distinct gauge-fixed solutions   : 2
+
+    solution 0: det(R_a) = +1.000 +1.000 +1.000 +1.000 +1.000   rank of bivector span = 3
+    solution 1: det(R_a) = +1.000 +1.000 +1.000 +1.000 +1.000   rank of bivector span = 3
+
+  RESULT = exactly two gauge-inequivalent chiral solutions.
+  Pairing the chiralities gives four combinations; same/same carry
+  Omega = 0 and the two cross pairings are the opposite 4D
+  orientations. NO non-geometric critical point exists for this
+  boundary data, and F1's families cannot be critical here.
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/boundary_strata_res.py
+GIT BLOB SHA: fe70d8c4a82125c4506453d6e58691b7931d6562
+================================================================================
+"""Section 2.2 of the v2 brief: is the lambda^-7/2 boundary table live in W2 on DK?
+
+The author's cofactor lemma (818822c841, W2-BOUNDARY-COFACTOR-ORDER-LEMMA.md s5)
+prices the two-pair and four-parallel strata at lambda^-7/2 .. lambda^-9/2, but
+only "as a comparator", for Barrett-Steele mixed-epsilon families that are live
+"when the coherent sign epsilon is not fixed". W2 uses no per-face sign variable
+(W2-PROGRAMME-CLOSURE.md s2), and S = S_+(X+) + conj S_-(X-) with a shared
+boundary state. Then Re S = Re S_+(X+) + Re S_+(X-) <= 0, with equality iff both
+chiral systems glue, i.e. only at the 4 pairings of the 2 chiral solutions:
+2 geometric (interior) and 2 same/same, where N_a = X-_a (X+_a)^-1 is
+a-independent (RANK ONE, all cofactors cubic).
+
+PREDICTION: on the two-pair (N1=N2=u, N3=N4=v, N0=w) and four-parallel
+(N1..N4=u, N0=w) strata, sup Re S = 0 only at the rank-one corner u=v=w, and
+sup Re S <= -c r^2 < 0 once the distinct normals are held >= r apart.
+
+POSITIVE CONTROL: r = 0 must reach Re S = 0 to optimiser precision.
+FALSIFIER: any r > 0 with sup Re S = 0 (to tolerance) means a Re S = 0 point on
+a non-rank-one boundary stratum, and the lambda^-7/2 table becomes live.
+"""
+import contextlib
+import importlib.util
+import io
+
+import numpy as np
+from scipy.optimize import minimize
+
+spec = importlib.util.spec_from_file_location("hdk", "w2_hessian_dk.py")
+hdk = importlib.util.module_from_spec(spec)
+with contextlib.redirect_stdout(io.StringIO()):
+    spec.loader.exec_module(hdk)
+PAIRS, k, M, su2 = hdk.PAIRS, hdk.k, hdk.M, hdk.su2
+KTOT = sum(2 * k[p] for p in PAIRS)
+rng = np.random.default_rng(7)
+
+
+def re_chiral(X):
+    s = 0.0
+    for (a, b) in PAIRS:
+        z = np.vdot(M[(a, b)], np.conj(X[a]).T @ X[b] @ M[(a, b)])
+        s += 2 * k[(a, b)] * np.log(max(abs(z), 1e-300))
+    return s
+
+
+def dist(U, V):  # distance blind to the SU(2) sign
+    return min(np.linalg.norm(U - V), np.linalg.norm(U + V))
+
+
+def make(x, stratum):
+    Xp = [np.eye(2, dtype=complex)] + [su2(x[3 * i:3 * i + 3]) for i in range(4)]
+    u, v, w = su2(x[12:15]), su2(x[15:18]), su2(x[18:21])
+    N = [w, u, u, v, v] if stratum == "two-pair" else [w, u, u, u, u]
+    Xm = [N[a] @ Xp[a] for a in range(5)]
+    sep = ([dist(u, v), dist(u, w), dist(v, w)] if stratum == "two-pair"
+           else [dist(u, w)])
+    return Xp, Xm, min(sep)
+
+
+def sup_res(stratum, r, starts=60):
+    best = -np.inf
+
+    def f(x):
+        Xp, Xm, s = make(x, stratum)
+        pen = 1e3 * max(0.0, r - s) ** 2
+        return -(re_chiral(Xp) + re_chiral(Xm)) / KTOT + pen
+
+    for _ in range(starts):
+        x0 = rng.normal(scale=1.5, size=21)
+        res = minimize(f, x0, method="L-BFGS-B", options={"maxiter": 4000})
+        Xp, Xm, s = make(res.x, stratum)
+        if s >= r - 1e-3:
+            best = max(best, (re_chiral(Xp) + re_chiral(Xm)) / KTOT)
+    return best
+
+
+print("Re S on the two-pair and four-parallel boundary strata, DK data")
+print("(normalised by sum_f 2k_f; 0 means a Re S = 0 point, i.e. |amplitude| O(1))")
+print()
+out = {}
+for stratum in ("two-pair", "four-parallel"):
+    print(f"  [{stratum}]    min separation r    sup Re S / sum 2k     /r^2")
+    for r in (0.0, 0.05, 0.1, 0.2, 0.4, 0.8):
+        s = sup_res(stratum, r)
+        out[(stratum, r)] = s
+        print(f"                   {r:5.2f}            {s:+.3e}"
+              + (f"      {s / r ** 2:+.3f}" if r > 0 else "   <- control"),
+              flush=True)
+    print()
+ctrl = all(out[(s, 0.0)] > -1e-8 for s in ("two-pair", "four-parallel"))
+live = [(s, r) for (s, r), v in out.items() if r > 0 and v > -1e-8]
+print(f"  POSITIVE CONTROL (r = 0 reaches Re S = 0): {'PASS' if ctrl else 'FAIL'}")
+if not ctrl:
+    print("  RESULT = INVALID: the search cannot find the known rank-one zero.")
+elif live:
+    print(f"  RESULT = FALSIFIED: Re S = 0 away from rank one at {live}.")
+    print("  The lambda^-7/2 boundary table is live in W2 on DK.")
+else:
+    print("  RESULT = Re S < 0 on both strata away from the rank-one corner,")
+    print("  on every tested separation. The two-pair / four-parallel strata")
+    print("  are exponentially suppressed on DK; the only Re S = 0 boundary")
+    print("  points are rank one, where every cofactor has a cubic zero.")
+    print("  A search result, backed by the argument in the docstring.")
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/BOUNDARY-STRATA-RES.log
+GIT BLOB SHA: 2db698bae793c5c3e1e4ab577f1256b29608604d
+================================================================================
+Re S on the two-pair and four-parallel boundary strata, DK data
+(normalised by sum_f 2k_f; 0 means a Re S = 0 point, i.e. |amplitude| O(1))
+
+  [two-pair]    min separation r    sup Re S / sum 2k     /r^2
+                    0.00            -1.985e-10   <- control
+                    0.05            -1.012e-04      -0.040
+                    0.10            -4.235e-04      -0.042
+                    0.20            -1.663e-03      -0.042
+                    0.40            -6.448e-03      -0.040
+                    0.80            -2.572e-02      -0.040
+
+  [four-parallel]    min separation r    sup Re S / sum 2k     /r^2
+                    0.00            -2.425e-11   <- control
+                    0.05            -4.792e-05      -0.019
+                    0.10            -1.916e-04      -0.019
+                    0.20            -7.662e-04      -0.019
+                    0.40            -3.064e-03      -0.019
+                    0.80            -1.222e-02      -0.019
+
+  POSITIVE CONTROL (r = 0 reaches Re S = 0): PASS
+  RESULT = Re S < 0 on both strata away from the rank-one corner,
+  on every tested separation. The two-pair / four-parallel strata
+  are exponentially suppressed on DK; the only Re S = 0 boundary
+  points are rank one, where every cofactor has a cubic zero.
+  A search result, backed by the argument in the docstring.
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/shape_mismatch_scale.py
+GIT BLOB SHA: 3514ca5a68ed3da26f5092daca27350d4693ebb5
+================================================================================
+"""How badly is shape mismatch suppressed across a shared tetrahedron?
+
+The hostile review's FATAL finding: contracting coherent intertwiners across a
+shared tetrahedron gives
+
+    <iota_L|iota_R> ~ int dg prod_f <j_f, n^L_f| g |j_f, n^R_f>,
+
+whose modulus is at most one, with equality only if a single rotation carries all
+four normals on one side to the other - i.e. only if the shapes agree. Otherwise
+the overlap is exponentially suppressed, while Dittrich-Kogios need exactly the
+shape-MISMATCHED configurations.
+
+That argument is correct AT FIXED MISMATCH. The question it leaves open is the
+SCALE of mismatch that survives. Writing the leading exponent as
+
+    |<iota_L|iota_R>| ~ exp( lambda E(delta) ),
+    E(delta) = max_g sum_f 2 k_f log |<n^L_f| g |n^R_f>|  <= 0,
+
+if E(delta) = -c delta^2 then a mismatch delta = eps / sqrt(lambda) - the scale of
+the coherent-state fluctuations themselves - gives lambda E = -c eps^2, which is
+O(1) and NOT suppressed. That is the scale at which effective spin foam models
+keep their area-metric degrees of freedom.
+
+MEASURED HERE: E(delta) for a one-parameter shape deformation, its quadratic
+coefficient, and lambda E at delta = eps/sqrt(lambda).
+
+FALSIFIERS: E(delta) not quadratic at small delta (say linear, or with a nonzero
+constant), or lambda E(eps/sqrt(lambda)) drifting with lambda rather than settling
+to a lambda-independent function of eps. Either would mean the fluctuation-scale
+mismatch is also suppressed and the obstruction bites at every scale.
+"""
+import numpy as np
+from scipy.optimize import minimize
+
+rng = np.random.default_rng(11)
+
+
+def su2(t):
+    n = np.linalg.norm(t)
+    if n < 1e-15:
+        return np.eye(2, dtype=complex)
+    u = t / n
+    P = [np.array([[0, 1], [1, 0]], dtype=complex),
+         np.array([[0, -1j], [1j, 0]], dtype=complex),
+         np.array([[1, 0], [0, -1]], dtype=complex)]
+    return np.cos(n / 2) * np.eye(2) + 1j * np.sin(n / 2) * sum(u[i] * P[i]
+                                                                for i in range(3))
+
+
+def spinor(n):
+    th = np.arccos(np.clip(n[2], -1, 1))
+    ph = np.arctan2(n[1], n[0])
+    return np.array([np.cos(th / 2), np.exp(1j * ph) * np.sin(th / 2)])
+
+
+# regular tetrahedron normals, equal areas
+N = np.array([[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]], dtype=float)
+N /= np.linalg.norm(N, axis=1, keepdims=True)
+K = np.ones(4) / 4.0            # equal areas, normalised so sum 2k_f = 2
+
+
+def deform(delta):
+    """Rotate two normals towards each other by delta, then re-close."""
+    M = N.copy()
+    ax = np.cross(M[0], M[1])
+    ax /= np.linalg.norm(ax)
+    R = su2(delta * ax)
+    for i in (0, 1):
+        v = spinor(M[i])
+        w = R @ v
+        # back to a unit vector
+        M[i] = np.array([2 * np.real(np.conj(w[0]) * w[1]),
+                         2 * np.imag(np.conj(w[0]) * w[1]),
+                         abs(w[0]) ** 2 - abs(w[1]) ** 2])
+    s = (K[:, None] * M).sum(axis=0)          # closure defect
+    M = M - s / K.sum()
+    return M / np.linalg.norm(M, axis=1, keepdims=True)
+
+
+def exponent(MR):
+    """E = max_g sum_f 2 k_f log |<n^L_f|g|n^R_f>|, <= 0."""
+    SL = [spinor(n) for n in N]
+    SR = [spinor(n) for n in MR]
+
+    def neg(t):
+        g = su2(t)
+        tot = 0.0
+        for f in range(4):
+            z = abs(complex(np.conj(SL[f]) @ (g @ SR[f])))
+            tot += 2 * K[f] * np.log(max(z, 1e-300))
+        return -tot
+
+    best = np.inf
+    for _ in range(40):
+        r = minimize(neg, rng.normal(scale=1.5, size=3), method="Nelder-Mead",
+                     options={"xatol": 1e-12, "fatol": 1e-14, "maxiter": 4000})
+        best = min(best, r.fun)
+    return -best
+
+
+print("Shape-mismatch suppression exponent")
+print()
+print("   delta      E(delta)        -E/delta^2")
+rows = []
+for delta in (0.0, 0.02, 0.05, 0.1, 0.2, 0.4):
+    E = exponent(deform(delta))
+    rows.append((delta, E))
+    q = -E / delta ** 2 if delta > 0 else float("nan")
+    print(f"  {delta:6.3f}   {E:+.6e}    {q:10.5f}")
+
+c = np.mean([-E / d ** 2 for d, E in rows if 0 < d <= 0.1])
+print()
+print(f"  quadratic coefficient c ~ {c:.5f}   (E = -c delta^2)")
+print()
+print("  lambda E at the fluctuation scale delta = eps/sqrt(lambda):")
+print("     eps     lambda=100   lambda=400   lambda=1600")
+for eps in (0.5, 1.0, 2.0):
+    vals = []
+    for lam in (100, 400, 1600):
+        E = exponent(deform(eps / np.sqrt(lam)))
+        vals.append(lam * E)
+    print(f"    {eps:4.1f}   " + "  ".join(f"{v:+10.4f}" for v in vals))
+print()
+print("Columns flat in lambda mean the fluctuation-scale mismatch survives, and")
+print("the obstruction restricts the SCALE of shape mismatch rather than")
+print("forbidding it. Columns drifting downwards mean it is suppressed at every")
+print("scale and the obstruction is total.")
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/SHAPE-MISMATCH-SCALE.log
+GIT BLOB SHA: c3501d39c6d055b23df68ca0c83f88768ab75e0b
+================================================================================
+Shape-mismatch suppression exponent
+
+   delta      E(delta)        -E/delta^2
+   0.000   +2.775558e-16           nan
+   0.020   -1.389159e-06       0.00347
+   0.050   -8.691118e-06       0.00348
+   0.100   -3.489137e-05       0.00349
+   0.200   -1.416054e-04       0.00354
+   0.400   -5.996671e-04       0.00375
+
+  quadratic coefficient c ~ 0.00348   (E = -c delta^2)
+
+  lambda E at the fluctuation scale delta = eps/sqrt(lambda):
+     eps     lambda=100   lambda=400   lambda=1600
+     0.5      -0.0009     -0.0009     -0.0009
+     1.0      -0.0035     -0.0035     -0.0035
+     2.0      -0.0142     -0.0140     -0.0139
+
+Columns flat in lambda mean the fluctuation-scale mismatch survives, and
+the obstruction restricts the SCALE of shape mismatch rather than
+forbidding it. Columns drifting downwards mean it is suppressed at every
+scale and the obstruction is total.
+
+
+================================================================================
+SOURCE REF: sol/w2-boundary-dominance-2026-09-19
+PATH: orthogonal-validation/sol-w2-boundary-dominance-2026-09-19/w2_rehessian_kernel_exact.py
+GIT BLOB SHA: c4706dd466a13c150fdafd686c29e80ac7be899b
+================================================================================
+import sympy as sp
+
+sqrt=sp.sqrt
+
+def facet_data(V):
+    V=sp.Matrix(V)
+    cen=[sum(V[r,c] for r in range(5))/5 for c in range(4)]
+    W=[]
+    for a in range(5):
+        ids=[i for i in range(5) if i!=a]
+        P=V[ids,:]
+        E=sp.Matrix([[P[r+1,c]-P[0,c] for c in range(4)] for r in range(3)])
+        nv=[]
+        for i in range(4):
+            M=E[:,[c for c in range(4) if c!=i]]
+            nv.append((-1)**i * sp.det(M))
+        # W = oriented facet 3-volume normal = nv/6, with outward sign.
+        # determine sign using dot(nv, P0-centroid) numerically then apply exactly.
+        dot=sum(nv[c]*(P[0,c]-cen[c]) for c in range(4))
+        sg=1 if float(sp.N(dot,50))>0 else -1
+        W.append([sp.simplify(sg*x/6) for x in nv])
+    return W
+
+def chiral(u,v,s):
+    B=[[sp.simplify(u[i]*v[j]-v[i]*u[j]) for j in range(4)] for i in range(4)]
+    out=[]
+    for i,(j,k) in enumerate([(1,2),(2,0),(0,1)]):
+        out.append(sp.simplify(sp.Rational(1,2)*(B[0][i+1]+s*sp.Rational(1,2)*(B[j+1][k+1]-B[k+1][j+1]))))
+    return sp.Matrix(out)
+
+def dot(v,w): return sp.simplify((v.T*w)[0])
+def cross2(v,w): return sp.simplify(dot(v,v)*dot(w,w)-dot(v,w)**2)
+
+def audit(name,V):
+    W=facet_data(V)
+    print('CASE',name)
+    for s in (+1,-1):
+        # action ray for edge ab at identity uses bp[(b,a)]
+        b={}
+        for a in range(5):
+            for bb in range(a+1,5):
+                b[(a,bb)]=chiral(W[bb],W[a],s)
+        D=sp.factor(sp.det(sp.Matrix.hstack(b[(0,1)],b[(0,2)],b[(1,2)])))
+        C3=sp.factor(cross2(b[(0,3)],b[(1,3)]))
+        C4=sp.factor(cross2(b[(0,4)],b[(1,4)]))
+        print(' chirality', '+' if s==1 else '-')
+        print('  det(m01,m02,m12) unnormalized =',D)
+        print('  |b03 x b13|^2 =',C3)
+        print('  |b04 x b14|^2 =',C4)
+        print('  numeric =', [sp.N(x,16) for x in (D,C3,C4)])
+        assert sp.simplify(D)!=0 and sp.simplify(C3)!=0 and sp.simplify(C4)!=0
+    print()
+
+regular=[
+    [0,0,0,0],
+    [1,0,0,0],
+    [sp.Rational(1,2),sqrt(3)/2,0,0],
+    [sp.Rational(1,2),1/(2*sqrt(3)),sqrt(sp.Rational(2,3)),0],
+    [sp.Rational(1,2),1/(2*sqrt(3)),1/(2*sqrt(6)),sqrt(sp.Rational(5,8))],
+]
+dk=[
+    [0,0,0,0],[1,0,0,0],[1,1,0,0],[1,1,1,0],
+    [sp.Rational(1,2)]*4,
+]
+
+audit('regular',regular)
+audit('DK',dk)
+print('KERNEL ARGUMENT')
+print('Gauge-fix xi_0=0. Q=0 implies xi_b-xi_a is parallel to m_ab for every edge.')
+print('det(m01,m02,m12)!=0 forces xi_1=xi_2=0.')
+print('Then nonparallel (m03,m13) forces xi_3=0, and nonparallel (m04,m14) forces xi_4=0.')
+print('Hence the real Hessian kernel is exactly the common SU(2) gauge; after gauge fixing it is negative definite.')
+
+
+================================================================================
+SOURCE REF: sol/w2-boundary-dominance-2026-09-19
+PATH: orthogonal-validation/sol-w2-boundary-dominance-2026-09-19/W2-REHESSIAN-KERNEL-EXACT.log
+GIT BLOB SHA: e6aebe410923290536c30d013b3a4acfb575762a
+================================================================================
+CASE regular
+ chirality +
+  det(m01,m02,m12) unnormalized = -25/95551488
+  |b03 x b13|^2 = 25/13759414272
+  |b04 x b14|^2 = 25/13759414272
+  numeric = [-2.616390442815501e-7, 1.816937807510764e-9, 1.816937807510764e-9]
+ chirality -
+  det(m01,m02,m12) unnormalized = 25/95551488
+  |b03 x b13|^2 = 25/13759414272
+  |b04 x b14|^2 = 25/13759414272
+  numeric = [2.616390442815501e-7, 1.816937807510764e-9, 1.816937807510764e-9]
+
+CASE DK
+ chirality +
+  det(m01,m02,m12) unnormalized = -1/5971968
+  |b03 x b13|^2 = 1/859963392
+  |b04 x b14|^2 = 1/429981696
+  numeric = [-1.674489883401920e-7, 1.162840196806889e-9, 2.325680393613778e-9]
+ chirality -
+  det(m01,m02,m12) unnormalized = 1/5971968
+  |b03 x b13|^2 = 1/859963392
+  |b04 x b14|^2 = 1/429981696
+  numeric = [1.674489883401920e-7, 1.162840196806889e-9, 2.325680393613778e-9]
+
+KERNEL ARGUMENT
+Gauge-fix xi_0=0. Q=0 implies xi_b-xi_a is parallel to m_ab for every edge.
+det(m01,m02,m12)!=0 forces xi_1=xi_2=0.
+Then nonparallel (m03,m13) forces xi_3=0, and nonparallel (m04,m14) forces xi_4=0.
+Hence the real Hessian kernel is exactly the common SU(2) gauge; after gauge fixing it is negative definite.
+
+SHA-256
+w2_rehessian_kernel_exact.py  7935701ea3228e4649660ac40e2b724b64feebd3af6a443f06093f6b08fc472c
+W2-REHESSIAN-KERNEL-EXACT.log  a806adb55d2eb9e5f87117e69a720e066fde4cbfb4058c39cf8a661ebf651ffe
+
+
+
+############################ SUPPLEMENTAL EVIDENCE ############################
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/boundary_strata_gap.py
+GIT BLOB SHA: 5eefc4dc40cb27010d845c98b76c67861c13719a
+================================================================================
+"""Boundary strata of D_sigma carry no Re S = 0 point except the rank-one locus.
+
+Settles Hypothesis H (W2-BOUNDARY-COFACTOR-ORDER-LEMMA sec. 5 left it open).
+
+The lemma's lambda^-7/2, lambda^-4 are Barrett-Steele comparator powers: they assume
+a STATIONARY point with Re S = 0 on the partly-parallel stratum. For nondegenerate
+coherent data, Re S = 0 only on the four pairings of the two chiral solutions:
+cross pairings (geometric N_a, Omega != 0, interior) and same/same pairings (all N_a
+equal: rank-one, every Omega_c = O(d^3)). So on a partly-parallel stratum
+  Re S <= -c d^2,   d = distance of (N_a) from the rank-one locus,
+and with |Omega_c| <= C d^3 near rank one, every boundary contribution is bounded by
+lambda^(-9/2 - 3/2) near rank one and is exponentially small elsewhere.
+
+FALSIFIERS, named first:
+  P0 positive control: unconstrained max Re S must reach 0 (a solution exists);
+  P1 Hessian of Re S at the solution must have exactly 3 zero eigenvalues (gauge),
+     the rest strictly negative - otherwise Re S <= -c d^2 fails;
+  P2 positive control on strata: the rank-one locus (d = 0) must reach Re S = 0;
+  F  on single-pair, two-pair and four-parallel strata at fixed d > 0, max Re S
+     must be strictly negative, with max Re S / d^2 bounded away from 0 as d -> 0.
+     A max Re S ~ 0 at d > 0 would be a boundary critical point: H FAILS.
+Run on the regular 4-simplex, a generic 4-simplex, and eps-perturbed (non-Regge)
+boundary data.
+"""
+import itertools as it
+import numpy as np
+from scipy.optimize import minimize
+
+rng = np.random.default_rng(7)
+PAIRS = list(it.combinations(range(5), 2))
+
+
+def qmul(p, q):
+    a1, b1, c1, d1 = p
+    a2, b2, c2, d2 = q
+    return np.array([a1*a2 - b1*b2 - c1*c2 - d1*d2, a1*b2 + b1*a2 + c1*d2 - d1*c2,
+                     a1*c2 - b1*d2 + c1*a2 + d1*b2, a1*d2 + b1*c2 - c1*b2 + d1*a2])
+
+
+def qconj(q):
+    return q * np.array([1, -1, -1, -1])
+
+
+def rot(q, v):
+    return qmul(qmul(q, np.r_[0, v]), qconj(q))[1:]
+
+
+def unit(q):
+    return q / np.linalg.norm(q)
+
+
+def boundary_data(V):
+    """Coherent data n_ab (outward normal of face ab in tet a, 3D frame) and areas."""
+    cen = V.mean(0)
+    N = []
+    for a in range(5):
+        P = V[[i for i in range(5) if i != a]]
+        v = np.linalg.svd(P[1:] - P[0])[2][-1]
+        N.append(v if np.dot(v, P[0] - cen) > 0 else -v)
+    N = np.array(N)
+    frames = []
+    for a in range(5):
+        E = np.linalg.svd(np.outer(N[a], N[a]))[0][:, 1:]
+        if np.linalg.det(np.column_stack([N[a], E])) < 0:   # consistent orientation
+            E[:, 0] = -E[:, 0]
+        frames.append(E)
+    n, k = {}, {}
+    for a in range(5):
+        for b in range(5):
+            if a == b:
+                continue
+            w = N[b] - np.dot(N[a], N[b]) * N[a]
+            n[a, b] = frames[a].T @ (w / np.linalg.norm(w))
+    for a, b in PAIRS:
+        tri = V[[i for i in range(5) if i not in (a, b)]]
+        u, w = tri[1] - tri[0], tri[2] - tri[0]
+        k[a, b] = 0.5 * np.sqrt(np.dot(u, u) * np.dot(w, w) - np.dot(u, w) ** 2)
+    return n, k
+
+
+def reS_chiral(X, n, k):
+    """Re S for one chirality: sum k log((1 - (X_a n_ab).(X_b n_ba))/2), <= 0."""
+    s = 0.0
+    for a, b in PAIRS:
+        c = np.dot(rot(X[a], n[a, b]), rot(X[b], n[b, a]))
+        s += k[a, b] * np.log(max((1 - c) / 2, 1e-300))
+    return s
+
+
+def best(f, dim, tries=12):
+    out = None
+    for _ in range(tries):
+        r = minimize(lambda z: -f(z), rng.normal(size=dim), method="BFGS",
+                     options={"gtol": 1e-11, "maxiter": 4000})
+        if out is None or r.fun < out.fun:
+            out = r
+    return -out.fun, out.x
+
+
+def quats(z, m):
+    return [unit(z[4*i:4*i+4]) for i in range(m)]
+
+
+STRATA = {  # which of N_0..N_4 are forced equal
+    "single-pair (N1=N2)": [[1, 2]],
+    "two-pair (N1=N2, N3=N4)": [[1, 2], [3, 4]],
+    "four-parallel (N1=..=N4)": [[1, 2, 3, 4]],
+}
+
+
+def build_N(z, groups):
+    """Free unit quaternions for each class of the partition induced by groups."""
+    cls = list(range(5))
+    for g in groups:
+        for i in g:
+            cls[i] = g[0]
+    reps = sorted(set(cls))
+    Q = {r: unit(z[4*j:4*j+4]) for j, r in enumerate(reps)}
+    return [Q[cls[a]] for a in range(5)], 4 * len(reps)
+
+
+def dist_rank_one(N):
+    """Distance of (N_a) from the rank-one locus {all N_a = +-u}."""
+    M = sum(np.outer(q, q) for q in N)
+    return np.sqrt(max(5 - np.linalg.eigvalsh(M)[-1], 0))
+
+
+def stratum_max(n, k, groups, d):
+    """max Re S_+ + Re S_- on the stratum, with dist from rank one pinned at d."""
+    def f(z):
+        Xp = quats(z[:20], 5)
+        N, _ = build_N(z[20:], groups)
+        Xm = [qmul(N[a], Xp[a]) for a in range(5)]
+        pen = 200.0 * (dist_rank_one(N) - d) ** 2
+        return reS_chiral(Xp, n, k) + reS_chiral(Xm, n, k) - pen
+    _, m = build_N(np.zeros(20), groups)
+    val, z = best(f, 20 + m)
+    N, _ = build_N(z[20:], groups)
+    Xp = quats(z[:20], 5)
+    Xm = [qmul(N[a], Xp[a]) for a in range(5)]
+    return reS_chiral(Xp, n, k) + reS_chiral(Xm, n, k), dist_rank_one(N)
+
+
+def regular():
+    base = np.eye(5) / np.sqrt(2)
+    c = base.mean(0)
+    Q, _ = np.linalg.qr((base - c).T)
+    return (base - c) @ Q[:, :4]
+
+
+geoms = {"regular": regular(), "generic": regular() + 0.12 * rng.normal(size=(5, 4))}
+for name, V in geoms.items():
+    for eps in (0.0, 0.05):
+        n, k = boundary_data(V)
+        if eps:
+            # one draw per normal, then normalise THAT vector (an earlier version drew
+            # twice, leaving non-unit normals and invalid eps rows)
+            pert = {key: v + eps * rng.normal(size=3) for key, v in n.items()}
+            n = {key: w / np.linalg.norm(w) for key, w in pert.items()}
+        tag = f"{name}, eps={eps}"
+        print(f"\n=== {tag} ===")
+        m0, z0 = best(lambda z: reS_chiral(quats(z, 5), n, k), 20)
+        print(f"  P0 unconstrained max Re S (one chirality) = {m0:+.3e}"
+              f"   (0 for Regge data; O(eps^2) otherwise)")
+        # P1: Hessian of Re S in the Lie algebra at the maximiser
+        X0 = quats(z0, 5)
+        def g(w):
+            Y = [qmul(unit(np.r_[1, 0.5 * w[3*a:3*a+3]]), X0[a]) for a in range(5)]
+            return reS_chiral(Y, n, k)
+        h = 1e-4
+        Hs = np.zeros((15, 15))
+        for i in range(15):
+            for j in range(15):
+                e1, e2 = np.eye(15)[i] * h, np.eye(15)[j] * h
+                Hs[i, j] = (g(e1 + e2) - g(e1 - e2) - g(-e1 + e2) + g(-e1 - e2)) / (4 * h * h)
+        ev = np.linalg.eigvalsh(Hs)
+        nz = int(np.sum(np.abs(ev) < 1e-5 * np.max(np.abs(ev))))
+        print(f"  P1 Hessian of Re S: {nz} near-zero (gauge = 3), "
+              f"largest nonzero {ev[-1 - nz] if nz < 15 else float('nan'):+.3e}")
+        # P2: rank-one locus reaches the unconstrained max (same/same pairing)
+        v2, d2 = stratum_max(n, k, [[0, 1, 2, 3, 4]], 0.0)
+        print(f"  P2 rank-one locus max Re S = {v2:+.3e} (expect 2 x P0)")
+        for sname, groups in STRATA.items():
+            row = []
+            for d in (0.05, 0.1, 0.2, 0.4):
+                v, dd = stratum_max(n, k, groups, d)
+                row.append((dd, v - 2 * m0, (v - 2 * m0) / dd ** 2))
+            print(f"  F  {sname}")
+            for dd, v, r in row:
+                print(f"       d={dd:.3f}  max ReS - max_unconstrained = {v:+.4e}"
+                      f"   / d^2 = {r:+.3f}")
+print("\nIf every F row is strictly negative with /d^2 bounded away from 0, the only")
+print("Re S = 0 boundary points are rank-one, where |Omega_c| = O(d^3): H holds.")
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/BOUNDARY-STRATA-GAP.log
+GIT BLOB SHA: af1c940a96b4535515054614a952e93ddd90909c
+================================================================================
+
+=== regular, eps=0.0 ===
+  P0 unconstrained max Re S (one chirality) = +1.442e-16   (0 for Regge data; O(eps^2) otherwise)
+  P1 Hessian of Re S: 3 near-zero (gauge = 3), largest nonzero -5.052e-01
+  P2 rank-one locus max Re S = -2.356e-15 (expect 2 x P0)
+  F  single-pair (N1=N2)
+       d=0.050  max ReS - max_unconstrained = -1.2567e-03   / d^2 = -0.505
+       d=0.100  max ReS - max_unconstrained = -5.0282e-03   / d^2 = -0.505
+       d=0.199  max ReS - max_unconstrained = -2.0134e-02   / d^2 = -0.506
+       d=0.399  max ReS - max_unconstrained = -8.0880e-02   / d^2 = -0.508
+  F  two-pair (N1=N2, N3=N4)
+       d=0.050  max ReS - max_unconstrained = -1.2678e-03   / d^2 = -0.510
+       d=0.100  max ReS - max_unconstrained = -5.0731e-03   / d^2 = -0.510
+       d=0.199  max ReS - max_unconstrained = -2.0321e-02   / d^2 = -0.511
+       d=0.399  max ReS - max_unconstrained = -8.1748e-02   / d^2 = -0.514
+  F  four-parallel (N1=..=N4)
+       d=0.050  max ReS - max_unconstrained = -1.7920e-03   / d^2 = -0.722
+       d=0.100  max ReS - max_unconstrained = -7.1772e-03   / d^2 = -0.723
+       d=0.199  max ReS - max_unconstrained = -2.8857e-02   / d^2 = -0.727
+       d=0.398  max ReS - max_unconstrained = -1.1796e-01   / d^2 = -0.743
+
+=== regular, eps=0.05 ===
+  P0 unconstrained max Re S (one chirality) = -2.444e-03   (0 for Regge data; O(eps^2) otherwise)
+  P1 Hessian of Re S: 3 near-zero (gauge = 3), largest nonzero -4.583e-01
+  P2 rank-one locus max Re S = -4.889e-03 (expect 2 x P0)
+  F  single-pair (N1=N2)
+       d=0.050  max ReS - max_unconstrained = -1.1992e-03   / d^2 = -0.482
+       d=0.100  max ReS - max_unconstrained = -4.7979e-03   / d^2 = -0.482
+       d=0.200  max ReS - max_unconstrained = -1.9211e-02   / d^2 = -0.483
+       d=0.399  max ReS - max_unconstrained = -7.7155e-02   / d^2 = -0.485
+  F  two-pair (N1=N2, N3=N4)
+       d=0.050  max ReS - max_unconstrained = -1.2159e-03   / d^2 = -0.489
+       d=0.100  max ReS - max_unconstrained = -4.8654e-03   / d^2 = -0.489
+       d=0.200  max ReS - max_unconstrained = -1.9492e-02   / d^2 = -0.490
+       d=0.399  max ReS - max_unconstrained = -7.8453e-02   / d^2 = -0.493
+  F  four-parallel (N1=..=N4)
+       d=0.050  max ReS - max_unconstrained = -1.7322e-03   / d^2 = -0.698
+       d=0.100  max ReS - max_unconstrained = -6.9401e-03   / d^2 = -0.699
+       d=0.199  max ReS - max_unconstrained = -2.7940e-02   / d^2 = -0.703
+       d=0.399  max ReS - max_unconstrained = -1.1474e-01   / d^2 = -0.723
+
+=== generic, eps=0.0 ===
+  P0 unconstrained max Re S (one chirality) = +2.710e-16   (0 for Regge data; O(eps^2) otherwise)
+  P1 Hessian of Re S: 3 near-zero (gauge = 3), largest nonzero -3.155e-01
+  P2 rank-one locus max Re S = -9.173e-16 (expect 2 x P0)
+  F  single-pair (N1=N2)
+       d=0.050  max ReS - max_unconstrained = -8.1086e-04   / d^2 = -0.325
+       d=0.100  max ReS - max_unconstrained = -3.2439e-03   / d^2 = -0.325
+       d=0.200  max ReS - max_unconstrained = -1.2982e-02   / d^2 = -0.326
+       d=0.399  max ReS - max_unconstrained = -5.2025e-02   / d^2 = -0.326
+  F  two-pair (N1=N2, N3=N4)
+       d=0.050  max ReS - max_unconstrained = -9.2263e-04   / d^2 = -0.370
+       d=0.100  max ReS - max_unconstrained = -3.6936e-03   / d^2 = -0.371
+       d=0.200  max ReS - max_unconstrained = -1.4823e-02   / d^2 = -0.372
+       d=0.399  max ReS - max_unconstrained = -6.0072e-02   / d^2 = -0.377
+  F  four-parallel (N1=..=N4)
+       d=0.050  max ReS - max_unconstrained = -1.0629e-03   / d^2 = -0.427
+       d=0.100  max ReS - max_unconstrained = -4.2584e-03   / d^2 = -0.428
+       d=0.200  max ReS - max_unconstrained = -1.7143e-02   / d^2 = -0.430
+       d=0.399  max ReS - max_unconstrained = -7.0479e-02   / d^2 = -0.443
+
+=== generic, eps=0.05 ===
+  P0 unconstrained max Re S (one chirality) = -5.179e-03   (0 for Regge data; O(eps^2) otherwise)
+  P1 Hessian of Re S: 3 near-zero (gauge = 3), largest nonzero -3.143e-01
+  P2 rank-one locus max Re S = -1.036e-02 (expect 2 x P0)
+  F  single-pair (N1=N2)
+       d=0.050  max ReS - max_unconstrained = -8.3992e-04   / d^2 = -0.337
+       d=0.100  max ReS - max_unconstrained = -3.3602e-03   / d^2 = -0.337
+       d=0.200  max ReS - max_unconstrained = -1.3360e-02   / d^2 = -0.335
+       d=0.399  max ReS - max_unconstrained = -5.1394e-02   / d^2 = -0.322
+  F  two-pair (N1=N2, N3=N4)
+       d=0.050  max ReS - max_unconstrained = -9.2747e-04   / d^2 = -0.372
+       d=0.100  max ReS - max_unconstrained = -3.7133e-03   / d^2 = -0.373
+       d=0.200  max ReS - max_unconstrained = -1.4909e-02   / d^2 = -0.374
+       d=0.399  max ReS - max_unconstrained = -6.0524e-02   / d^2 = -0.380
+  F  four-parallel (N1=..=N4)
+       d=0.050  max ReS - max_unconstrained = -1.0396e-03   / d^2 = -0.418
+       d=0.100  max ReS - max_unconstrained = -4.1648e-03   / d^2 = -0.418
+       d=0.200  max ReS - max_unconstrained = -1.6761e-02   / d^2 = -0.421
+       d=0.399  max ReS - max_unconstrained = -6.8813e-02   / d^2 = -0.432
+
+If every F row is strictly negative with /d^2 bounded away from 0, the only
+Re S = 0 boundary points are rank-one, where |Omega_c| = O(d^3): H holds.
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/hessian_random_simplices.py
+GIT BLOB SHA: 262418f6bf2e985606e1964696b7a65a560cba7a
+================================================================================
+"""Is the chiral Hessian nondegenerate on EVERY nondegenerate simplex?
+
+Propositions 8.1-8.2 of the asymptotics paper are checked on two simplices, the
+regular one and the Dittrich-Kogios one. The analytic statement we would like to
+import - Kaminski-Sahlmann Theorem 1 - is much stronger: nondegeneracy at every
+stationary point corresponding to a nondegenerate four-simplex, proved blockwise
+using only each chirality's own geometry.
+
+If that import is right, our chiral Hessian should be nondegenerate on random
+nondegenerate simplices too, with no near-degeneracies appearing. If instead
+near-zero singular values turn up on some geometries, the import is wrong or its
+hypotheses are narrower than stated, and the paper cannot lean on it.
+
+For each random simplex: build the self-dual face data, check closure, form the
+15x15 chiral Hessian by central differences at X = 1, and report the null count
+and the smallest nonzero singular value, normalised by the largest so the
+comparison is scale free.
+
+FALSIFIER: any nondegenerate simplex with more than three nulls, or with a
+normalised smallest nonzero singular value drifting towards zero as the geometry
+varies.
+"""
+import numpy as np
+
+rng = np.random.default_rng(31415)
+PAULI = [np.array([[0, 1], [1, 0]], dtype=complex),
+         np.array([[0, -1j], [1j, 0]], dtype=complex),
+         np.array([[1, 0], [0, -1]], dtype=complex)]
+PAIRS = [(a, b) for a in range(5) for b in range(a + 1, 5)]
+
+
+def su2(t):
+    n = np.linalg.norm(t)
+    if n < 1e-15:
+        return np.eye(2, dtype=complex)
+    u = t / n
+    return (np.cos(n / 2) * np.eye(2)
+            + 1j * np.sin(n / 2) * sum(u[i] * PAULI[i] for i in range(3)))
+
+
+def spinor(n):
+    th = np.arccos(np.clip(n[2], -1, 1))
+    ph = np.arctan2(n[1], n[0])
+    return np.array([np.cos(th / 2), np.exp(1j * ph) * np.sin(th / 2)])
+
+
+def chiral(u, v, s=+1):
+    B = np.outer(u, v) - np.outer(v, u)
+    return np.array([0.5 * (B[0, i + 1] + s * 0.5 * (B[j + 1, k + 1] - B[k + 1, j + 1]))
+                     for i, (j, k) in enumerate([(1, 2), (2, 0), (0, 1)])])
+
+
+def facets(V):
+    cen = V.mean(axis=0)
+    W = []
+    for a in range(5):
+        P = V[[i for i in range(5) if i != a]]
+        E = P[1:] - P[0]
+        nv = np.array([((-1) ** i) * np.linalg.det(np.delete(E, i, axis=1))
+                       for i in range(4)])
+        nh = nv / np.linalg.norm(nv)
+        if np.dot(nh, P[0] - cen) < 0:
+            nh = -nh
+        W.append(np.linalg.norm(nv) / 6.0 * nh)
+    return np.array(W)
+
+
+print("Chiral Hessian on random nondegenerate simplices")
+print()
+print("  trial   |det V|    closure     nulls   sigma_min/sigma_max")
+worst = 1.0
+bad = []
+for t in range(12):
+    V = rng.normal(size=(5, 4))
+    dv = abs(np.linalg.det(V[1:] - V[0]))
+    if dv < 0.05:                      # skip near-degenerate simplices
+        continue
+    W = facets(V)
+    bp = {(a, b): chiral(W[a], W[b]) for a in range(5) for b in range(5) if a != b}
+    k = {p: np.linalg.norm(bp[p]) for p in bp}
+    clos = max(np.linalg.norm(sum(bp[(a, b)] for b in range(5) if b != a))
+               for a in range(5))
+    M = {p: spinor(bp[(p[1], p[0])] / k[(p[1], p[0])]) for p in PAIRS}
+
+    def S(th):
+        X = [su2(th[3 * a:3 * a + 3]) for a in range(5)]
+        out = 0j
+        for (a, b) in PAIRS:
+            out += 2 * k[(a, b)] * np.log(
+                np.vdot(M[(a, b)], np.conj(X[a]).T @ X[b] @ M[(a, b)]))
+        return out
+
+    h = 1e-4
+    H = np.zeros((15, 15), dtype=complex)
+    for i in range(15):
+        for j in range(i, 15):
+            ei = np.zeros(15); ei[i] = h
+            ej = np.zeros(15); ej[j] = h
+            H[i, j] = H[j, i] = (S(ei + ej) - S(ei - ej) - S(-ei + ej)
+                                 + S(-ei - ej)) / (4 * h * h)
+    sv = np.linalg.svd(H, compute_uv=False)
+    nulls = int(np.sum(sv < 1e-6 * sv.max()))
+    ratio = sv[sv > 1e-6 * sv.max()].min() / sv.max()
+    worst = min(worst, ratio)
+    if nulls != 3:
+        bad.append(t)
+    print(f"   {t:3d}   {dv:8.4f}   {clos:.1e}     {nulls:3d}      {ratio:.5f}")
+
+print()
+print(f"  worst normalised smallest nonzero singular value: {worst:.5f}")
+if bad:
+    print(f"  RESULT = null count wrong at trials {bad}; the import does not hold")
+    print("  in the form assumed.")
+else:
+    print("  RESULT = exactly three nulls (the SU(2) gauge) on every nondegenerate")
+    print("  simplex tested, with the smallest nonzero singular value bounded away")
+    print("  from zero. Consistent with the blockwise analytic statement, and")
+    print("  evidence that Propositions 8.1-8.2 are not special to the two")
+    print("  simplices in the paper.")
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/HESSIAN-RANDOM-SIMPLICES.log
+GIT BLOB SHA: ec42c033bf690af1fc40456c142ca30250d6da51
+================================================================================
+Chiral Hessian on random nondegenerate simplices
+
+  trial   |det V|    closure     nulls   sigma_min/sigma_max
+     2     3.4267   2.1e-16       3      0.04396
+     3     7.7518   3.8e-16       3      0.03291
+     4    15.2421   1.0e-15       3      0.17360
+     5    10.0544   3.9e-16       3      0.10842
+     6    23.0896   9.2e-16       3      0.25013
+     7     5.3078   1.5e-16       3      0.11375
+     8    12.2590   9.9e-16       3      0.02104
+     9     7.9754   4.2e-16       3      0.03244
+    10     5.1310   1.0e-15       3      0.03303
+    11     1.2316   2.5e-16       3      0.00960
+
+  worst normalised smallest nonzero singular value: 0.00960
+  RESULT = exactly three nulls (the SU(2) gauge) on every nondegenerate
+  simplex tested, with the smallest nonzero singular value bounded away
+  from zero. Consistent with the blockwise analytic statement, and
+  evidence that Propositions 8.1-8.2 are not special to the two
+  simplices in the paper.
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/xdx_identity.py
+GIT BLOB SHA: 86fc4890ab632a522167dba3dbf58503c88a2a64
+================================================================================
+"""n = 1 route for the H_sigma ground state (the paper's object, main.tex:185).
+
+From the confirmed factorisation H_+ = (2/3) X X^dag, H_- = (2/3) X^dag X and
+H_sigma = G - sigma sqrt3 Q:
+
+    H_+ - H_- = -2 sqrt3 Q = (2/3)(X X^dag - X^dag X)
+    =>  Q = (X^dag X - X X^dag) / (3 sqrt3).
+
+For the selected state psi (lowest eigvector of X X^dag, eigenvalue s1^2):
+    Q psi       = (X^dag X psi - s1^2 psi) / (3 sqrt3)
+    <Q>         = (||X psi||^2 - s1^2) / (3 sqrt3)
+    Var(Q)      = Var_psi(X^dag X) / 27            (at EVERY d)
+
+FALSIFIERS (named first): any residual of the operator identity above 1e-9
+relative; any mismatch of <Q> or Var(Q) with the direct spectral values; the
+Chebyshev bound Var/<Q>^2 lying BELOW the directly measured wrong-sign weight
+(that would mean the spectral p_wrong is not the object Chebyshev bounds).
+"""
+import numpy as np
+from indep_k5 import selector_matrices, ground_coeffs
+
+w = np.exp(2j * np.pi / 3)
+r3 = np.sqrt(3)
+print("X^dag X identity and the n = 1 (Chebyshev) bound for the H_sigma ground state")
+print()
+print("    j   d%3  op_resid   <Q>_resid  Var_resid   mu/j^3   Var/j^5    "
+      "cheb=Var/mu^2  p_wrong     cheb*j")
+bad = []
+for j2 in list(range(2, 41)):
+    j = j2 / 2
+    d = j2 + 1
+    A, B, C, G, Q, F = selector_matrices(j2)
+    X = A + w * B + w * w * C
+    XXd, XdX = X @ X.conj().T, X.conj().T @ X
+    Hp = G - r3 * Q
+    fac = np.linalg.norm(Hp - (2 / 3) * XXd) / np.linalg.norm(Hp)
+    op = np.linalg.norm(Q - (XdX - XXd) / (3 * r3)) / np.linalg.norm(Q)
+    psi = ground_coeffs(j2, +1)
+    s1sq = np.real(psi.conj() @ XXd @ psi)
+    q, U = np.linalg.eigh(Q)
+    wt = np.abs(U.conj().T @ psi) ** 2
+    mu = float(wt @ q)
+    var = float(wt @ (q - mu) ** 2)
+    mu_id = (np.linalg.norm(X @ psi) ** 2 - s1sq) / (3 * r3)
+    v = XdX @ psi
+    var_id = (np.real(v.conj() @ v) - np.real(psi.conj() @ v) ** 2) / 27
+    pw = float(wt[q < 0].sum())
+    cheb = var / mu ** 2
+    er = (abs(mu - mu_id) / abs(mu), abs(var - var_id) / var)
+    if max(op, fac, *er) > 1e-9 or cheb < pw:
+        bad.append(j)
+    print(f"  {j:4.1f}  {d%3}   {op:.1e}   {er[0]:.1e}    {er[1]:.1e}   "
+          f"{mu/j**3:7.4f}  {var/j**5:.3e}  {cheb:.3e}     {pw:.3e}   {cheb*j:.3e}")
+print()
+print(f"  failures (identity, factorisation or Chebyshev < p_wrong): "
+      f"{bad if bad else 'none'}")
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/XDX-IDENTITY.log
+GIT BLOB SHA: 88903eeaaec178ef7313a383a675a1beba74ae0e
+================================================================================
+X^dag X identity and the n = 1 (Chebyshev) bound for the H_sigma ground state
+
+    j   d%3  op_resid   <Q>_resid  Var_resid   mu/j^3   Var/j^5    cheb=Var/mu^2  p_wrong     cheb*j
+   1.0  0   1.8e-16   7.7e-16    9.9e+14    1.7321  2.656e-30  8.855e-31     1.712e-32   8.855e-31
+   1.5  1   2.4e-16   2.5e-16    2.1e-15    1.0363  9.818e-01  6.095e-01     1.059e-01   9.143e-01
+   2.0  2   2.6e-16   0.0e+00    3.5e-16    1.0392  3.150e-01  1.458e-01     6.290e-02   2.917e-01
+   2.5  0   5.2e-16   6.8e-16    8.3e-15    1.0039  1.382e-01  5.486e-02     3.893e-02   1.372e-01
+   3.0  1   5.0e-16   1.4e-16    1.7e-14    0.9460  1.995e-01  7.431e-02     9.727e-03   2.229e-01
+   3.5  2   5.5e-16   8.9e-16    1.6e-15    0.9276  1.160e-01  3.851e-02     6.628e-03   1.348e-01
+   4.0  0   6.9e-16   1.3e-15    2.3e-14    0.9107  7.645e-02  2.304e-02     4.573e-03   9.217e-02
+   4.5  1   5.8e-16   8.7e-16    1.0e-14    0.8945  6.798e-02  1.888e-02     4.176e-03   8.496e-02
+   5.0  2   7.8e-16   3.9e-16    4.7e-14    0.8830  5.064e-02  1.299e-02     3.004e-03   6.496e-02
+   5.5  0   1.3e-15   7.8e-16    3.3e-14    0.8732  3.957e-02  9.435e-03     2.196e-03   5.189e-02
+   6.0  1   1.0e-15   9.1e-16    1.4e-14    0.8648  3.315e-02  7.387e-03     1.736e-03   4.432e-02
+   6.5  2   1.3e-15   0.0e+00    1.2e-13    0.8577  2.734e-02  5.718e-03     3.383e-04   3.717e-02
+   7.0  0   1.1e-15   2.3e-15    2.8e-13    0.8516  2.300e-02  4.530e-03     2.596e-04   3.171e-02
+   7.5  1   8.4e-16   1.6e-16    2.0e-14    0.8462  1.974e-02  3.675e-03     2.004e-04   2.757e-02
+   8.0  2   1.4e-15   1.3e-15    5.7e-13    0.8415  1.706e-02  3.012e-03     1.501e-04   2.409e-02
+   8.5  0   1.4e-15   8.8e-16    1.3e-13    0.8373  1.490e-02  2.501e-03     1.129e-04   2.125e-02
+   9.0  1   1.8e-15   5.6e-16    5.3e-15    0.8336  1.314e-02  2.101e-03     2.290e-05   1.891e-02
+   9.5  2   1.2e-15   1.6e-16    6.3e-13    0.8303  1.167e-02  1.782e-03     1.818e-05   1.693e-02
+  10.0  0   1.8e-15   4.1e-16    6.3e-14    0.8273  1.043e-02  1.525e-03     1.405e-05   1.525e-02
+  10.5  1   1.6e-15   2.4e-16    1.9e-15    0.8246  9.387e-03  1.315e-03     1.068e-05   1.381e-02
+  11.0  2   2.0e-15   8.3e-16    1.2e-12    0.8221  8.489e-03  1.142e-03     8.030e-06   1.256e-02
+  11.5  0   2.0e-15   3.6e-16    3.7e-13    0.8199  7.715e-03  9.980e-04     6.055e-06   1.148e-02
+  12.0  1   1.8e-15   1.6e-16    2.1e-12    0.8178  7.042e-03  8.775e-04     1.298e-06   1.053e-02
+  12.5  2   2.3e-15   1.4e-16    8.9e-13    0.8159  6.454e-03  7.756e-04     1.020e-06   9.695e-03
+  13.0  0   1.6e-15   0.0e+00    2.5e-12    0.8141  5.936e-03  6.889e-04     7.846e-07   8.956e-03
+  13.5  1   2.5e-15   9.1e-16    5.0e-13    0.8125  5.479e-03  6.148e-04     5.939e-07   8.299e-03
+  14.0  2   2.2e-15   4.1e-16    7.0e-13    0.8110  5.072e-03  5.509e-04     4.462e-07   7.712e-03
+  14.5  0   2.3e-15   1.5e-15    2.1e-12    0.8095  4.709e-03  4.955e-04     3.359e-07   7.185e-03
+  15.0  1   2.6e-15   1.0e-15    4.7e-13    0.8082  4.384e-03  4.474e-04     2.553e-07   6.711e-03
+  15.5  2   2.6e-15   7.6e-16    2.2e-12    0.8070  4.091e-03  4.053e-04     5.861e-08   6.282e-03
+  16.0  0   2.8e-15   4.1e-16    1.2e-12    0.8058  3.827e-03  3.683e-04     4.482e-08   5.893e-03
+  16.5  1   2.8e-15   7.5e-16    5.7e-12    0.8047  3.587e-03  3.357e-04     3.382e-08   5.539e-03
+  17.0  2   2.5e-15   2.3e-16    5.4e-12    0.8037  3.370e-03  3.069e-04     2.536e-08   5.217e-03
+  17.5  0   2.9e-15   2.1e-15    2.1e-12    0.8028  3.171e-03  2.812e-04     1.905e-08   4.921e-03
+  18.0  1   3.3e-15   1.2e-15    2.0e-12    0.8018  2.990e-03  2.584e-04     1.443e-08   4.650e-03
+  18.5  2   2.5e-15   0.0e+00    1.5e-11    0.8010  2.824e-03  2.379e-04     3.415e-09   4.401e-03
+  19.0  0   3.3e-15   1.2e-15    9.2e-12    0.8002  2.671e-03  2.196e-04     2.599e-09   4.172e-03
+  19.5  1   3.2e-15   6.1e-16    4.4e-12    0.7994  2.530e-03  2.031e-04     1.955e-09   3.960e-03
+  20.0  2   3.6e-15   2.8e-16    4.9e-12    0.7986  2.400e-03  1.882e-04     1.463e-09   3.764e-03
+
+  failures (identity, factorisation or Chebyshev < p_wrong): [1.0]
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/b1_moments.py
+GIT BLOB SHA: 8503774e93639cc089fcac88741370735cd1569e
+================================================================================
+"""B1 diagnostic, as requested by the v2 hostile review: boundedness of
+M_{2n} / lambda^{5n} for the selected state, computed from the SPECTRAL
+DISTRIBUTION of Q (not by forming matrix powers), for n = 1, 2, 3.
+
+Three versions of the state's Q-distribution, because P^EH, the canonical weight
+and Q are all functions of the same commuting family:
+
+  unweighted          w_r = |a_r|^2
+  weighted            w_r |q_r|^{1/2}            (canonical T_e ~ |Q|^{1/2})
+  weighted+projected  w_r |q_r|^{1/2} 1[q_r>0]   (P^EH marginal, sigma*eta_e=+1)
+
+each renormalised.  lambda = j under uniform scaling of equal spins.
+
+This is a DIAGNOSTIC. It cannot prove O(lambda^-inf); it can show whether the
+moment ratios are bounded on the tested range or drift, which is what would
+kill the lemma.
+
+FALSIFIER: M_{2n}/j^{5n} growing systematically with j for any n would mean the
+lambda^{5/2} fluctuation scale is wrong for this state, and the Markov argument
+would not give O(lambda^-inf) at the claimed rate.
+"""
+import numpy as np
+from indep_k5 import selector_matrices, ground_coeffs
+
+print("B1 — M_2n / j^{5n} from the Q-spectral distribution of the selected state")
+print()
+hdr = ("     j    mu/j^3    " + "  ".join(f"M{2*n}/j^{5*n}" for n in (1, 2, 3)))
+for label in ("unweighted", "weighted", "weighted+projected"):
+    print(f"  [{label}]")
+    print("  " + hdr)
+    rows = []
+    for j2 in list(range(4, 21, 2)) + list(range(24, 41, 4)):
+        j = j2 / 2.0
+        A, B, C, G, Q, F = selector_matrices(j2)
+        q, U = np.linalg.eigh(Q)
+        a = U.conj().T @ ground_coeffs(j2, +1)
+        w = np.abs(a) ** 2
+        if label != "unweighted":
+            w = w * np.sqrt(np.abs(q))
+        if label == "weighted+projected":
+            w = w * (q > 1e-9 * max(1, np.abs(q).max()))
+        w = w / w.sum()
+        mu = float(np.sum(w * q))
+        Ms = [float(np.sum(w * (q - mu) ** (2 * n))) / j ** (5 * n)
+              for n in (1, 2, 3)]
+        rows.append(Ms)
+        print(f"  {j:6.1f}  {mu/j**3:8.4f}   "
+              + "  ".join(f"{m:10.4e}" for m in Ms))
+    rows = np.array(rows)
+    tail = rows[len(rows) // 2:]
+    print(f"    max over upper half of range: "
+          + "  ".join(f"{v:.3e}" for v in tail.max(axis=0)))
+    print()
+print("  Bounded or decreasing columns support the lemma on the tested range.")
+print("  A column growing with j is the kill signal.")
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/b4_mod3.py
+GIT BLOB SHA: cce6c13e2e51f4fdda647e027460acf956ff451d
+================================================================================
+"""B4, corrected: selected-state uniqueness = simplicity of the smallest singular
+value of X = a + w b + w^2 c (w = exp(2 pi i/3)), since H_+ = (2/3) X X^dag.
+
+GPT's observation: ground energy is positive exactly at d = 2j+1 = 3,6,9,12,
+i.e. d = 0 mod 3. Test the pattern far past the original range, and test
+SIMPLICITY of the smallest singular value (the actual uniqueness condition).
+
+FALSIFIERS
+  * any d with d = 0 mod 3 and sigma_min(X) = 0, or d != 0 mod 3 with
+    sigma_min(X) > 0, breaks the mod-3 pattern;
+  * sigma_1 == sigma_2 (to tolerance) at any d means the selected state is NOT
+    unique there.
+"""
+import numpy as np
+from indep_k5 import selector_matrices
+
+w = np.exp(2j * np.pi / 3)
+print("B4 - smallest singular values of X, and the mod-3 pattern")
+print()
+print("    j     d  d%3   sigma_1      sigma_2      gap s2-s1    nullity  pattern")
+print("  " + "-" * 76)
+bad_pattern = []
+bad_simple = []
+for j2 in range(1, 41):
+    d = j2 + 1
+    A, B, C, G, Q, F = selector_matrices(j2)
+    mu = (j2 / 2) * (j2 / 2 + 1) / 3
+    I = np.eye(d)
+    X = (A + mu * I) + w * (B + mu * I) + w * w * (C + mu * I)
+    s = np.sort(np.linalg.svd(X, compute_uv=False))
+    scale = max(1.0, s[-1])
+    tol = 1e-9 * scale
+    nul = int(np.sum(s < tol))
+    positive = s[0] > tol
+    ok = (positive == (d % 3 == 0))
+    if not ok:
+        bad_pattern.append(d)
+    gap = s[1] - s[0]
+    if gap < 1e-9 * scale:
+        bad_simple.append(d)
+    print(f"  {j2/2:5.1f} {d:4d}   {d%3}   {s[0]:.4e}  {s[1]:.4e}  "
+          f"{gap:.4e}   {nul:3d}     {'ok' if ok else 'BREAKS'}")
+print()
+print(f"  mod-3 pattern breaks at d = {bad_pattern if bad_pattern else 'none'}")
+print(f"  non-simple sigma_min at d = {bad_simple if bad_simple else 'none'}")
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/B4-MOD3.log
+GIT BLOB SHA: b5751fb283a6d648a759d93bfe806c65a367cbfa
+================================================================================
+B4 - smallest singular values of X, and the mod-3 pattern
+
+    j     d  d%3   sigma_1      sigma_2      gap s2-s1    nullity  pattern
+  ----------------------------------------------------------------------------
+    0.5    2   2   1.8463e-16  1.5000e+00  1.5000e+00     1     ok
+    1.0    3   0   1.0000e+00  3.1623e+00  2.1623e+00     0     ok
+    1.5    4   1   1.0940e-15  5.4083e+00  5.4083e+00     1     ok
+    2.0    5   2   4.4317e-16  6.0000e+00  6.0000e+00     1     ok
+    2.5    6   0   7.0403e-01  8.8762e+00  8.1722e+00     0     ok
+    3.0    7   1   1.8877e-15  1.1753e+01  1.1753e+01     1     ok
+    3.5    8   2   4.2937e-16  1.3395e+01  1.3395e+01     1     ok
+    4.0    9   0   3.3285e-01  1.7182e+01  1.6849e+01     0     ok
+    4.5   10   1   1.9017e-15  2.0522e+01  2.0522e+01     1     ok
+    5.0   11   2   3.5945e-15  2.3139e+01  2.3139e+01     1     ok
+    5.5   12   0   1.3039e-01  2.7350e+01  2.7220e+01     0     ok
+    6.0   13   1   9.1128e-15  3.1083e+01  3.1083e+01     1     ok
+    6.5   14   2   7.2644e-15  3.4518e+01  3.4518e+01     1     ok
+    7.0   15   0   4.6044e-02  3.8895e+01  3.8849e+01     0     ok
+    7.5   16   1   5.8031e-15  4.3022e+01  4.3022e+01     1     ok
+    8.0   17   2   5.1398e-15  4.7092e+01  4.7092e+01     1     ok
+    8.5   18   0   1.5238e-02  5.1655e+01  5.1640e+01     0     ok
+    9.0   19   1   1.1678e-14  5.6163e+01  5.6163e+01     1     ok
+    9.5   20   2   2.3196e-14  6.0719e+01  6.0719e+01     1     ok
+   10.0   21   0   4.8247e-03  6.5541e+01  6.5536e+01     0     ok
+   10.5   22   1   1.8800e-14  7.0406e+01  7.0406e+01     1     ok
+   11.0   23   2   4.0923e-14  7.5357e+01  7.5357e+01     1     ok
+   11.5   24   0   1.4792e-03  8.0474e+01  8.0473e+01     0     ok
+   12.0   25   1   5.2472e-14  8.5673e+01  8.5673e+01     1     ok
+   12.5   26   2   6.4762e-14  9.0970e+01  9.0970e+01     1     ok
+   13.0   27   0   4.4254e-04  9.6390e+01  9.6390e+01     0     ok
+   13.5   28   1   5.4430e-14  1.0190e+02  1.0190e+02     1     ok
+   14.0   29   2   1.5326e-13  1.0751e+02  1.0751e+02     1     ok
+   14.5   30   0   1.2988e-04  1.1323e+02  1.1323e+02     0     ok
+   15.0   31   1   2.1119e-13  1.1904e+02  1.1904e+02     1     ok
+   15.5   32   2   1.6383e-13  1.2495e+02  1.2495e+02     1     ok
+   16.0   33   0   3.7532e-05  1.3095e+02  1.3095e+02     0     ok
+   16.5   34   1   3.7316e-14  1.3705e+02  1.3705e+02     1     ok
+   17.0   35   2   1.3805e-13  1.4323e+02  1.4323e+02     1     ok
+   17.5   36   0   1.0708e-05  1.4951e+02  1.4951e+02     0     ok
+   18.0   37   1   3.6436e-13  1.5587e+02  1.5587e+02     1     ok
+   18.5   38   2   7.1071e-13  1.6233e+02  1.6233e+02     1     ok
+   19.0   39   0   3.0225e-06  1.6887e+02  1.6887e+02     0     ok
+   19.5   40   1   5.4857e-13  1.7549e+02  1.7549e+02     1     ok
+   20.0   41   2   9.0583e-13  1.8220e+02  1.8220e+02     1     ok
+
+  mod-3 pattern breaks at d = none
+  non-simple sigma_min at d = none
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/PSI-PROFILE.log
+GIT BLOB SHA: 338230eb9bbd63bed4ec7c5372420fd26b0e41fd
+================================================================================
+Profile of the selected state in the recoupling basis
+
+    j    d    x_0/j     sigma_x   sigma_x/sqrt(j)   gauss resid   participation
+    4.0    9   REJECTED (sanity guard)
+    6.0   13    0.5707     0.7498      0.3061       0.165           5.02
+    8.0   17    0.5726     0.8524      0.3014       0.145           5.80
+   10.0   21    0.5736     0.9442      0.2986       0.132           6.49
+   12.0   25    0.5743     1.0281      0.2968       0.114           7.10
+   14.0   29    0.5748     1.1059      0.2956       0.104           7.67
+   16.0   33    0.5751     1.1786      0.2946       0.099           8.20
+   18.0   37    0.5754     1.2471      0.2939       0.094           8.70
+   20.0   41    0.5756     1.3121      0.2934       0.086           9.17
+   25.0   51    0.5760     1.4621      0.2924       0.079          10.24
+   30.0   61    0.5762     1.5981      0.2918       0.071          11.22
+   35.0   71    0.5764     1.7235      0.2913       0.065          12.12
+   40.0   81    0.5765     1.8403      0.2910       0.060          12.95
+   45.0   91    0.5766     1.9502      0.2907       0.057          13.74
+   50.0  101    0.5767     2.0542      0.2905       0.055          14.48
+
+  width scaling over the upper half of the range: sigma_x ~ j^+0.489
+  centre x_0/j: 0.5707 -> 0.5767
+  participation ratio: 5.0 -> 14.5
+
+  RESULT = psi is a wavepacket of width ~ sqrt(j) about a fixed
+  fraction of the maximal intermediate spin. Semiclassical matrix
+  element estimates apply, and that is an input independent of the
+  quantities tonight's reductions circle among.
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/EH-SUPPRESSION-RATE.log
+GIT BLOB SHA: 6ce1a9ab0362196631d96bdc53ad2af81cef6437
+================================================================================
+P^EH SUPPRESSION OF same/same, EXTENDED RANGE
+
+     j     d    same/same     cross      ratio
+  ------------------------------------------------------
+     1.5    4   9.4675e-02  0.799439  1.1843e-01
+     2.5    6   3.7417e-02  0.923649  4.0510e-02
+     3.5    8   6.5845e-03  0.986787  6.6727e-03
+     4.5   10   4.1588e-03  0.991665  4.1938e-03
+     5.5   12   2.1911e-03  0.995613  2.2008e-03
+     6.5   14   3.3816e-04  0.999324  3.3839e-04
+     7.5   16   2.0039e-04  0.999599  2.0047e-04
+     8.5   18   1.1287e-04  0.999774  1.1289e-04
+     9.5   20   1.8177e-05  0.999964  1.8177e-05
+    11.0   23   8.0301e-06  0.999984  8.0302e-06
+    13.0   27   7.8459e-07  0.999998  7.8459e-07
+    15.0   31   7.5207e-08  0.999999  7.5207e-08
+    17.0   35   2.5358e-08  1.000000  2.5358e-08
+    19.0   39   2.5993e-09  1.000000  2.5993e-09
+
+  fit on j >=  1.5 :  p = -6.9285   max|log resid| = 3.1316   n = 14
+  fit on j >=  3.0 :  p = -8.9162   max|log resid| = 2.2510   n = 12
+  fit on j >=  5.0 :  p = -10.7283   max|log resid| = 1.1089   n = 10
+  fit on j >=  8.0 :  p = -12.7928   max|log resid| = 0.5483   n = 7
+
+  Stability of p across fit windows is the test. Drift means the rate is
+  not a power law on this range and must not be quoted as one.
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/Q-SYMBOL-VARIANCE.log
+GIT BLOB SHA: 8e2200430b139f4358d8c5a162efb9e7f1d2a3c8
+================================================================================
+Var(Q) from the tridiagonal structure of Q and the shape of psi
+
+    j   offdiag?   w(x0)/j^2   w'(x0)/j   sigma^2/j   Var_pred/j^3  Var_true/j^3   ratio
+    8.0    True       -3.6826    0.1952     0.3633        0.0138       1.0919    0.013
+   12.0    True       -5.2124    0.5362     0.3524        0.1013       1.0140    0.100
+   16.0    True       -6.7459   -0.0351     0.3473        0.0004       0.9797    0.000
+   20.0    True       -8.2884    0.3031     0.3443        0.0316       0.9602    0.033
+   30.0    True      -12.1298    0.7020     0.3405        0.1678       0.9353    0.179
+   40.0    True      -15.9790    0.2109     0.3387        0.0151       0.9233    0.016
+   50.0    True      -19.8258    0.6087     0.3376        0.1251       0.9162    0.137
+
+Both predicted terms are O(j^3) by construction; the test is whether the
+ratio to the true variance is flat in j rather than growing.
+
+
+================================================================================
+SOURCE REF: claude/gluing-step12-2026-09-19
+PATH: orthogonal-validation/astra-r2-adjudication-2026-09-19/UNIFORM-LS-NORM.log
+GIT BLOB SHA: a108d383d2dfefd17e2671292da04245bd8d197b
+================================================================================
+    base      lambda   PC(E=D=0) N/pred   ball: min lam^1.5 N   max lam^1.5 N   N/pred range
+  regular       10    0.969612          7.07350e-02     1.22524e-01    [0.96627, 0.98809]
+  regular       20    0.984593          8.36338e-02     1.29448e-01    [0.98385, 0.98961]
+  regular       40    0.992242          1.03254e-01     1.26929e-01    [0.99207, 0.99284]
+  regular       80    0.996107          7.24095e-02     1.30157e-01    [0.99042, 0.99643]
+  regular      160    0.998050          1.10112e-01     1.28521e-01    [0.99768, 0.99831]
+  chiral        10    0.972278          1.04652e-01     1.29945e-01    [0.97115, 0.97780]
+  chiral        20    0.985896          9.48586e-02     1.39205e-01    [0.98456, 0.98684]
+  chiral        40    0.992887          7.30367e-02     1.39252e-01    [0.99240, 1.00177]
+  chiral        80    0.996429          8.26935e-02     1.37175e-01    [0.99393, 0.99669]
+  chiral       160    0.998210          1.18123e-01     1.37134e-01    [0.99799, 0.99843]
+

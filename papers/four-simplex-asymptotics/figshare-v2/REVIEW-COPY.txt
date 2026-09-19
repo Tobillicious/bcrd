@@ -1,0 +1,1148 @@
+ORIENTED AREA-REGGE ASYMPTOTICS OF A NATIVE FOUR-SIMPLEX VERTEX
+Plain-text rendering of publications/papers/bcrd-w2-gr/main.tex
+
+Generated mechanically from the LaTeX source by make_review_copy.py.
+
+  sha256(main.tex) = 84985b96eb8a94e92258822852ff4e760dcdc8304576b013dd49cd5b5a947d26
+  git HEAD at generation = 3939dca790a3d7af9afa57b604eb23242bfaf84d
+
+Verify the rendering against the source by hashing main.tex; the commit is only
+an approximate pointer, since the rendering may be generated before it is
+committed. Mathematics is transliterated to ASCII and nothing is paraphrased.
+Numerical evidence behind the tables is in EVIDENCE-BUNDLE.txt, which also names
+what it does NOT contain.
+
+
+
+
+ABSTRACT
+
+We study an orientation-resolved Riemannian four-simplex vertex, W2, built from
+a finite relational spin model. Orientation is fixed by restricting the history
+integral to the domain on which a native Spin(4)-invariant pseudoscalar
+Omega has fixed sign. The native positive volume insertion is
+|Q|^1/2 on each tetrahedron. No per-face sign variable, Barrett--Crane
+projection, or additional Einstein--Hilbert boundary projector enters the
+vertex analysed here.
+
+For boundary data given by Livine--Speziale coherent intertwiners of a
+nondegenerate four-simplex, with spins j_f=lambda k_f+O(1), we show, subject
+to the one hypothesis recorded below: (i) the
+integrand is exponentially small except near the four pairings of the two chiral
+gluing solutions; (ii) exactly one of these, a geometric saddle, lies in the
+interior of the orientation domain, and every configuration on the domain
+boundary is either exponentially suppressed or rank one, where the measure
+vanishes cubically and the contribution is subleading; (iii) the wrong-sign
+volume weight of the boundary state is O(lambda^-infinity), by an elementary
+ladder-operator estimate. The real part of the coherent-action Hessian is proved exactly to be negative
+definite modulo gauge on both the regular and the Dittrich--Kogios simplex; this
+also makes the full complex gauge-fixed Hessian nonsingular. The vertex is
+therefore asymptotic to a single oriented exponential
+e^ isigma 2sum_f j_fTheta_f, the oriented area-Regge phase.
+
+We do not obtain a continuum statement. An earlier version inferred, from
+gluing, the linearised graviton dynamics that Dittrich and Kogios derive from the
+area-Regge action. That inference is withdrawn: contracting coherent intertwiners
+across a shared tetrahedron forces the two shapes to agree, whereas the
+Dittrich--Kogios configuration space relies on the shape mismatch such gluing
+suppresses (Section [sec:r4]).
+
+The result is Riemannian and leading-order, holds for coherent boundary data of
+nondegenerate simplices, and is a vertex statement: it does not control the bulk
+spin sum. For the model's own selected tetrahedral state the corresponding
+sign-concentration statement is reduced exactly to a spectral conjecture that we
+verify for j<=20 but do not prove.
+
+No unproved Hessian hypothesis remains at the stated regular/DK scope. The
+real-part quadratic form is an explicit weighted sum of squares, and exact
+bivector determinants show that its kernel is precisely the common SU(2)
+gauge in each chirality. Negative definiteness of the real part then implies
+invertibility of the complex gauge-fixed Hessian. The uniform norm asymptotic
+that an earlier version assumed is likewise proved as Lemma [lem:unif].
+
+
+
+
+======================================================================
+INTRODUCTION
+
+
+The claim, and its boundary.
+We show that one specific four-simplex vertex, derived inside a finite
+relational spin model, is dominated at large spin by a single nondegenerate
+geometric saddle whose phase is the oriented area-Regge action. It is natural to
+hope that this places the vertex at the start of the chain
+
+W2 --> oriented area Regge --> 
+linearised Riemannian graviton dynamics,
+
+whose second arrow is a theorem of Dittrich and Kogios [DittrichKogios2023].
+We do not establish the first arrow: gluing coherent vertices forces
+matched tetrahedral shapes, which is precisely the freedom the Dittrich--Kogios
+configuration space needs (Section [sec:r4]). We do not claim to derive
+general relativity.
+The statement is Riemannian, semiclassical, leading-order and linearised; it holds
+for coherent boundary data of nondegenerate simplices; it controls each vertex but
+not the bulk spin sum of glued histories; and it says nothing about Lorentzian
+signature or nonlinear curvature. These limits are collected in
+Section [sec:claims].
+
+What is standard.
+Most of the chain is not new, and we say so where it appears: coherent
+intertwiners and their norm asymptotics [LivineSpeziale2007]; the two
+parity-related solutions of the chiral gluing equations for nondegenerate
+Regge-like data [BarrettEtAl2009]; the Schläfli identity [Regge1961];
+the use of a projector to select the Einstein--Hilbert sector in Engle's
+proper vertex [Engle2011]; and the area-Regge
+refinement theorem [DittrichKogios2023].
+
+Two further ingredients are standard and we claim nothing for them. The algebra
+generated by the pair operators and Q on a four-valent intertwiner is a
+realisation of the Racah algebra R(3), whose generators are the
+intermediate Casimirs and which is precisely the commutant of the diagonal
+action [Racah2019]; the factorisation of Proposition [prop:factor] is a
+one-line consequence of its relations, and the algebraic structure of the
+four-valent volume operator has been studied at
+length [BaezBarrett1999,Schliemann2013]. Likewise the moment bound of
+Lemma [lem:ladder] is ordinary spin-coherent-state estimation; its only
+virtue is that it replaces a symbol calculus at the spectral cusp.
+
+What is specific to this construction.
+(a) Orientation is selected by a domain restriction on the integration variables,
+through a pseudoscalar Omega built from the native history variables, rather
+than by a projector on the boundary state or a per-face sign. (b) The volume
+insertions and the cofactor |Omega_c| give the native W2 weight. Its geometric
+cofactor identity and cubic spacetime-volume power are exact, with no fitted
+exponent; an exact foliation-free transcription of the full continuum measure
+of [ShiraziEngle2014] is not needed for the theorem and is not claimed here. We have not
+located (a) or (b) in the literature; that is a search result, not a novelty
+theorem, and the programme that produced this paper has repeatedly found
+native-looking structures to be standard. The contribution we do claim is the
+assembly: a single-saddle asymptotic for this vertex in which boundary control
+and sign concentration are proved rather than assumed.
+
+On method.
+Every load-bearing numerical statement was frozen with its log, reproduced by an
+implementation sharing no code, and submitted to hostile review by reviewers from
+more than one model provider, including context-free sessions. Every search for
+the absence of something carries a positive control that must first find a known
+instance; a search whose control fails issues no verdict. The review trail,
+including the findings that changed this text, is in
+Appendix [app:repro].
+
+AI collaboration.
+The derivations, code, numerical experiments and drafting of this paper were
+carried out in collaboration with large language models, from more than one
+provider, working under the direction of the author. The author set the
+questions, decided which lines to pursue, adjudicated the results, and is
+responsible for the content; no model is or could be an author, since authorship
+carries accountability for the claims and that rests with a person.
+
+We state this because the method is load-bearing rather than incidental. Every
+load-bearing numerical claim was reproduced by an independent implementation
+sharing no code path; every search for the absence of something carried a
+positive control that had to recover a known instance before any verdict was
+issued; and each stage was submitted to adversarial review by models from
+different providers, instructed to falsify rather than to improve. Several
+results in this paper exist in their present form only because such a review
+falsified an earlier version, and those corrections are recorded rather than
+quietly absorbed.
+
+
+
+======================================================================
+THE NATIVE SELECTOR
+
+
+On the intertwiner space K of a four-valent node let A,B,C be the
+three pair operators, trace-centred to a,b,c with a+b+c=0, and put
+
+Q=i[a,b]=J_1.(J_2 x J_3),     G=a^2+b^2+c^2 .
+
+
+These generate a realisation of the Racah algebra R(3): its generators are the
+intermediate Casimirs C^(12),C^(23), which are the pair operators up to a
+shift, and the algebra is the commutant of the diagonal action [Racah2019].
+The following identity is an elementary consequence of the two standard relations
+a+b+c=0 and [a,b]=[b,c]=[c,a]. We record it because it is what makes the
+selector positive and its ground state sharply defined, not because it is new.
+
+
+PROPOSITION Exact factorisation.
+With w=e^2pi i/3 and Z=a+w b+w^2c,
+
+ZZ^dag=(3/2)(G-sqrt3 Q),    
+Z^dag Z=(3/2)(G+sqrt3 Q).
+
+Hence H_sigma:=G-sigmasqrt3 Q>=0, H_+=(2/3)ZZ^dag,
+H_-=(2/3)Z^dag Z, and
+
+Q=(Z^dag Z-ZZ^dag)/(3sqrt3).
+
+
+
+
+Proof.
+Direct expansion, using w+w^2=-1, w-w^2=isqrt3,
+(a+b+c)^2=0 (which gives a,b+b,c+c,a=-G), and
+[a,b]=[b,c]=[c,a]=-iQ (a consequence of a+b+c=0). The symmetric part of
+ZZ^dag is G+(1/2)G and the antisymmetric part is -(3/2)sqrt3 Q;
+reversing the order flips the sign of the latter.
+
+
+The identity holds for arbitrary external spins. Numerically it was verified for
+equal spins j=(1/2),...,6 (residuals <=2.1 x 10^-12), and
+(eq:QZ) for j<=20 (residuals <=3.6 x 10^-15).
+
+The ground state of H_+ is the model's own tetrahedral state. It enters only
+in Section [sec:selected], which treats it separately from the main theorem.
+
+
+======================================================================
+THE ORIENTED VERTEX W2
+
+
+Let X_a^+-inSU(2), a=0,...,4, be the doubled history variables and
+N_a=X_a^-(X_a^+)^-1, read as unit vectors in R^4.
+
+
+DEFINITION Vertex.
+Put Omega_a=(-1)^adet(N_0,...,N_a,...,N_4) and
+Dom_sigma=X:sgnOmega_a(X)=sigma forall a. For a boundary
+state Psi on otimes_eK_e^+otimesK_e^-,
+
+A_sigma[Psi]
+=int_Dom_sigmadX |Omega_c(X)| 
+I_X[(textstyleotimes_ewidehat T_e)Psi],
+     widehat T_epropto|Q_e|^1/2.
+
+where I_X is the ordinary doubled K_5 matrix element with
+U^pm_ab=D^j_ab((X_a^+-)^-1X_b^+-).
+
+
+The following are proved in [W2vertex]: Omega_a, Dom_sigma and
+|Omega_c| are Spin(4) invariant; A_sigma is linear in Psi;
+and the exchange X^+<=ftrightarrow X^- maps
+Dom_+<=ftrightarrowDom_-. The native volume/cofactor weight is fixed by
+the model. Its geometric core can be proved directly: if T_a is the volume of
+the facet opposite vertex a, V_4 the four-volume and lambda_a the
+barycentric coordinate, then
+nablalambda_a=-(T_a/4V_4)N_a and
+|det(nablalambda_b)_bne a|=(4!V_4)^-1. Hence
+
+ |Omega_a|
+ =(32)/(3)(V_4^3T_a)/(prod_bT_b).
+
+Together with
+T_e^2=(2/9)|E_1.(E_2 x E_3)|
+and
+i[J_1.J_2,J_2.J_3]
+=J_1.(J_2 x J_3),
+this gives the exact native cubic-volume identity recorded in the companion.
+The stronger claim that this is a unique foliation-free discretisation of the
+full continuum measure is not used below.
+
+
+======================================================================
+COHERENT BOUNDARY DATA AND THE DOUBLED ACTION
+
+
+
+STANDING ASSUMPTION.
+Fix a nondegenerate Riemannian four-simplex with face areas k_f>0 and outward
+face normals n_ab in  S^2 in each tetrahedral frame. Let lambdatoinfinity
+along a sequence with j_f=lambda k_f+O(1) admissible (half-integral and
+satisfying the coupling conditions). For each tetrahedron let
+Phi_e=otimes_fni e|j_f,n_ef> and
+iota_e=PiPhi_e/|PiPhi_e|, Pi=int_SU(2)dg U(g), be the
+Livine--Speziale coherent intertwiner [LivineSpeziale2007]. The boundary
+state is Psi=otimes_eiota_eotimesbariota_e.
+
+
+For the Dittrich--Kogios (DK) simplex we take the vertices
+
+(0,0,0,0), (1,0,0,0), (1,1,0,0), (1,1,1,0), (1/2)(1,1,1,1),
+
+whose ten face areas stand in the ratios
+(sqrt3/4):(1/2):(sqrt2/2) with multiplicities 4:4:2. We
+identify the simplex by its coordinates, not by its areas, since ten areas do not
+in general determine a four-simplex. The area ratios are irrational, which is why
+the spin sequence is lambda k_f+O(1) and not lambda k_f.
+
+With z^chi_ab(X)=< Jn_ab|(X_a^chi)^-1X_b^chi|n_ba>, the
+coherent component of the integrand is
+prod_a<b(z^+_ab)^2j_ab overline(z^-_ab)^2j_ab
+=exp[lambda S(X)+O(1)] with the doubled action
+
+S(X)=S_+(X^+)+overlineS_-(X^-),    
+S_chi=sum_a<b2k_ablog z^chi_ab.
+
+The action separates additively in the two chiralities, and since
+|z^chi_ab|<=1, Re S=Re S_++Re S_-<=0.
+
+
+======================================================================
+THE CRITICAL SET
+
+
+
+PROPOSITION.
+Re S(X)=0 if and only if both chiral families satisfy the gluing equations
+R(X_a^chi)n_ab=-R(X_b^chi)n_ba. For nondegenerate Regge-like data each
+chirality has exactly two solutions up to gauge, related by
+parity [BarrettEtAl2009]. The zero set of Re S therefore consists of four symmetry classes. (Not four
+orbits: each X_a^chi admits an independent central lift
+X_a^chimapstoepsilon_a^chi X_a^chi, epsilon_a^chi=pm1, which leaves
+Re S unchanged and, when epsilon_a^-=epsilon_a^+, leaves every N_a
+unchanged as well, so each class contains finitely many disconnected lift copies
+inside the same Dom_sigma. That changes a finite multiplicity, not the
+asymptotic power or phase; the cutoffs in Theorem [thm:boundary] are taken as
+unions over the lift copies.) The classes are:
+ - two cross pairings, which reconstruct the two opposite orientations
+of the nondegenerate simplex, have all Omega_a!=0 with a common sign, and lie
+one in Dom_+ and one in Dom_-;
+ - two same/same pairings, at which N_a=Y_-Y_+^-1 is independent of
+a (rank one), so every Omega_a=0.
+
+
+
+Proof.
+Re S=0 forces |z^chi_ab|=1 for every face and chirality, which is
+saturation of Cauchy--Schwarz, i.e. the gluing equation. Both chiralities carry
+the same boundary normals, so they have the same two solutions X_a,X'_a.
+For the pairing (X,X), N_a=Y_-X_aX_a^-1Y_+^-1=Y_-Y_+^-1 for every a;
+five parallel vectors make every 4 x 4 minor vanish. The cross statement is
+the reconstruction theorem of [BarrettEtAl2009], and the sign of Omega is
+that of the reconstructed four-orientation [W2vertex].
+
+
+As an independent check, 4000 random starts on the DK gluing equations found
+exactly two gauge-inequivalent chiral solutions.
+
+Phase at the geometric saddle.
+At the cross pairing in Dom_sigma the chiral phases are opposite, so
+Im S=2sigmasum_fk_fTheta_f and the oscillatory factor is
+exp[isigma 2sum_fj_fTheta_f]. We keep the area label A_f=2j_f, which is
+an integer, so the 2pi-periodicity argument of Proposition [prop:r3]
+applies unchanged. The balanced label 2j_f+1 differs by
+e^-isigmasum_fTheta_f; that factor is O(lambda^0) at fixed geometry but is
+not independent of the bulk once areas are varied, so it may not be
+absorbed into a boundary convention in Section [sec:r3].
+
+
+======================================================================
+SIGN CONCENTRATION OF THE VOLUME OPERATOR
+
+
+Fix a tetrahedron e with classical oriented volume q_e!=0; take q_e>0,
+the other case being conjugate, and put mu_lambda=lambda^3q_e. For a state
+v write p_<=0(v)=|P_(-infinity,0](Q)v|^2/|v|^2. The zero eigenspace is
+included on purpose: at integer spin Q has a zero eigenvalue, so a bound on
+P_(-infinity,0) alone would not give p_+to1.
+
+
+LEMMA Ladder estimate.
+Let V_k subset otimes_fV_j_f be spanned by vectors obtained from Phi_e
+by at most k lowering operators, each face in its own frame. Then
+(Q-mu_lambda)V_k subset  V_k+3 and
+|(Q-mu_lambda)|_V_k|<= C_klambda^5/2, with C_k independent of
+lambda.
+
+
+
+Proof.
+Write J_f=(j_f-N_f) n_f+J_f^perp in the frame of face
+f, where N_f counts lowerings and J_f^perp is built from J_f^+-.
+On V_k: 0<= N_f<= k, |J_f^-|<=sqrt(k+1) 2j_f and
+|J_f^+|<=sqrtk(2j_f+1), both O(lambda^1/2). The three faces act on
+different tensor factors, so the triple product has no ordering ambiguity.
+Expanding Q=J_1.(J_2 x J_3): the term with three
+longitudinal factors is prod_f(j_f-N_f) q=mu_lambda+O(lambda^2) on V_k,
+using j_f=lambda k_f+O(1); terms with one transverse factor are
+O(lambda^5/2); with two, O(lambda^2); with three, O(lambda^3/2). Each
+term raises the lowering count by at most three.
+
+
+
+LEMMA Uniform coherent-intertwiner norm.
+Let n_f, f=1,...,4, be fixed normals with weights k_f>0 satisfying
+closure sum_fk_fn_f=0 and spanning R^3, and let
+j_f=lambda k_f+delta_f be admissible with |delta_f|<= D. Then there are
+c>0 and lambda_0, depending only on (n_f,k_f,D), such that
+
+|PiPhi_lambda|^2 >= c lambda^-3/2
+qquadfor all lambda>=lambda_0 .
+
+
+
+
+Proof.
+Since Pi is an orthogonal projector,
+|PiPhi|^2=langlePhi|Pi|Phi>=int_SU(2)dgprod_fz_f(g)^2j_f
+with z_f(g)=< n_f|g|n_f> the spin-(1/2) overlap, |z_f|<=1.
+Write the integrand as exp[lambda S_0(g)+T_delta(g)] with
+
+S_0=sum_f2k_flog z_f,     T_delta=sum_f2delta_flog z_f .
+
+Re S_0<=0, with equality exactly at g=pm1; at g=1 the first variation is
+2isum_fk_fn_f=0 by closure, and the Hessian of Re S_0 is negative definite
+because the n_f span, which is the nondegenerate closure saddle
+of [LivineSpeziale2007]. The perturbation T_delta is holomorphic near
+g=1 with T_delta(1)=0, and it and its first two derivatives are bounded by
+CD uniformly in delta.
+
+Solving lambda dS_0+dT_delta=0 moves the critical point by
+u_delta=O(D/lambda), and the exponent there is O(D^2/lambda). Ordinary
+three-dimensional stationary phase with a nondegenerate complex Hessian then
+gives
+
+int_|g-1|<rhodg e^lambda S_0+T_delta
+=((2pi)/(lambda))^3/2
+frace^T_delta(1)sqrtdet(-S_0'')(1+O(D^2/lambda)),
+
+and the complement of the two balls contributes O(e^-etalambda) by
+compactness. The point g=-1 contributes the same expression times
+(-1)^sum_f2j_f, which is +1 precisely when the spins are admissible, so
+the two add rather than cancel. The prefactor depends continuously on
+delta over the compact set |delta_f|<= D and is positive there, so its
+infimum c>0 is attained, which is the claim.
+
+
+
+REMARK.
+Two earlier versions of this passage were wrong. The first argued that no uniform
+constant was needed because the offsets take finitely many values at each
+lambda; finiteness at each lambda gives no single c along an infinite
+sequence. The second assumed the uniform statement outright. The point that makes
+the proof work is that the offsets enter only through the bounded holomorphic
+perturbation T_delta, which shifts the saddle by O(lambda^-1) and changes
+the prefactor continuously; in particular the j-weighted closure defect left by
+bounded offsets is O(1) against a Hessian of size O(lambda). The degenerate
+collinear case, which scales as lambda^-1, is excluded by the spanning
+hypothesis.
+
+
+
+LEMMA Coherent sign concentration.
+For each fixed n,
+<(Q-mu_lambda)^2nrangle_iota_e=O(lambda^5n+3/2), and hence
+p_<=0(iota_e)=O(lambda^-infinity).
+
+
+
+Proof.
+Q commutes with the diagonal SU(2) action, hence with the orthogonal
+projector Pi. Therefore
+
+<(Q-mu)^2nrangle_iota
+=(|Pi(Q-mu)^nPhi|^2)/(|PiPhi|^2)
+<=(|(Q-mu)^nPhi|^2)/(|PiPhi|^2)
+<=frac(prod_i<nC_3i)^2lambda^5n|PiPhi|^2
+
+by Lemma [lem:ladder], together with the uniform norm bound of
+Lemma [lem:unif] below. On the range of P_(-infinity,0](Q) one has
+|Q-mu|>=mu, so by the spectral theorem
+p_<=0<=<(Q-mu)^2n>/mu^2n=O(lambda^3/2-n) for every n.
+
+
+The only input beyond elementary spin algebra is the norm lower bound, the
+standard stationary-phase statement for coherent intertwiners. The projection
+costs a factor lambda^3/2, absorbed because n is arbitrary. No uniformity
+of the constants in n is used or needed: O(lambda^-infinity) means that for
+each N some constant C_N bounds lambda^Np_<=0.
+
+Reduction to coherent components.
+The volume weight widehat T_e is not a polynomial, so
+(otimeswidehat T_e)Psi is not a coherent state. Taylor-expand |q|^1/2
+about mu_lambda to order M; the remainder is bounded spectrally by
+C_M|q-mu|^Mmu^1/2-M, and its contribution is O(lambda^3/2-M/2) relative
+to the leading term by Lemma [lem:conc]. The Taylor polynomial applied to
+iota_e gives finitely many vectors in Pi V_3M, whose matrix elements are
+e^lambda S(X) times polynomials in X of bounded degree. Hence, for every
+N,
+
+I_X[(otimeswidehat T_e)Psi]
+=sum_k<= K_Na_k(lambda) P_k(X) e^lambda S(X)+R_N(X),    
+sup_X|R_N|<= C_Nlambda^-N|a_0(lambda)|,
+
+with a_0!=0 the leading coefficient.
+
+
+LEMMA Coefficient ratios.
+For every fixed k>=1 and every varepsilon>0,
+
+|(a_k)/(a_0)|=O(lambda^-k/2+kvarepsilon).
+
+In particular a_1/a_0=O(lambda^-1/2+varepsilon) and every higher term is
+smaller, so the k=0 term dominates (eq:reduce).
+
+
+
+Proof.
+Put X=(Q-mu)/mu. Since muasymplambda^3 and |Q|=O(lambda^3) we have
+|X|=O(1), and Lemma [lem:conc] gives
+<|X|^2n>=O(lambda^3/2-n) for every fixed n. Fix
+alpha<1/2 and split the spectral measure of X at |X|=lambda^-alpha. On
+the small part, |X^k|<=lambda^-alpha k. On the large part Markov gives
+
+Pr(|X|>lambda^-alpha)
+<=lambda^2alpha n<|X|^2n>
+=O(lambda^3/2-(1-2alpha)n),
+
+which is smaller than any fixed power once n is chosen large enough, while
+|X|^k=O(1) there. Hence |X^kiota|=O(lambda^-alpha k), and since the
+k-th Taylor term is c_kmu^1/2X^k against a_0=mu^1/2, the stated bound
+follows with varepsilon=1/2-alpha.
+
+
+
+REMARK.
+An earlier version of this lemma bounded the k=1 term by the scalar first
+moment < Q>-mu=O(lambda^2). That is invalid: the Taylor term
+involves the vector mu^-1/2(Q-mu)iota, and a small expectation value does
+not bound a norm; used naively Lemma [lem:conc] would give only
+O(lambda^1/4), which does not even tend to zero. The interpolation above
+avoids the first moment entirely. We are grateful to the reviewer who supplied
+it.
+
+
+
+======================================================================
+THE DOMAIN BOUNDARY
+
+
+The domain Dom_sigma has a boundary, the union of the five cofactor zero
+loci. Interiority of the geometric saddle validates its local expansion but does
+not by itself bound the rest of the integral. Review [PR355] pointed out that
+a cofactor-order lemma prices certain partly parallel boundary strata at
+lambda^-7/2, ahead of the geometric saddle. That lemma concerns the
+Barrett--Steele mixed-sign families [BarrettSteele2003], which exist only
+when the coherent sign is a free per-face variable. W2 has no such variable.
+
+
+THEOREM Boundary control.
+Under Assumption [ass:data], the contribution to A_sigma from any
+region of partialDom_sigma whose closure stays a positive distance from the
+rank-one orbits is O(e^-etalambda) for some eta>0; deleting those orbits
+while allowing accumulation would not give a uniform eta. The contribution
+from a neighbourhood of the rank-one orbits is smaller than that of the geometric
+saddle by a factor O(lambda^-3/2). The real-Hessian input
+(Proposition [prop:redef]) is established for the regular and DK data only,
+so the second statement carries that restriction.
+
+
+
+Proof.
+Use (eq:reduce) and a partition of unity
+1=chi_geom+chi_rk1+chi_rest on the compact
+group manifold. On suppchi_rest, which avoids the
+four classes of Proposition [prop:crit] and their central lifts, the
+continuous function Re S is
+strictly negative, hence <=-eta by compactness, and every term of
+(eq:reduce) is O(lambda^me^-etalambda). The geometric orbit in
+Dom_sigma is interior, since its cofactors are nonzero, so
+chi_geom may be supported inside Dom_sigma; the conjugate cross
+orbit lies in Dom_-sigma and does not meet overlineDom_sigma.
+
+For the rank-one orbits we bound the modulus of the integrand, which requires no
+knowledge of the domain shape or of the phase. A rank-one orbit is a pairing
+(X,X) of one chiral solution with itself, so by (eq:action) and
+Proposition [prop:redef] the real part of S has a nondegenerate maximum
+there modulo gauge:
+Re S<=-c (|u_+|^2+|u_-|^2) in gauge-fixed transverse coordinates u_+-,
+c>0. All five normals then lie within O(|u_+|+|u_-|) of a common vector, and
+each cofactor is a 4 x 4 determinant of four such vectors, so
+|Omega_c|<= C(|u_+|+|u_-|)^3. With D=24 the gauge-fixed dimension,
+
+|integralchi_rk1|
+<= C'int_R^D(|u|)^3e^-clambda|u|^2 du
+ = O(lambda^-D/2-3/2),
+
+while the geometric saddle contributes c_0lambda^-D/2 with c_0!=0 by
+Proposition [prop:hess] and |Omega_c|>0 there. The polynomials P_k of
+(eq:reduce) are bounded on the compact group, and their coefficients obey
+Lemma [lem:coeff], so the finite sum is dominated by its k=0 term. The
+ratio is therefore O(lambda^-3/2), independently of the radial count
+of [W2vertex], which gives the weaker lambda^-5 against
+lambda^-9/2 and is quoted only as a cross-check from a source that is not
+yet public.
+
+
+The proof uses only Proposition [prop:crit]. As a falsification test we
+sampled supRe S on the two partly parallel strata named in review, holding
+the distinct normals at least r apart (Table [tab:strata]). A positive
+control at r=0 must recover Re S=0 at the rank-one corner, and does.
+
+& two-pair, N_1=N_2, N_3=N_4   |   four-parallel, N_1=...=N_4 
+control, r=0   |   -2.0 x 10^-10   |   -2.4 x 10^-11 
+supRe S/sum_f2k_f, r in [0.05,0.8]   |   -0.040 r^2   |   -0.019 r^2 
+Caption: DK data. The quadratic coefficient is constant to two figures over the
+whole range; Re S vanishes on these strata only at the rank-one corner.
+
+
+
+======================================================================
+NONDEGENERACY OF THE GEOMETRIC SADDLE
+
+
+By (eq:action) the Hessian of S at any doubled geometric saddle is
+block diagonal,
+diag(H_+,overlineH_-): the exponent contains no term
+depending jointly on X^+ and X^-, while |Omega_c| is an O(1)
+prefactor. The required nondegeneracy can be established without a numerical
+determinant.
+
+
+PROPOSITION Exact real-part coercivity.
+At either chiral gluing solution for the regular or the DK simplex, write
+X_a=X_a^(0)exp(i xi_a.sigma/2) and let m_ab be the coherent
+ray on the edge ab. The quadratic term in the real part of the chiral action
+is, up to the fixed overall action convention,
+
+ -Re S^(2)(xi)
+ =(1/4)sum_a<bk_ab
+   |(xi_b-xi_a) x  m_ab|^2 .
+
+Its kernel is exactly the common SU(2) gauge
+xi_0=cdots=xi_4. Hence after fixing one group element the real Hessian is
+strictly negative definite.
+
+
+
+Proof.
+For a normalized spinor |m> and a small relative rotation
+g=exp(i d.sigma/2),
+
+ |< m|g|m>|^2
+ =1-(1/4)(|d|^2-(m. d)^2)+O(|d|^3),
+
+so each term 2k_ablog< m_ab|X_a^-1X_b|m_ab>
+contributes
+-(1/4) k_ab|(xi_b-xi_a) x  m_ab|^2 to the real quadratic
+form. Thus a zero mode must satisfy
+xi_b-xi_aparallel m_ab on every edge.
+
+Gauge-fix xi_0=0. Exact symbolic facet/bivector arithmetic gives, for both
+chiralities,
+
+beginarraylll
+regular:&
+ det(b_01,b_02,b_12)=+-(25)/(95551488),&
+ |b_03 x  b_13|^2=|b_04 x  b_14|^2
+ =(25)/(13759414272),3pt]
+DK:&
+ det(b_01,b_02,b_12)=+-(1)/(5971968),&
+ |b_03 x  b_13|^2=(1)/(859963392),  
+ |b_04 x  b_14|^2=(1)/(429981696).
+endarray
+
+Normalization of the nonzero b_ab does not change these independence
+statements. The first determinant and the edge conditions for 01,02,12
+force xi_1=xi_2=0. The two nonparallel-pair identities then force
+xi_3=0 and xi_4=0. Therefore the sum of squares has no kernel beyond
+the common gauge. Since all k_ab>0, the gauge-fixed real Hessian is
+strictly negative definite. The exact certificate is reproduced by
+w2_rehessian_kernel_exact.py; its frozen output is
+W2-REHESSIAN-KERNEL-EXACT.log.
+
+
+
+PROPOSITION.
+On the regular and on the DK simplex, each chiral 15 x 15 complex Hessian
+has exactly three null directions, the common SU(2) gauge, and its
+gauge-fixed 12 x 12 block is nonsingular. Consequently the full doubled
+30 x 30 Hessian has exactly six Spin(4) gauge null directions and the
+gauge-fixed 24 x 24 Hessian is nonsingular.
+
+
+
+Proof.
+Write a gauge-fixed chiral Hessian as H=A+iB, where
+A=Re H and A,B are real symmetric matrices. Proposition [prop:redef]
+gives A<0. If Hz=0 for a nonzero complex vector z, then
+
+ 0=Re(z^dag Hz)=z^dag A z<0,
+
+a contradiction. Thus the gauge-fixed chiral Hessian is invertible. Before
+gauge fixing, the common left SU(2) action supplies the three and only three
+null directions. The doubled Hessian is block diagonal in the two
+chiralities, so the nullities add.
+
+
+The earlier numerical calculations are retained as independent checks, not as
+the proof. Two implementations sharing no Hessian code agree on the regular
+and DK spectra up to their known normalization factors; finite-difference
+Richardson extrapolation is stable; and a separately constructed doubled
+matrix has six gauge nulls. On ten additional random nondegenerate
+four-simplices the same chiral kernel pattern is observed. Kami'nski and
+Sahlmann's analytic nondegeneracy theorem for geometric EPRL stationary points
+is consistent with this result [KaminskiSahlmann2019], but the present
+regular/DK proof does not depend on importing their spinor-variable Hessian.
+
+For reference, the numerical conditioning checks give
+
+beginarrayc|cc
+   |   regular   |   DK  hline
+max|ev|/min_ne0|ev|, 15 x 15
+ &1.936&3.854 
+sigma_min, gauge-fixed 12 x 12
+ &0.1812404&0.0014178 / 0.0013912 .
+endarray
+
+These values are evidence of numerical stability only; nondegeneracy itself is
+the exact consequence of Proposition [prop:redef].
+
+
+======================================================================
+MAIN THEOREM
+
+
+
+THEOREM.
+Under Assumption [ass:data], for the regular or the DK simplex,
+
+A_sigma[Psi]
+=C_sigma lambda^-p 
+exp[isigma 2sum_f j_fTheta_f+iphi_0](1+O(lambda^-1/2+varepsilon)),
+     C_sigma!=0,
+
+where Theta_f are the dihedral angles, phi_0 is a fixed boundary-convention
+phase independent of the bulk, and p is fixed by the 24-dimensional Gaussian
+and the polynomial normalisations. The conjugate orientation contributes to
+A_-sigma, not to A_sigma.
+
+
+
+Proof.
+Lemma [lem:conc] controls the spectral cusp of |Q|^1/2: the
+nonpositive-Q tail of each coherent tetrahedral factor is
+O(lambda^-infinity). By (eq:reduce) the volume-weighted integrand is
+therefore a finite sum of coherent terms up to O(lambda^-N). Theorem [thm:boundary] bounds
+everything outside a neighbourhood of the geometric saddle by O(lambda^-3/2)
+relative to it. At the saddle, Proposition [prop:hess] gives a nondegenerate
+Gaussian and |Omega_c|>0, so standard stationary phase applies. The leading
+coefficient is nonzero because the Gaussian is nondegenerate, |Omega_c| is
+positive there, and the volume weights are positive on the retained sign sector.
+The phase is that of Section [sec:critical].
+
+
+The stated relative error O(lambda^-1/2+varepsilon), for every
+varepsilon>0, comes from Lemma [lem:coeff] and needs neither the radial
+count of [W2vertex] nor a symbol expansion. The rank-one boundary term is
+smaller, O(lambda^-3/2) by the absolute-value argument of
+Theorem [thm:boundary], so it is the k=1 volume-weight term that sets the
+rate. A sharper O(lambda^-1) would require the symbol expansion at the
+saddle, which is not carried out here. Nothing here uses the finite-spin observation that the
+wrong-sign weight of the model's own state is well fitted by e^-1.04-0.99j for
+j<=19. Its windowed rates drift, and we report the fit as an observation only.
+
+
+======================================================================
+GLUING AND THE AREA-REGGE ACTION
+
+
+textbfThis section is formal calculus of the vertex phase extended to
+independent area variables. It is not a stationary equation derived for the
+coherently glued W2 amplitude, for the reason given at the end of the section.
+
+Glue W2 vertices on an oriented simplicial complex with the full intertwiner
+identity on shared tetrahedra and coherent boundary data compatible across each
+shared tetrahedron. Orientation compatibility fixes the relative sigma_v. By
+Theorem [thm:main], a geometric history carries the phase
+sum_vsigma_vsum_f subset  vA_fTheta_vf with A_f=2j_f.
+
+
+PROPOSITION Area-Regge stationarity.
+With delta_f=2pi-sum_vni fTheta_vf, the Schläfli identity
+sum_f subset  vA_f dTheta_vf=0 gives, for internal faces,
+dS_int=sum_fdelta_f dA_f up to terms 2pi A_f, which change no
+amplitude because A_f=2j_f in Z. The stationary condition in an internal area
+is delta_fin2piZ. In a neighbourhood of a flat background small
+enough that |delta_f|<pi for every internal face, this forces delta_f=0.
+
+
+For the discrete spin sum, Poisson resummation gives the same condition:
+constructive interference requires partial S/partial A_fin2piZ,
+and the principal branch is delta_f=0. This derivation was verified blind
+against acceptance criteria committed before the derivation was read
+(Appendix [app:repro]).
+
+This is the stationary equation of the area-Regge action. It is not length
+Regge, and we do not promote it to length Regge.
+
+Why this is not yet a statement about glued W2.
+Varying every internal A_f independently is not available on the sector
+coherent gluing actually retains. Once the shapes on a shared tetrahedron match
+(Section [sec:r4]), the areas lie on the length-geometric submanifold
+A_f=A_f(l_e), and
+
+dS=sum_fdelta_f dA_f
+ =sum_e(sum_fdelta_f(partial A_f)/(partial l_e))dl_e,
+
+so stationarity gives sum_f(partial A_f/partial l_e) delta_f=0, the
+length-Regge condition, and not delta_f=0 face by face. Independent
+dA_f, and with them the area-Regge equations, require exactly the
+shape-mismatch directions that coherent gluing suppresses. Proposition [prop:r3]
+therefore stands as calculus on independent area variables, not as a derived
+consequence of the glued amplitude.
+
+
+======================================================================
+THE DITTRICH--KOGIOS LIMIT
+
+
+Dittrich and Kogios analyse the area-Regge action on a regular, centrally
+subdivided hypercubical lattice [DittrichKogios2023]. They show that its
+continuum limit reproduces at leading order the graviton dynamics of general
+relativity, with the first correction at second order in the lattice constant
+and quadratic in the Weyl curvature, and they note that this holds contrary to
+expectations from the flatness problem. The condition delta_f=0 of
+Proposition [prop:r3] therefore does not by itself preclude graviton dynamics
+under refinement.
+
+Their result is obtained from a background-field expansion about flat space on
+that one lattice family, and they leave the additional suppression terms of
+effective spin-foam models on that triangulation to future work. We would in any
+case import it only at that scope, and claim no continuum theorem for a different
+triangulation, for a nonperturbative model, or for any other implementation of
+the simplicity constraints. As the next subsection explains, we do not reach even
+that scope.
+
+
+------------------------------------------------------------
+THE GLUING OBSTRUCTION
+
+
+An earlier version of this paper asserted a corollary here: that coherently glued
+W2 histories on the DK lattice carry the area-Regge action, so that the
+Dittrich--Kogios theorem supplies linearised graviton dynamics. textbfThat
+inference does not follow, and we withdraw it. The obstruction was identified in
+hostile review [PR357] and is the shape-matching problem in its standard
+form [DittrichSpeziale2008].
+
+Contract two adjacent vertices through the intertwiner identity on a shared
+tetrahedron. If the asymptotics of both vertices are to be supplied by
+Theorem [thm:main], both sides must present coherent intertwiners
+iota_L,iota_R, and the contraction produces their overlap
+
+<iota_L|iota_R>
+proptointegral dgprod_f< j_f,n^L_f|g|j_f,n^R_f> .
+
+Every factor has modulus at most one, and the real exponent vanishes only if a
+single rotation carries all four normals on one side to those on the other, i.e.
+only if the two tetrahedral shapes agree. Otherwise compactness gives a strictly
+negative maximum and the overlap is exponentially suppressed, while the
+normalisations are only polynomial.
+
+This is exactly the freedom Dittrich and Kogios rely on. Their configuration
+space contains neighbouring four-simplices inducing different shapes on
+their shared tetrahedron, and the resulting shape-mismatch, area-metric degrees of
+freedom are integrated out in their derivation. So the chain faces a fork:
+
+ - keep the internal data in the coherent regime of Theorem [thm:main],
+and the shared shapes match, so the DK configuration space has not been
+obtained; or
+ - let the full intertwiner sum explore non-shape-matched data, and
+Theorem [thm:main] supplies no asymptotics for those components.
+
+The obstruction fixes a scale, it does not forbid the modes.
+The suppression above is stated at fixed mismatch. Writing
+|<iota_L|iota_R>|sim e^lambda E(delta) for a one-parameter
+shape deformation delta, we find numerically that E is quadratic to leading order,
+E(delta)=-c delta^2+O(delta^3) with c>0 fixed by the areas, so at the
+fluctuation scale
+delta=eps/sqrtlambda the total exponent lambda E=-c eps^2 is
+independent of lambda. Measured over lambda=100,400,1600 the value
+is constant to three figures at each eps
+(shape_mismatch_scale.py). Shape mismatches of order lambda^-1/2
+are therefore not exponentially suppressed in lambda, which is the scale
+at which effective spin-foam models carry their area-metric degrees of freedom.
+They remain finitely suppressed as a function of eps, and integrating those
+variables can still generate powers of lambda^-1/2; a single overlap does not
+fix their net weight in the glued amplitude.
+
+That does not restore the corollary. It says only that the obstruction bounds the
+size of the surviving mismatch rather than excluding it, so the route must
+be taken at the fluctuation scale rather than at fixed shape mismatch. Closing it
+still requires deriving the effective glued action after the shared intertwiner
+contraction, including the measure over the surviving mismatch modes and the
+stationary-phase prefactor, and showing that its quadratic Hessian on the DK
+lattice has the required continuum limit. That is not done here, and until it is,
+this paper proves a vertex theorem and nothing about the continuum. The remaining
+conditions noted in earlier drafts stand as well: Theorem [thm:main] does not
+control the bulk spin sum, and a history must lie in the support of the state
+sum.
+
+
+======================================================================
+THE MODEL'S OWN TETRAHEDRAL STATE
+
+
+The main theorem uses coherent boundary data. The model also selects its own
+tetrahedral state, the ground state psi of H_+, and it is natural to ask
+whether Theorem [thm:main] holds with iota_e replaced by psi. This is
+not implied by Lemma [lem:conc]: psi is not a coherent intertwiner, and the
+two states differ measurably (at j=8 the wrong-sign weight is
+1.5 x 10^-4 for psi and 1.9 x 10^-7 for iota). Two independent
+reviews found that conflating them is the easiest error to make in this chain.
+
+Exact reduction.
+Let s_1 be the smallest singular value of Z, so ZZ^dagpsi=s_1^2psi. By
+(eq:QZ),
+
+Qpsi=(Z^dag Zpsi-s_1^2psi)/(3sqrt3),    
+Var_psi Q=(1/27)Var_psi(Z^dag Z).
+
+When 2j+1notequiv0pmod3, s_1=0 and Chebyshev gives exactly
+
+p_<=0(psi)<=(Var_psi Q)/(< Qrangle_psi^2)
+=(Var_psi(Z^dag Z))/(< Z^dag Zrangle_psi^2).
+
+
+
+CONJECTURE.
+The selected state is an asymptotic eigenvector of Z^dag Z in relative
+variance: Var_psi(Z^dag Z)=o(< Z^dag Zrangle_psi^2)
+as jtoinfinity.
+
+
+Only o(1) is needed at leading order. Numerically, for j<=20, the reduction
+holds to relative precision 10^-12, the Chebyshev ratio falls approximately
+as 1.5 j^-3, < Q>/j^3to0.80, and the bound lies above the
+directly computed wrong-sign weight at every spin. A crude operator-norm estimate
+loses by j^4, so a proof must use the structure of psi.
+
+Uniqueness.
+For d=2j+1<=41: s_1>0 if and only if dequiv0pmod3; the smallest singular
+value is simple at every d, with gap between 1.5 and 182; and the nullity is
+exactly one when dnotequiv0pmod3. The pattern suggests a Z_3
+mechanism from the cyclic relabelling a-> b-> c, under which
+Zmapstow^pm1Z. We have not proved it. Since s_1 decays roughly by a
+factor 0.3 per step of three in d, reaching 3 x 10^-6 at d=39,
+numerics cannot settle uniqueness much beyond japprox25.
+
+
+======================================================================
+CLAIM BOUNDARY
+
+
+ - Proved. Theorem [thm:main] for coherent boundary data of the
+regular and DK simplices: the uniform coherent-intertwiner norm is proved in
+Lemma [lem:unif], and Propositions [prop:hess] and [prop:redef]
+are certified by the exact real-Hessian kernel argument of
+Section [sec:s4];
+Proposition [prop:r3] only as formal calculus on independent area
+variables; it is not established for the coherently glued amplitude,
+where shape matching leaves the length-Regge condition instead
+(Section [sec:r3]).
+ - Withdrawn. The continuum inference. Gluing coherent vertices
+forces matched shapes on shared tetrahedra, which is the freedom the
+Dittrich--Kogios configuration space requires, so their theorem cannot be applied
+to glued W2 histories as this paper constructs them (Section [sec:r4]).
+ - Conjectured. Conjecture [conj:eig]; uniqueness of the selected
+state for all j.
+ - Not claimed. Lorentzian signature; nonlinear curvature; control of
+the bulk spin sum of glued histories; dominance for boundary data other than
+coherent data of nondegenerate simplices (the Hessian is checked explicitly on
+two); a continuum theorem for generic triangulations; any exponential rate as a
+theorem; a derivation of general relativity.
+
+
+======================================================================
+RELATION TO EXISTING WORK
+
+
+The large-spin analysis of four-simplex amplitudes through coherent states and a
+doubled chiral action is due to Barrett et al. [BarrettEtAl2009], whose
+critical-point classification we use directly; the SU(2) 15j case
+is [BFH2009]. Baez, Christensen and Egan found numerical evidence that the Riemannian 10j is
+dominated by degenerate configurations [BCE2002], and Barrett and Steele's
+stationary-phase analysis accounts for it; the exceptional families that motivated
+the boundary analysis of Section [sec:boundary] are
+Barrett--Steele's [BarrettSteele2003]. Coherent intertwiners are
+Livine--Speziale's [LivineSpeziale2007]. The appearance of both orientations,
+as a cosine of the Regge action, and its cure by a projector selecting the
+Einstein--Hilbert sector are the subject of Engle's proper vertex [Engle2011].
+W2 is a close relative, differing in that the amplitude analysed here fixes
+orientation by the integration domain and uses no additional EH boundary
+projector. Causal restrictions go
+back to Livine and Oriti [LivineOriti2002]. The canonical measure is
+Chaharsough Shirazi and Engle's [ShiraziEngle2014]. The area-Regge route to
+gravitons is Dittrich and Kogios's [DittrichKogios2023], and area-angle
+variables are due to Dittrich and Speziale [DittrichSpeziale2008]. The algebra of
+the four-valent volume operator is the Racah algebra [Racah2019], and the
+quantum tetrahedron and the large-spin behaviour of its volume are due to Baez
+and Barrett [BaezBarrett1999] and Schliemann [Schliemann2013].
+
+
+======================================================================
+DISCUSSION
+
+
+The vertex does what an orientation-resolved vertex should. On nondegenerate
+coherent data it has one geometric saddle, with one orientation, and its phase is
+the area-Regge action. The degenerate configurations that dominate the
+Barrett--Crane 10j are present in W2 as the rank-one orbits, and they lose to
+the geometric saddle by a power of lambda because the canonical measure
+vanishes cubically on them.
+
+This is a vertex theorem. What stands between it and a derivation of gravity is
+what stands in front of every spin-foam model: control of the bulk spin sum on
+glued histories, where the flatness problem lives; nonlinear curvature; and
+Lorentzian signature. The Dittrich--Kogios result shows that the area-Regge route
+is not closed by flatness at the linearised level. Whether it survives beyond that
+is not addressed here.
+
+
+======================================================================
+REPRODUCIBILITY AND REVIEW TRAIL
+
+
+Frozen objects.
+The W2 stationary equations, Hessian and sign-concentration argument under review
+are frozen at commit 818822c841 on branch
+sol/w2-epsilon-restriction-audit-2026-09-18. Independent evidence is on
+branch worktree-astra-r2-adjudication-2026-09-19 (PR #350):
+w2_hessian.py and w2_hessian_dk.py (Section [sec:s4]);
+nongeometric_criticals.py (Proposition [prop:crit]);
+boundary_strata_res.py (Table [tab:strata]);
+re_hessian_definite.py (numerical conditioning cross-checks);
+xdx_identity.py, b1_moments.py and b4_mod3.py
+(Section [sec:selected]); R3-PREREGISTRATION.md and
+R3-VERIFICATION.md (Section [sec:r3]). The exact Hessian
+certificate is independently frozen on branch
+sol/w2-boundary-dominance-2026-09-19 as
+w2_rehessian_kernel_exact.py (SHA-256
+7935701ea3228e4649660ac40e2b724b64feebd3af6a443f06093f6b08fc472c)
+and W2-REHESSIAN-KERNEL-EXACT.log (SHA-256
+a806adb55d2eb9e5f87117e69a720e066fde4cbfb4058c39cf8a661ebf651ffe).
+
+Reviews that changed this text.
+ - PR #355, hostile review of S4/S5: established the analytic Hessian, the
+factor 72 and the six nulls; identified the conflation of coherent and
+selected states (Section [sec:selected]); raised the boundary objection
+answered by Theorem [thm:boundary]; required the admissible sequence
+j_f=lambda k_f+O(1).
+ - A context-free review of the sign-concentration argument: the
+zero-eigenspace correction (p_<=0 rather than p_-), polynomial
+absorption of the super-polynomial tail against the volume insertions, and the
+requirement that the moment statement hold for each fixed n.
+ - A context-free review commissioned on the frozen commit returned
+UNRESOLVED because it could not obtain the manuscript, and reviewed the brief
+instead. Two of its findings applied regardless and are incorporated: the
+Livine--Speziale norm is an asymptotic evaluation rather than a stated uniform
+inequality, which is now said explicitly in Lemma [lem:conc] together with
+the finiteness that makes it sufficient; and the Dittrich--Kogios import must
+name their background-field expansion and their own deferral of effective
+spin-foam suppression terms, which Section [sec:r4] now does.
+ - A second context-free review of the repaired manuscript [PR358]
+returned ACCEPT_WITH_SCOPE_HARDENING and produced the present version. It
+found the k=1 case of Lemma [lem:coeff] invalid --- a scalar first moment
+had been substituted for a vector norm --- and supplied the interpolation
+argument that replaces it, which also yields the O(lambda^-1/2+varepsilon)
+remainder without appealing to the unpublished companion. It found that the
+continuum withdrawal had not been propagated into Section [sec:r3], where
+independently varied areas are unavailable on the shape-matched sector; that
+section is now labelled as formal calculus, with the length-Regge condition
+recorded as what glued W2 actually gives. It hardened the shape-mismatch scale
+claim from ``not suppressed'' to ``not exponentially suppressed'', sharpened the
+uniformity discussion in Lemma [lem:conc] around the O(1) closure defect,
+required the boundary region in Theorem [thm:boundary] to keep a positive
+distance from the rank-one orbits, and noted that the evidence bundle claimed a
+completeness it did not have. It checked and cleared the rank-one absolute-value
+estimate, the cubic cofactor count, the separation of boundary-state from
+X-space statements, and the repaired citations.
+ - The R4 hostile review [R4review]: placement of the
+degenerate-dominance condition, which Theorem [thm:boundary] now discharges at
+the vertex, and the admissibility and area-independence conditions of
+Section [sec:r4].
+ - A context-free review of the frozen manuscript [PR357] returned
+REJECT and is the reason for the present version. It identified the gluing
+obstruction of Section [sec:r4], which removed the continuum corollary and
+the former subtitle; the 2j_f+1 phase defect, repaired by using A_f=2j_f; the
+insufficiency of the earlier finiteness argument in Lemma [lem:conc]; the
+unproved coefficient ratios behind the O(lambda^-1) remainder; the central
+sign lifts in Proposition [prop:crit]; the evidentiary status of
+Propositions [prop:hess] and [prop:redef]; a spliced bibliography entry
+for the Racah algebra; and an overstatement of what Baez, Christensen and Egan
+proved. It also checked and cleared the Taylor remainder of (eq:reduce),
+the direction of the orthogonal-projection inequality used in
+Lemma [lem:conc], and the naming of the numerical conditioning quantities
+retained in Section [sec:s4].
+ - An earlier hostile-review brief withdrew two of its own claims: that
+O(lambda^-infinity) requires constants uniform in n (false), and that the
+chiral blocks might couple (excluded by (eq:action)).
+ - A later independent boundary-dominance lane supplied an exact
+sum-of-squares/kernel certificate for the real chiral Hessian on both the
+regular and DK backgrounds. Section [sec:s4] now uses that certificate to
+remove the last floating-point nondegeneracy hypothesis: strict negativity of
+Re H modulo gauge implies invertibility of the complex gauge-fixed Hessian.
+
+Retracted claims.
+Five earlier claims of this programme were retracted, including a sign-structure
+claim (PR #351). The measured e^-0.995j law is not claimed.
+
+
+======================================================================
+REFERENCES
+
+[BarrettEtAl2009] J. W. Barrett, R. J. Dowdall, W. J. Fairbairn,
+H. Gomes and F. Hellmann, emphAsymptotic analysis of the EPRL four-simplex
+amplitude, J. Math. Phys. 50 (2009) 112504.
+[BFH2009] J. W. Barrett, W. J. Fairbairn and F. Hellmann,
+Quantum gravity asymptotics from the SU(2) 15j symbol,
+Int. J. Mod. Phys. A 25 (2010) 2897.
+[BCE2002] J. C. Baez, J. D. Christensen and G. Egan,
+Asymptotics of 10j symbols, Class. Quant. Grav. 19 (2002) 6489.
+[BarrettSteele2003] J. W. Barrett and C. M. Steele,
+Asymptotics of relativistic spin networks,
+Class. Quant. Grav. 20 (2003) 1341.
+[DittrichKogios2023] B. Dittrich and A. Kogios,
+From spin foams to area metric dynamics to gravitons,
+Class. Quant. Grav. 40 (2023) 095011, arXiv:2203.02409.
+[DittrichSpeziale2008] B. Dittrich and S. Speziale,
+Area-angle variables for general relativity,
+New J. Phys. 10 (2008) 083006.
+[Engle2011] J. Engle,
+A proposed proper EPRL vertex amplitude,
+Phys. Rev. D 87 (2013) 084048.
+[LivineOriti2002] E. R. Livine and D. Oriti,
+Implementing causality in the spin foam quantum geometry,
+Nucl. Phys. B 663 (2003) 231.
+[LivineSpeziale2007] E. R. Livine and S. Speziale,
+A new spinfoam vertex for quantum gravity,
+Phys. Rev. D 76 (2007) 084028.
+[Racah2019] N. Crampé, L. Poulain d'Andecy and L. Vinet,
+emphTemperley--Lieb, Brauer and Racah algebras and other centralizers of
+mathfraksu(2), arXiv:1905.06346.
+[KaminskiSahlmann2019] W. Kamiński and H. Sahlmann,
+The Hessian in spin foam models,
+Ann. Henri Poincaré 20 (2019) 3927, arXiv:1906.05258.
+[ConradyFreidel2008] F. Conrady and L. Freidel,
+On the semiclassical limit of 4d spin foam models,
+Phys. Rev. D 78 (2008) 104023.
+[BaezBarrett1999] J. C. Baez and J. W. Barrett,
+The quantum tetrahedron in 3 and 4 dimensions,
+Adv. Theor. Math. Phys. 3 (1999) 815.
+[Schliemann2013] J. Schliemann,
+emphThe large-volume limit of a quantum tetrahedron is a quantum harmonic
+oscillator, Class. Quant. Grav. 30 (2013) 235018, arXiv:1307.5979.
+[Regge1961] T. Regge,
+General relativity without coordinates,
+Nuovo Cimento 19 (1961) 558.
+[ShiraziEngle2014] A. Chaharsough Shirazi and J. Engle,
+Purely geometric path integral for spin foams,
+Class. Quant. Grav. 31 (2014) 075010.
+[W2vertex] T. Croydon-McRae,
+emphAn oriented finite-spin vertex with retained tetrahedral geometry:
+construction, canonical measure, and the gluing obstruction,
+preprint v0.2 (2026), doi:10.6084/m9.figshare.33936508.
+[PR355] Hostile review of W2 S4/S5, physics-lane PR #355, branch
+claude/review-w2-s4-s5-hostile-2026-09-19, commit 92aea65855.
+[PR357] Context-free hostile review of this manuscript at commit
+c2d47cfc, 19 September 2026; disposition REJECT.
+[PR358] Second context-free hostile review of this manuscript,
+19 September 2026; disposition ACCEPT_WITH_SCOPE_HARDENING.
+[R4review] Hostile review of R4,
+orthogonal-validation/astra-r2-adjudication-2026-09-19/R4-HOSTILE-REVIEW.md.
+
