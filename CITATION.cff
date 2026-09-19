@@ -6,8 +6,11 @@ authors:
     given-names: "Tobias"
 repository-code: "https://github.com/Tobillicious/bcrd"
 url: "https://github.com/Tobillicious/bcrd"
-date-released: 2026-09-19
+date-released: 2026-09-20
 identifiers:
+  - type: doi
+    value: "10.6084/m9.figshare.33943363.v1"
+    description: "Five-rung BCRD quantum-gravity synthesis, Figshare Version 1"
   - type: doi
     value: "10.6084/m9.figshare.33940978.v2"
     description: "Oriented Area-Regge Asymptotics of a Native Four-Simplex Vertex, Figshare Version 2"
@@ -18,18 +21,23 @@ identifiers:
     value: "10.6084/m9.figshare.33716677"
     description: "First public archival BCRD priority release"
 keywords:
-  - quantum dynamics
+  - quantum gravity
   - quantum geometry
   - spin foams
   - area Regge calculus
   - coherent intertwiners
+  - shape matching
+  - linearised general relativity
   - Racah recoupling
   - BCRD
 abstract: >
   Boundary-Complete Relational Dynamics (BCRD) is a research programme studying
-  relational quantum dynamics, recoupling, and candidate quantum-geometric
-  constructions. This public repository contains curated publication snapshots,
-  reproducibility artifacts, release metadata, and frozen provenance. The
-  September 2026 four-simplex paper is explicitly scoped to a Riemannian,
-  leading-large-spin, single-vertex result and does not by itself derive a
-  continuum limit or four-dimensional general relativity.
+  relational quantum dynamics, recoupling and quantum geometry. The September
+  2026 five-rung synthesis establishes, at an explicitly Riemannian,
+  coherent-nondegenerate, admissible-large-spin, near-flat, local-branch and
+  quadratic scope, a controlled four-dimensional quantum-geometric
+  semiclassical sector whose leading metric dynamics are those of linearised
+  general relativity. The public repository contains curated publication
+  snapshots, reproducibility artifacts, release metadata and frozen provenance;
+  it does not present the model as a complete Lorentzian, nonperturbative or
+  ultraviolet-finite final theory.

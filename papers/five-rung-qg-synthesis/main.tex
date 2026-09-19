@@ -1,0 +1,368 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=26mm]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{bm}
+\usepackage{authblk}
+\definecolor{linkblue}{RGB}{20,67,110}
+\hypersetup{colorlinks=true,linkcolor=linkblue,citecolor=linkblue,urlcolor=linkblue,
+  pdftitle={Boundary-Complete Relational Dynamics as a Four-Dimensional Quantum-Gravity Model},
+  pdfauthor={Tobias Croydon-McRae}}
+\setlength{\parindent}{1.25em}
+\setlength{\parskip}{0.2em}
+\setlist{nosep}
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\SUtwo}{SU(2)}
+\newcommand{\SpinFour}{\mathrm{Spin}(4)}
+\newcommand{\Dom}{\mathcal D}
+\newcommand{\Wtwo}{\mathrm{W2}}
+
+\title{\textbf{Boundary-Complete Relational Dynamics as a\\Four-Dimensional Quantum-Gravity Model}\\[0.5em]
+\large A five-rung derivation to the linearised Einstein sector in a coherent near-flat Riemannian regime}
+\author{Tobias Croydon-McRae}
+\affil{Independent researcher, Aotearoa New Zealand}
+\date{Preprint draft v0.2 --- 20 September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We present the programme-level quantum-gravity claim of Boundary-Complete Relational Dynamics (BCRD). The claim does not rest on the W2 four-simplex vertex in isolation. It rests on a five-rung chain: (I) a finite-spin, orientation-resolved amplitude assigned to a four-simplex and retaining the full tetrahedral intertwiner geometry; (II) on coherent nondegenerate Euclidean four-simplex data, a controlled large-spin sector with one retained oriented Regge exponential; (III) exact full-intertwiner sewing, whose doubled coherent contraction gives a positive weak shape-mismatch Gaussian at the fluctuation scale; (IV) near the selected nondegenerate branch, a local kernel theorem identifying zero mismatch with the length-geometric sector; and (V) on the regular centrally subdivided Dittrich--Kogios (DK) lattice near a flat background, a quadratic Schur-complement reduction in which the non-length modes remain massive and the leading two-derivative metric operator is the linearised Einstein--Hilbert graviton operator. In the explicitly restricted sense used here---a quantum-geometric model with a controlled semiclassical gravitational sector---this supports describing BCRD as a four-dimensional quantum-gravity model.
+
+The claim is not a statement of mathematical, ultraviolet, or physical completeness. The gravitational result is Riemannian, coherent, nondegenerate, large-spin, near-flat, fluctuation-ball, local-branch and quadratic, and is established only on the regular/centrally-subdivided DK setting used by the calculation. It does not establish a BCRD graviton propagator or pole, Lorentzian completion, nonlinear continuum Einstein dynamics, arbitrary-triangulation independence, renormalisation, a nonperturbative DK continuum limit, or universal finiteness. The full-sum lane already proves divergence on a generalized dagger-dipole two-complex; by contrast, the stronger strict-simplicial $S^4=\partial\Delta_5$ divergence is only a candidate because the exact twelve-dimensional reduced full-carrier shape saddle has not yet been proved stationary and nondegenerate. Neither result is a premise of the five-rung theorem.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+A useful quantum-gravity claim should say what has been constructed, what gravitational behaviour has been derived, and what remains unresolved. In spin-foam approaches these questions are easily conflated. A single four-simplex amplitude may have the correct Regge phase but fail under gluing; a glued state sum may retain non-geometric modes; a semiclassical discrete action may fail to yield the Einstein graviton; and a correct low-energy sector need not imply a finite nonperturbative partition sum.
+
+BCRD was developed under the opposite discipline: separate these gates and let each fail independently. Earlier parts of the programme studied finite relational quantum dynamics, operational records, reconstructive closure and algebraic identifiability. Those results supplied the finite Hilbert-space and recoupling architecture but did not themselves constitute gravity. The later W2 construction supplied an orientation-resolved four-dimensional amplitude, and subsequent work closed the gluing and linearised-gravity interfaces at a sharply stated scope.
+
+The purpose of this paper is to place those results in one claim-bearing object. We use the term \emph{quantum-gravity model} descriptively, not rhetorically. ``Boundary-Complete'' is the programme's name; it does not mean ultraviolet-complete or final-theory-complete. Where this manuscript speaks of completing a chain, it means only that the five stated interfaces compose at their common scoped regime.
+
+\begin{definition}[Quantum-gravity model, as used here]\label{def:qgmodel}
+A model qualifies for the claim made in this paper if it has: (a) a quantum amplitude or state-sum structure assigned to four-dimensional cellular data and carrying nontrivial quantum-geometric degrees of freedom; (b) a controlled sector in which those amplitudes reproduce a gravitational discrete action; (c) a consistent gluing rule for adjacent cells; and (d) a controlled limit in which the leading propagating metric dynamics agree with Einstein gravity. This definition does not by itself require ultraviolet finiteness, triangulation independence, Lorentzian completion, phenomenological confirmation or a nonperturbative continuum fixed point.
+\end{definition}
+
+Under this definition the claim of the paper is simple: the five-rung BCRD/W2 chain satisfies (a)--(d) at the stated Riemannian near-flat scope. W2 is therefore a load-bearing constituent of the BCRD quantum-gravity construction, but the composed model-level claim belongs to BCRD rather than to the isolated vertex.
+
+\section{Programme provenance: finite relational dynamics to recoupling}
+
+BCRD began as a finite quantum-information programme asking which records are sufficient to reproduce future operational predictions. The public sequence established, among other results, finite-data non-identification of effective coarse dynamics, exact reconstructive autonomous closure in finite singlet systems, and algebraic criteria separating genuine dynamical information from basis-dependent recoupling data~\cite{BCRDarchive}.
+
+Those papers matter here for two reasons. First, they fix the microscopic discipline: finite Hilbert spaces, explicit instruments, exact channels or amplitudes, and auditable composition rules. Second, they isolate the invariant $\SUtwo$ recoupling and volume structures later used by the four-dimensional construction. They do \emph{not} imply spacetime or gravity on their own. In particular, earlier candidate pentagon or coarse-record arguments that did not survive hostile review are not used as premises of the theorem below.
+
+This separation is important. The quantum-gravity claim in this paper is carried by the five rungs in Sections~\ref{sec:r1}--\ref{sec:r5}; the finite-dynamics work establishes the provenance of the construction and the rules under which those rungs were tested.
+
+\subsection*{Scope contract imported by the five-rung theorem}
+Unless a narrower statement is made explicitly, the gravitational chain below is restricted to: Riemannian/Euclidean signature; Livine--Speziale coherent, nondegenerate boundary data; admissible large-spin sequences; the local fluctuation ball $q=q_0+\epsilon/\sqrt\lambda$; leading and quadratic fluctuation order; one selected local area-to-length branch; and the regular or centrally subdivided DK backgrounds used by the frozen calculations. The continuum comparison is near flatness: the controlled curvature-per-hinge window shrinks with spin (schematically $|\epsilon_h|\ll j^{-1/2}$). The frozen curvature diagnostics report Gaussian suppression $\exp[-\kappa j\sum_h\epsilon_h^2]$ with $\kappa$ of order $0.0088$--$0.017$ in the tested conventions, and an $O(1)$ forced-curvature test of roughly $e^{-0.07j}$. Fixed $O(1)$ curvature is therefore outside the established GR regime. Signed central lifts in the stationary set are included rather than silently discarded.
+
+The synthesis imports the post-review projector-free W2 definition based on the orientation domain and native positive cofactor/volume weight. It does not assume the stronger proper/EH-selector equality. The earlier ``Hypothesis N'' was removed as a load-bearing dependency in the post-review source audit. The conjecture that the model-selected tetrahedral state becomes an asymptotic eigenstate (``Conjecture-eig'') remains open; it has finite-spin numerical support through the tested range $j\le20$ but no general proof. The five-rung theorem below uses coherent boundary data and does not promote that conjecture to a theorem. No Poisson-tail or bulk-spin tail theorem is imported.
+
+\section{Rung I: an oriented finite-spin amplitude on a four-simplex}\label{sec:r1}
+
+The local four-dimensional object is W2, an orientation-resolved Riemannian four-simplex amplitude. Let $X_a^\pm\in\SUtwo$, $a=0,\dots,4$, and define
+\begin{equation}
+  N_a=X_a^-(X_a^+)^{-1}\in \SUtwo\cong S^3\subset\mathbb R^4.
+\end{equation}
+For each omitted vertex define the orientation pseudoscalar
+\begin{equation}
+  \Omega_a=(-1)^a\det(N_0,\ldots,\widehat{N_a},\ldots,N_4),
+\end{equation}
+and the open orientation domain
+\begin{equation}
+  \Dom_\sigma=\{X:\operatorname{sgn}\Omega_a(X)=\sigma\ \text{for all }a\},
+  \qquad \sigma=\pm.
+\end{equation}
+The vertex is a linear functional on the full doubled tetrahedral intertwiner space,
+\begin{equation}\label{eq:w2vertex}
+  \mathcal A_{v,\sigma}[\Psi]
+  =\int_{\Dom_\sigma}dX\,|\Omega_c(X)|\,
+  \mathcal I_X\!\left[\left(\bigotimes_{e\subset v}\widehat T_e\right)\Psi\right],
+  \qquad
+  \widehat T_e\propto |Q_e|^{1/2},
+\end{equation}
+where $Q_e=\mathbf J_1\cdot(\mathbf J_2\times\mathbf J_3)$ is the four-valent volume operator. The construction retains the complete tetrahedral intertwiner algebra rather than projecting each tetrahedron onto a one-dimensional Barrett--Crane line~\cite{W2vertex}. The cofactor and volume insertions reproduce the canonical purely geometric measure at the declared affine discretisation scope~\cite{ShiraziEngle2014,W2vertex}.
+
+The orientation restriction acts on histories rather than on the boundary state. Consequently the amplitude remains linear, while the two opposite orientations are separated by the sign of the native geometric cofactor. This is closely related in purpose to proper-vertex constructions that isolate one gravitational sector, but the mechanism is different~\cite{Engle2013}.
+
+\begin{proposition}[Rung I]
+W2 is a finite-spin quantum amplitude assigned to an oriented four-simplex, carrying nontrivial tetrahedral intertwiner geometry, a gauge-invariant orientation split, and the native volume/cofactor weight at the stated discretisation scope.
+\end{proposition}
+
+This rung supplies the quantum object and tetrahedral geometric data. It does \emph{not} assert that arbitrary finite-spin data on the five tetrahedra determine one four-dimensional metric simplex. Local four-simplex metricity enters only on the coherent nondegenerate semiclassical branch used in Rung II; finite-spin local closure, nondegeneracy and orientation alone are insufficient for that stronger statement.
+
+\section{Rung II: one nondegenerate oriented Regge saddle}\label{sec:r2}
+
+Take Livine--Speziale coherent intertwiners for a nondegenerate Euclidean four-simplex and an admissible large-spin sequence
+\begin{equation}
+  j_f=\lambda k_f+O(1),\qquad \lambda\to\infty.
+\end{equation}
+The doubled coherent action separates into two chiral pieces. Its zero set consists of pairings of the two chiral reconstruction solutions. The cross pairings reconstruct the two opposite four-orientations; the same/same pairings are rank-one and lie on the degenerate boundary. The orientation domain retains one cross pairing. The native measure vanishes cubically on the rank-one locus, making it subleading to the regular geometric saddle~\cite{W2asym,BarrettEtAl2009,BFH2009}.
+
+The resulting oriented asymptotic has the form
+\begin{equation}\label{eq:reggeasym}
+  \mathcal A_{v,\sigma}[\Psi_{\rm coh}]
+  = C_v(k)\,\lambda^{-9/2}
+  \exp\!\left[i\sigma\,2\sum_f j_f\Theta_f\right]
+  \left(1+o(1)\right),
+  \qquad C_v(k)\neq0,
+\end{equation}
+for the regular and DK simplex backgrounds covered by the frozen analysis, with the signed central lifts included in the critical-point accounting. The phase is the oriented area-Regge four-simplex action. At the repaired boundary scope the accessible same/same rank-one edge is polynomially subleading to the interior geometric saddle ($\lambda^{-6}$ versus $\lambda^{-9/2}$); the remaining non-rank-one boundary strata are exponentially suppressed in the stated coherent neighbourhood. The single-exponential structure is the key point: the desired geometry is not merely one term in an uncontrolled cosine.
+
+\begin{proposition}[Rung II]
+On coherent nondegenerate Euclidean four-simplex boundary data, for the admissible large-spin sequences and local neighbourhoods covered by the frozen asymptotic analysis, the W2 vertex has one retained geometric saddle in each orientation domain, with oriented Regge phase and a subleading accessible rank-one boundary contribution.
+\end{proposition}
+
+This establishes a semiclassical gravitational building block. It still does not establish a state sum: neighbouring four-simplices must be sewn through the full boundary Hilbert space.
+
+\section{Rung III: full-intertwiner gluing gives native weak shape matching}\label{sec:r3}
+
+Let two W2 four-simplices meet on a tetrahedron $\tau$. Canonical sewing inserts the identity on the full doubled tetrahedral carrier. On doubled coherent states the shared-tetrahedron kernel is
+\begin{equation}\label{eq:edgekernel}
+  K_\tau
+  =\langle\iota_L\otimes\bar\iota_L|U_\tau|
+  \iota_R\otimes\bar\iota_R\rangle
+  =\left|\langle\iota_L|U_\tau\iota_R\rangle\right|^2,
+\end{equation}
+where $U_\tau$ contains the incidence/duality convention required to identify the two boundary Hilbert spaces. The single-chiral Berry phase cancels before the asymptotic expansion.
+
+For nearby closed normal data at fixed face areas, write the physical shape mismatch as $\delta q$. Optimising over the common rotation gives
+\begin{equation}\label{eq:gluemetric}
+  -\log K_\tau
+  = \frac{\lambda}{2}\,g_\tau(\delta q,\delta q)
+  +O(\lambda|\delta q|^3)+O(1),
+\end{equation}
+with
+\begin{equation}
+  g_\tau(\delta q,\delta q)
+  =\min_{\omega\in\mathbb R^3}
+  \sum_{f\subset\tau} k_f
+  |\delta n_f-\omega\times n_f|^2.
+\end{equation}
+After quotienting common rotations, a nondegenerate tetrahedron with four fixed face areas has two physical shape directions, and $g_\tau$ is positive definite on them. Hence fixed mismatch is exponentially suppressed, but mismatch of fluctuation size
+\begin{equation}
+  \delta q=\frac{\epsilon}{\sqrt\lambda}
+\end{equation}
+retains a finite Gaussian weight. This is weak rather than strong shape matching.
+
+\begin{proposition}[Rung III]
+At the coherent nondegenerate fluctuation scale $q=q_0+\epsilon/\sqrt\lambda$, exact full-intertwiner W2 sewing generates, without an externally chosen matching parameter, a positive Gaussian on the two physical fixed-area shape-mismatch directions of each shared tetrahedron in the tested branch. For the regular tetrahedron the quotient eigenvalues are $\{2/3,3/2\}$. The natural mismatch width is $O(\lambda^{-1/2})$.
+\end{proposition}
+
+This rung is the point at which the single-simplex result becomes a genuine glued construction. It also identifies the extra area-metric modes that must be treated rather than silently removed.
+
+\section{Rung IV: the global zero set is the length-geometric sector}\label{sec:r4}
+
+For each shared tetrahedron define a local constraint map
+\begin{equation}
+  C_\tau(A)=q_{\tau\sigma}(A)-q_{\tau\sigma'}(A),
+\end{equation}
+where $q$ denotes two local tetrahedral shape coordinates at fixed face areas. Near the nondegenerate DK branch, the ten triangle areas of each four-simplex determine its ten edge lengths locally: the area--length Jacobian of the frozen DK simplex is nonsingular,
+\begin{equation}
+  \det\frac{\partial A_f}{\partial l_e}=\frac{\sqrt3}{2304}\neq0.
+\end{equation}
+Thus four face areas plus the two shape coordinates determine the six edge lengths of a shared tetrahedron locally.
+
+If $C_\tau=0$ on every shared tetrahedron, the edge lengths induced by neighbouring four-simplices agree. On a connected triangulation, within the selected local branch, they propagate to a locally consistent patchwise edge-length assignment. Conversely any locally consistent patchwise length assignment on the selected branch gives $C_\tau=0$ for every $\tau$. Therefore
+\begin{equation}\label{eq:kernel}
+  \bigcap_\tau\ker C_\tau=\mathcal L,
+\end{equation}
+where $\mathcal L$ is the local length-geometric subspace. Since every local quotient metric is positive,
+\begin{equation}
+  G_{\rm global}=\sum_\tau C_\tau^T G_\tau C_\tau
+\end{equation}
+vanishes precisely on $\mathcal L$ and is positive on the complementary non-length sector.
+
+The glued large-spin exponent consequently has the local form
+\begin{equation}\label{eq:gluedaction}
+  i\lambda S_{\rm AR}(A)
+  -\frac{\lambda}{2}\sum_\tau C_\tau(A)^TG_\tau C_\tau(A),
+\end{equation}
+up to polynomial prefactors and higher fluctuation orders.
+
+\begin{proposition}[Rung IV]
+Near the selected nondegenerate DK branch, local area--length invertibility and matching of the two tetrahedral shape variables imply that the zero set of the native W2 gluing Gaussian is exactly the local length-geometric sector: the area data are induced locally, on the selected branch, by one consistent patchwise edge-length assignment over the connected patch.
+\end{proposition}
+
+This is a local-branch statement, not a branch-global uniqueness or arbitrary-triangulation theorem. Numerical matrix/kernel cross-checks at sampled momenta are consistency tests, not a claim of an independently proved all-momentum kernel identity. The proposition is the bridge from the quantum area construction to the metric sector required for the DK comparison.
+
+\section{Rung V: the leading metric dynamics is Einstein--Hilbert}\label{sec:r5}
+
+Linearise the glued quadratic action around the flat regular centrally subdivided DK background and split the area fluctuations into
+\begin{equation}
+  x=\text{length-metric modes},\qquad
+  z=\text{non-length / area-metric modes}.
+\end{equation}
+Write the Area-Regge Hessian as
+\begin{equation}
+  H_{\rm AR}=\begin{pmatrix}A&B\\ B^T&C\end{pmatrix}.
+\end{equation}
+In coordinates adapted to the exact kernel~\eqref{eq:kernel}, the W2 Gaussian adds no $xx$ or $xz$ term; it adds a positive mass on $z$. In the complex phase-Hessian convention,
+\begin{equation}
+  H_{\Wtwo}=\begin{pmatrix}A&B\\B^T&C+iG\end{pmatrix},\qquad G>0.
+\end{equation}
+The non-length block is invertible, and eliminating $z$ gives the Schur complement
+\begin{equation}\label{eq:schur}
+  H_{\rm eff}^{\Wtwo}
+  =A-B(C+iG)^{-1}B^T.
+\end{equation}
+
+Dittrich and Kogios show on the same regular centrally subdivided hypercubic lattice that the length-metric block begins at the linearised Einstein--Hilbert order, while the non-length modes are massive and the metric/non-length mixing begins at two lattice derivatives~\cite{DittrichKogios2023}. In small lattice momentum $p$,
+\begin{equation}
+  A=A_2p^2+O(p^4),\qquad
+  B=O(p^2),\qquad
+  C=C_0+O(p^2),
+\end{equation}
+with $C_0$ massive on the non-length sector. Since the W2 gluing mass has a finite positive $p\to0$ limit,
+\begin{equation}
+  (C+iG)^{-1}=O(p^0),
+\end{equation}
+and therefore
+\begin{equation}\label{eq:EH}
+  H_{\rm eff}^{\Wtwo}=A_2p^2+O(p^4).
+\end{equation}
+The $p^2$ coefficient is the DK length-metric / linearised Einstein--Hilbert graviton block. Direct transverse-traceless fits on the tested DK data reproduce equality of the W2 and Area-Regge $p^2$ coefficient to about $10^{-6}$ under the tested conventions. W2 may modify higher-derivative terms but does not create or remove the leading two-derivative kinetic operator at this scope. This is a quadratic Hessian/operator statement; the BCRD analysis has not independently constructed a graviton propagator or pole.
+
+\begin{theorem}[Five-rung BCRD quantum-gravity result]\label{thm:five}
+Use the post-review projector-free W2 definition. Restrict to Riemannian signature, coherent nondegenerate Euclidean four-simplex data, admissible large-spin sequences, the fluctuation ball $q=q_0+\epsilon/\sqrt\lambda$, the selected local area-to-length branch, a flat/near-flat regular centrally subdivided DK background, and quadratic fluctuation order. Then:
+\begin{enumerate}[label=(\roman*)]
+\item W2 supplies a finite-spin, orientation-resolved quantum amplitude on a four-simplex retaining the full tetrahedral intertwiner geometry;
+\item on the coherent geometric branch its retained nondegenerate saddle carries one oriented Regge exponential;
+\item exact full-intertwiner sewing generates a native positive weak shape-matching Gaussian;
+\item locally on the selected DK branch, the zero set of that Gaussian is exactly the length-geometric sector; and
+\item eliminating the complementary non-length modes leaves the leading $p^2$ linearised Einstein--Hilbert graviton operator unchanged.
+\end{enumerate}
+Therefore BCRD contains a controlled four-dimensional quantum-geometric semiclassical sector whose leading metric dynamics are those of linearised general relativity in this scope.
+\end{theorem}
+
+\begin{corollary}[Programme-level classification]
+Under Definition~\ref{def:qgmodel}, Theorem~\ref{thm:five} supports describing BCRD as a four-dimensional quantum-gravity model at the theorem's stated Riemannian, near-flat, quadratic scope.
+\end{corollary}
+
+The corollary is the central claim of this paper. It is a classification of the constructed and derived dynamics, not a claim that every unresolved mathematical property of the model has already been solved.
+
+\section{First higher-derivative correction}
+
+Dittrich and Kogios identify the first correction in pure Area Regge, after the fixed dualisation and projection conventions, as a $p^4$ quadratic form in the linearised Weyl curvature~\cite{DittrichKogios2023}. A separate BCRD development lane derives the analogous statement after inserting the W2 non-length mass, with a W2-modified supermetric. That W2-specific $p^4$/Weyl statement remains an extension candidate awaiting independent review and is not propagated into Theorem~\ref{thm:five}. The central quantum-gravity claim requires only the reviewed protection of the $p^2$ Einstein--Hilbert block in Eq.~\eqref{eq:EH}.
+
+\section{Why this is a BCRD claim rather than a W2-alone claim}
+
+The distinction is structural. W2 is the local four-simplex amplitude and its gluing prescription. BCRD is the programme that fixes the finite relational Hilbert-space architecture, recoupling and geometric observables, the orientation-resolved vertex, the gluing rule, and the downstream comparison to gravitational dynamics. The five-rung result is therefore a composition theorem across the programme.
+
+Saying ``W2 is a complete quantum-gravity theory'' would collapse several logically separate statements into the vertex name and would obscure the open nonperturbative questions. Saying ``BCRD is a quantum-gravity model'' identifies the actual claim-bearing object: the composed construction whose controlled sector reaches the Einstein graviton.
+
+The same distinction separates a \emph{quantum-gravity model} from a \emph{complete final theory of quantum gravity}. The latter would reasonably invite demands for Lorentzian signature, nonlinear continuum control, renormalisation, ultraviolet definition, phenomenology and empirical comparison. None of those is smuggled into Theorem~\ref{thm:five}.
+
+\section{Full spin sums: an important nonperturbative boundary}\label{sec:fullsums}
+
+The five-rung theorem concerns a controlled semiclassical sector and the DK quadratic Hessian/refinement comparison. It does not establish absolute finiteness of the unregularised spin sum on every finite complex.
+
+The full-sum lane has one banked negative result and one stronger candidate. For an opposite-orientation two-vertex dagger dipole, the fixed-spin contracted block is exactly a norm square and the native $(2j_f+1)^2$ face weights force the geometric-ray terms to grow rather than tend to zero. Thus the dagger-dipole spin sum \texttt{DIVERGES}, and universal finiteness over all generalized two-complexes \texttt{FAILS}. The dipole is a generalized spin-foam two-complex rather than a strict abstract simplicial complex.
+
+A stronger reflection-positive construction on the strict simplicial four-sphere $\partial\Delta^5$ survives its combinatorial, reflection, area--length and face-weight checks, the divergence theorem is \emph{not} yet proved. The missing step is finite and explicit: derive the exact EH-projected full-carrier coherent-frame exponent for the three internal tetrahedra and show that the twelve reduced doubled shape directions have zero gradient and a nondegenerate stationary-phase Hessian (equivalently, one six-dimensional chiral block plus its conjugate). Until that calculation passes, the strict-simplicial $S^4$ spin-sum result is \texttt{CANDIDATE DIVERGENCE}, while universal strict-simplicial finiteness remains open. The periodic DK fixed-complex spin sum and nonperturbative DK quantum refinement also remain open.
+
+These full-sum facts sharpen rather than supply the five-rung theorem. They prevent the stronger statement that the inherited microscopic W2 weights already define a universally finite ultraviolet completion. Any future change of measure, gauge fixing, renormalisation, $q$-deformation or other regularisation would constitute an additional microscopic completion and must be stated as such.
+
+\section{Lorentzian status}
+
+The theorem in this paper is Riemannian. A separate Lorentzian implementation imports the Gel'fand--Naimark principal-series boost data and has been compared against \texttt{sl2cfoam-next}. At the tested point $j=1$, $\gamma=1/2$, boundary intertwiner $i=0$, and shells $\Delta l=0,\ldots,3$, the corrected native vertex agrees with the reference implementation at relative differences below $10^{-6}$. The earlier $37$--$51\%$ discrepancy at $\Delta l=1,\ldots,3$ was traced to a duplicated boost-basis phase convention rather than to a physical disagreement. After removing the extra Speziale phase from the already canonical native basis, all sixteen tested $\Delta l=1$ booster components agree with the reference assembly at the numerical precision of the comparison, and the tested vertex values at $\Delta l=0,\ldots,3$ agree at relative differences below $10^{-6}$.
+
+This is a consistency check with the imported EPRL/Lorentzian representation data, not a derivation of Lorentzian structure from BCRD and not a Lorentzian completion of Theorem~\ref{thm:five}. The shell sums are not yet shown convergent, the comparison is at one low-spin test point, and no Lorentzian analogue of the complete five-rung theorem is claimed here.
+
+\section{Scope, limitations and open problems}
+
+The result of this paper is deliberately narrower than a complete theory of quantum gravity. The main open problems are:
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{Lorentzian completion.} Extend the full five-rung chain, not only the vertex implementation, to Lorentzian signature with independently controlled shell sums and asymptotics.
+\item \textbf{Beyond the quadratic near-flat branch.} Establish nonlinear dynamics, generic backgrounds and control beyond the selected local area-to-length branch and fluctuation ball.
+\item \textbf{Nonperturbative refinement and ultraviolet definition.} Determine the fixed-complex and refinement behaviour of the full quantum state sum. The strict-simplicial $S^4$ divergence result remains a candidate, not a theorem.
+\item \textbf{Observables.} Construct and analyse BCRD correlation functions or a graviton propagator rather than inferring the leading kinetic operator only from the quadratic effective action.
+\item \textbf{Selected-state asymptotics.} Prove or refute Conjecture-eig. The present theorem avoids dependence on it by using coherent boundary data.
+\item \textbf{Phenomenology.} Identify observables capable of distinguishing the model from established semiclassical gravity and compare them with experiment or observation.
+\end{enumerate}
+
+These are extensions of the present result's scope, not premises silently assumed by Theorem~\ref{thm:five}. In particular, the theorem does not require the unregularised state sum to be universally finite.
+
+\section{Conclusion}
+
+The BCRD quantum-gravity claim is a composition claim. A finite-spin, orientation-resolved four-simplex amplitude retains tetrahedral quantum geometry; its controlled coherent large-spin sector contains one oriented Regge phase; exact full-intertwiner sewing supplies a native positive weak shape-matching Gaussian; on the selected nondegenerate near-flat branch the zero set of that Gaussian is the length-geometric sector; and on the regular centrally subdivided DK lattice the complementary non-length modes remain massive so that the leading two-derivative metric operator is the linearised Einstein--Hilbert graviton operator.
+
+Within the explicit Riemannian, coherent, nondegenerate, large-spin, near-flat, fluctuation-ball, local-branch and quadratic scope of Theorem~\ref{thm:five}, this is the sense in which BCRD is described here as a four-dimensional quantum-gravity model. The wording is intentionally model-level and scope-bound. It is not a claim of a complete Lorentzian, nonperturbative or ultraviolet-finite final theory.
+
+\section*{Reproducibility and provenance}
+
+This revision is based on the fail-closed post-review scientific state beginning at repository commit
+\texttt{4071f4f7df1ed5526e83f323a3bf301683144c22}. The publication bundle accompanying this manuscript records the exact source, compiled PDF, SHA-256 hashes and final repository commit in a manifest. The manuscript does not treat the superseded pre-\texttt{4071f4f} branch state as authority.
+
+The source-level changes in this completion are editorial/provenance repairs: completion of the truncated Lorentzian-status section, explicit limitations, bibliography closure, and correction of the malformed \texttt{remark} theorem declaration. They do not promote the candidate strict-simplicial $S^4$ result or Conjecture-eig, and they add no propagator, Lorentzian or universal-finiteness claim.
+
+The imported DK geometry and gluing checks are bound to frozen evidence.\footnote{Evidence: repository commit \texttt{3cd7f316de9ec3c307bb4e37e829fb3adde0e37d}, directory \texttt{orthogonal-validation/astra-r2-adjudication-2026-09-19/}: \texttt{C4-KERNEL-CHECKS.log} ($6\times6$ rank $6$, all 120 DK tetrahedron classes; $\ker G=\operatorname{im}L$, dim. 30), plus \texttt{C8-DK-BLOCKS.log}, \texttt{C8-SCALE-CHECK.log}, and \texttt{W2-HESSIAN-DK.log} ($d\alpha=2A\,dA$, scale rebuild, and $A_2(\mathrm{W2})=A_2(\mathrm{AR})$ to $\sim10^{-6}$).} These records support the imported statements only.
+
+\section*{AI-assisted research disclosure}
+
+AI systems were used as calculation, coding, adversarial-review and editorial assistants throughout the programme. Claims were repeatedly frozen to exact repository states, attacked by non-author lanes where possible, and revised fail-closed when a proof obligation was not met. These internal agent reviews are not external peer review. Responsibility for the manuscript and its claims remains with the author.
+
+\enlargethispage{3\baselineskip}
+\begin{thebibliography}{99}
+
+\bibitem{BCRDarchive}
+S.~T. Croydon-McRae,
+\emph{Boundary-Complete Relational Dynamics: public research catalogue and evidence archive},
+Te Kete Ako Research (2026),
+\url{https://tekete.co.nz/research/catalogue}.
+
+\bibitem{W2vertex}
+T.~Croydon-McRae,
+\emph{An oriented finite-spin vertex with retained tetrahedral geometry:
+construction, canonical measure, and the gluing obstruction},
+preprint v0.2 (2026), \texttt{doi:10.6084/m9.figshare.33936508}.
+
+\bibitem{W2asym}
+T.~Croydon-McRae,
+\emph{Oriented area-Regge asymptotics of a native four-simplex vertex},
+companion preprint (2026), frozen manuscript source at repository commit
+\texttt{3939dca790a3d7af9afa57b604eb23242bfaf84d}.
+
+\bibitem{ShiraziEngle2014}
+A.~Chaharsough Shirazi and J.~Engle,
+\emph{Purely geometric path integral for spin foams},
+Class.\ Quant.\ Grav.\ \textbf{31} (2014) 075010.
+
+\bibitem{Engle2013}
+J.~Engle,
+\emph{A proposed proper EPRL vertex amplitude},
+Phys.\ Rev.\ D \textbf{87} (2013) 084048.
+
+\bibitem{BarrettEtAl2009}
+J.~W. Barrett, R.~J. Dowdall, W.~J. Fairbairn, H.~Gomes and F.~Hellmann,
+\emph{Asymptotic analysis of the EPRL four-simplex amplitude},
+J.\ Math.\ Phys.\ \textbf{50} (2009) 112504.
+
+\bibitem{BFH2009}
+J.~W. Barrett, W.~J. Fairbairn and F.~Hellmann,
+\emph{Quantum gravity asymptotics from the $SU(2)$ $15j$ symbol},
+Int.\ J.\ Mod.\ Phys.\ A \textbf{25} (2010) 2897.
+
+\bibitem{DittrichKogios2023}
+B.~Dittrich and A.~Kogios,
+\emph{From spin foams to area metric dynamics to gravitons},
+Class.\ Quant.\ Grav.\ \textbf{40} (2023) 095011, arXiv:2203.02409.
+
+\end{thebibliography}
+
+\end{document}

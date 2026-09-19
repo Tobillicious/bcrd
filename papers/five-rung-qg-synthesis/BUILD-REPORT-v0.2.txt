@@ -1,0 +1,35 @@
+BCRD FIVE-RUNG QG SYNTHESIS v0.2 — LOCAL BUILD REPORT (Muse handoff)
+
+Built from worktree at branch head 2a0c07250bbe4240b0f9d35f9d61a7ae9f9714be
+origin/sol/bcrd-five-rung-qg-paper-finalize-2026-09-20
+Built 2026-09-20 Pacific/Auckland, isolated worktree /tmp/bcrd-five-rung-handoff
+
+source_sha256=7e332b654fe33b32085ec75e8e765641f6afe71fb04cb58c0b4d0ba5fa501661
+source_file=publications/papers/bcrd-five-rung-qg-synthesis/main.tex
+pdf_sha256=d5cc8addca84d0be30f455025bf8e1d2cea1c82cdaf071f30fa9bef9b6f38a5f
+pdf_file=publications/papers/bcrd-five-rung-qg-synthesis/main.pdf
+pdf_size_bytes=411032
+pages=10
+page_size=A4 (595.276 x 841.89 pts)
+pdflatex_passes=3 (all exit 0)
+toolchain=pdfTeX 3.141592653-2.6-1.40.29 (TeX Live 2026basic, macOS) + genuine
+  authblk.sty v1.3 generated via docstrip from CTAN preprint-bundle sources
+  (authblk.dtx + authblk.ins, preprint.zip 2013-05-13), supplied via TEXINPUTS.
+  No system TeX tree was modified (no sudo); no stub packages used.
+undefined_references=NONE
+undefined_citations=NONE
+overfull_boxes=NONE
+underfull_boxes=3x cosmetic warnings only (badness at footnote/compressed
+  provenance paragraph lines 314, 336-340; non-blocking, no text loss)
+replacement_glyphs_in_pdftotext=NONE
+text_bboxes_outside_media_box=NONE (10/10 pages checked)
+extracted_text_chars=29979
+content_spot_checks=Five-rung theorem present; CANDIDATE DIVERGENCE present
+
+Supersession note: the freeze manifest previously bound the author-side
+compiled PDF sha c0cf0cf3d270d21293a4725b00bb968e84a78d6fae7bb7ceab06bfa82f6f55b1
+(338604 bytes), which could not be transferred into the repository by the
+authoring connector. This report binds the repository-native bytes built from
+the identical source above. Scientific content is unchanged; only the bound
+PDF bytes differ by toolchain. The author-side hash is retained here for
+traceability and must not be cited as the frozen artifact.

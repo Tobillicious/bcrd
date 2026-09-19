@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "Please cite the frozen Figshare Version 1 record."
+title: "Boundary-Complete Relational Dynamics as a Four-Dimensional Quantum-Gravity Model: A Five-Rung Derivation to the Linearised Einstein Sector in a Coherent Near-Flat Riemannian Regime"
+authors:
+  - family-names: "Croydon-McRae"
+    given-names: "Tobias"
+date-released: 2026-09-20
+version: "1"
+doi: "10.6084/m9.figshare.33943363.v1"
+url: "https://doi.org/10.6084/m9.figshare.33943363.v1"
+repository-code: "https://github.com/Tobillicious/bcrd"
+license: "CC-BY-4.0"
+keywords:
+  - quantum gravity
+  - spin foams
+  - quantum geometry
+  - area Regge calculus
+  - coherent intertwiners
+  - shape matching
+  - linearised general relativity
+  - Einstein-Hilbert action
+  - BCRD
+abstract: >
+  A five-rung synthesis of Boundary-Complete Relational Dynamics connecting an
+  orientation-resolved finite-spin four-simplex amplitude through controlled
+  Regge asymptotics, full-intertwiner gluing and local metric-sector recovery
+  to the leading linearised Einstein-Hilbert dynamics on a near-flat
+  Riemannian Dittrich-Kogios setting. The result is explicitly scope-bound.

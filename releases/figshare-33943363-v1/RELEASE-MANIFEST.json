@@ -1,0 +1,32 @@
+{
+  "schema": "bcrd-public-release-manifest-v1",
+  "paper": "Boundary-Complete Relational Dynamics as a Four-Dimensional Quantum-Gravity Model: A Five-Rung Derivation to the Linearised Einstein Sector in a Coherent Near-Flat Riemannian Regime",
+  "author": "Tobias Croydon-McRae",
+  "published_date": "2026-09-20",
+  "figshare_item": 33943363,
+  "figshare_version": 1,
+  "doi": "10.6084/m9.figshare.33943363",
+  "version_doi": "10.6084/m9.figshare.33943363.v1",
+  "companion_w2_doi": "10.6084/m9.figshare.33936508",
+  "license": "CC-BY-4.0",
+  "scientific_freeze_head": "d0236c8f9ff971dfbb8970712b714891334494e3",
+  "fail_closed_scientific_base": "4071f4f7df1ed5526e83f323a3bf301683144c22",
+  "review_disposition": "ACCEPT_WITH_STATED_SCOPE",
+  "frozen_pdf": {
+    "bytes": 411032,
+    "pages": 10,
+    "page_size": "A4",
+    "sha256": "d5cc8addca84d0be30f455025bf8e1d2cea1c82cdaf071f30fa9bef9b6f38a5f"
+  },
+  "frozen_source": {
+    "sha256": "7e332b654fe33b32085ec75e8e765641f6afe71fb04cb58c0b4d0ba5fa501661"
+  },
+  "mirrored_text_artifacts": [
+    "main.tex",
+    "FREEZE-MANIFEST-v0.2.md",
+    "BUILD-REPORT-v0.2.txt",
+    "HOSTILE-REREVIEW-BRIEF-v0.2.md"
+  ],
+  "scope": "Riemannian/Euclidean; coherent nondegenerate; admissible large-spin; near-flat fluctuation ball; selected local area-to-length branch; regular/centrally-subdivided Dittrich-Kogios setting; quadratic order.",
+  "note": "Figshare is the authority for the deposited publication bundle; this manifest binds the curated public GitHub mirror to the frozen scientific state."
+}
