@@ -1,17 +1,15 @@
 name: One-shot release Figshare 33940978 v2
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - .github/workflows/one-shot-figshare-33940978-v2.yml
+  issues:
+    types: [opened]
 
 permissions:
   contents: write
 
 jobs:
   publish:
+    if: github.event.issue.title == 'TRIGGER: publish Figshare 33940978 v2'
     runs-on: ubuntu-latest
     steps:
       - name: Create frozen tag and GitHub release
@@ -22,22 +20,17 @@ jobs:
           TAG: four-simplex-asymptotics-figshare-v2
         run: |
           set -euo pipefail
-
-          # Fail closed if the target commit is not present.
           gh api "repos/$REPO/git/commits/$TARGET" >/dev/null
 
-          # Create a lightweight tag exactly at the frozen publication commit.
           if ! gh api "repos/$REPO/git/ref/tags/$TAG" >/dev/null 2>&1; then
             gh api --method POST "repos/$REPO/git/refs" \
               -f ref="refs/tags/$TAG" \
               -f sha="$TARGET" >/dev/null
           fi
 
-          # Fail if an existing tag points anywhere else.
           ACTUAL="$(gh api "repos/$REPO/git/ref/tags/$TAG" --jq '.object.sha')"
           test "$ACTUAL" = "$TARGET"
 
-          # Create the GitHub release if absent; never retarget an existing release.
           if ! gh release view "$TAG" --repo "$REPO" >/dev/null 2>&1; then
             cat > /tmp/release-notes.md <<'EOF'
           Frozen public GitHub release corresponding to Figshare Version 2 of:
