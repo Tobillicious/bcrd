@@ -1,0 +1,22 @@
+{
+  "schema": "bcrd-public-release-manifest-v1",
+  "paper": "Oriented Area-Regge Asymptotics of a Native Four-Simplex Vertex",
+  "author": "Tobias Croydon-McRae",
+  "published_date": "2026-09-19",
+  "figshare_item": 33940978,
+  "figshare_version": 2,
+  "doi": "10.6084/m9.figshare.33940978",
+  "version_doi": "10.6084/m9.figshare.33940978.v2",
+  "companion_w2_doi": "10.6084/m9.figshare.33936508",
+  "license": "CC-BY-4.0",
+  "files": {
+    "main.pdf": {"bytes": 416831, "sha256": "19fb7328179a2d5405b90bac3e1e3357a1e1d06f08889bbc2a3624c7f7326105"},
+    "main.tex": {"bytes": 59871, "sha256": "84985b96eb8a94e92258822852ff4e760dcdc8304576b013dd49cd5b5a947d26", "git_blob_sha1": "9c2dd88ffdf84596f9b79c125ab4b39ec734373d"},
+    "REVIEW-COPY.txt": {"bytes": 52230, "sha256": "9c27b1bdec49dff1713bcc2cf0085d945ff84921e44d842269f9b42628ec0981"},
+    "EVIDENCE-BUNDLE.txt": {"bytes": 89168, "sha256": "c517f6dfc45291b5fc551794847a9db4c5e0a396f4f0ee02bd7d5412b45ae6be"},
+    "FIGSHARE-SHA256SUMS.txt": {"bytes": 318, "sha256": "ae7e3e18a3ad7fcbb264e00b3ba66859236a81c8b7083ca18f4c6c364f62e314"}
+  },
+  "download_all_zip_sha256": "1293947e1c28dfffbb5765db0bbcc265a3fe765d619f3704c47792a25489a80d",
+  "source_generation_head": "3939dca790a3d7af9afa57b604eb23242bfaf84d",
+  "scope": "Riemannian leading-large-spin single-vertex result; no continuum/refinement, bulk-spin-sum, Lorentzian, nonlinear-GR, or full-4D-GR claim."
+}

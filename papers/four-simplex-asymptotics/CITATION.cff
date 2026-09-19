@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "Please cite the frozen Figshare Version 2 record."
+title: "Oriented Area-Regge Asymptotics of a Native Four-Simplex Vertex"
+authors:
+  - family-names: "Croydon-McRae"
+    given-names: "Tobias"
+date-released: 2026-09-19
+version: "2"
+doi: "10.6084/m9.figshare.33940978.v2"
+url: "https://doi.org/10.6084/m9.figshare.33940978.v2"
+repository-code: "https://github.com/Tobillicious/bcrd"
+license: "CC-BY-4.0"
+keywords:
+  - spin foams
+  - quantum geometry
+  - area Regge calculus
+  - coherent intertwiners
+  - four-simplex
+  - asymptotics
+  - BCRD
+abstract: >
+  An orientation-resolved Riemannian four-simplex vertex is analysed at
+  leading large spin for coherent nondegenerate boundary data. The published
+  result is a single-vertex statement and does not establish a continuum
+  limit, control the bulk spin sum, derive Lorentzian or nonlinear dynamics,
+  or derive four-dimensional general relativity.

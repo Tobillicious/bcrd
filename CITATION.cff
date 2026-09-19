@@ -1,26 +1,35 @@
 cff-version: 1.2.0
-message: "If you use BCRD materials, please cite the relevant paper or archival release."
+message: "If you use BCRD materials, please cite the relevant paper/version rather than only the repository."
 title: "Boundary-Complete Relational Dynamics (BCRD)"
 authors:
   - family-names: "Croydon-McRae"
     given-names: "Tobias"
 repository-code: "https://github.com/Tobillicious/bcrd"
 url: "https://github.com/Tobillicious/bcrd"
+date-released: 2026-09-19
 identifiers:
   - type: doi
+    value: "10.6084/m9.figshare.33940978.v2"
+    description: "Oriented Area-Regge Asymptotics of a Native Four-Simplex Vertex, Figshare Version 2"
+  - type: doi
+    value: "10.6084/m9.figshare.33936508"
+    description: "Companion W2 vertex record"
+  - type: doi
     value: "10.6084/m9.figshare.33716677"
-    description: "Current public archival BCRD release on Figshare"
+    description: "First public archival BCRD priority release"
 keywords:
   - quantum dynamics
-  - coarse-graining
-  - quantum channels
-  - relational dynamics
-  - quantum information
+  - quantum geometry
+  - spin foams
+  - area Regge calculus
+  - coherent intertwiners
   - Racah recoupling
   - BCRD
 abstract: >
-  Boundary-Complete Relational Dynamics (BCRD) is a finite quantum-dynamics
-  research programme studying when relationally accessible records inside
-  closed quantum systems can support effective dynamics of their own. This
-  public repository contains publication manuscripts, reviewed results,
-  reproducibility artifacts, and frozen provenance.
+  Boundary-Complete Relational Dynamics (BCRD) is a research programme studying
+  relational quantum dynamics, recoupling, and candidate quantum-geometric
+  constructions. This public repository contains curated publication snapshots,
+  reproducibility artifacts, release metadata, and frozen provenance. The
+  September 2026 four-simplex paper is explicitly scoped to a Riemannian,
+  leading-large-spin, single-vertex result and does not by itself derive a
+  continuum limit or four-dimensional general relativity.
