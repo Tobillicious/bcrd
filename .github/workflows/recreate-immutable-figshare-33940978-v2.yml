@@ -1,0 +1,57 @@
+name: Recreate immutable Figshare 33940978 v2 release
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/recreate-immutable-figshare-33940978-v2.yml
+
+permissions:
+  contents: write
+
+jobs:
+  recreate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recreate release against frozen commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          TARGET: 6e5bf4fb1d036b651343c0b14251797f98809bc8
+          TAG: four-simplex-asymptotics-figshare-v2
+        run: |
+          set -euo pipefail
+
+          gh api "repos/$REPO/git/commits/$TARGET" >/dev/null
+
+          if gh release view "$TAG" --repo "$REPO" >/dev/null 2>&1; then
+            gh release delete "$TAG" --repo "$REPO" --yes --cleanup-tag
+          elif gh api "repos/$REPO/git/ref/tags/$TAG" >/dev/null 2>&1; then
+            gh api --method DELETE "repos/$REPO/git/refs/tags/$TAG"
+          fi
+
+          gh api --method POST "repos/$REPO/git/refs" \
+            -f ref="refs/tags/$TAG" \
+            -f sha="$TARGET" >/dev/null
+
+          cat > /tmp/release-notes.md <<'EOF'
+          Frozen public GitHub release corresponding to Figshare Version 2 of:
+
+          **Oriented Area-Regge Asymptotics of a Native Four-Simplex Vertex**
+
+          - Figshare item DOI: https://doi.org/10.6084/m9.figshare.33940978
+          - Version-specific DOI: https://doi.org/10.6084/m9.figshare.33940978.v2
+          - Companion W2 vertex: https://doi.org/10.6084/m9.figshare.33936508
+          - Frozen Git commit: 6e5bf4fb1d036b651343c0b14251797f98809bc8
+
+          Scope: Riemannian, leading-large-spin, single-vertex result for coherent nondegenerate boundary data. No continuum/refinement limit, bulk-spin-sum control, Lorentzian or nonlinear dynamics, or derivation of four-dimensional general relativity is claimed.
+
+          The exact five-file Figshare Version 2 bundle is mirrored byte-for-byte under papers/four-simplex-asymptotics/figshare-v2/, with hashes and provenance frozen in the repository. No private development tree is imported.
+          EOF
+
+          gh release create "$TAG" \
+            --repo "$REPO" \
+            --target "$TARGET" \
+            --title "Oriented Area-Regge Asymptotics — Figshare v2" \
+            --notes-file /tmp/release-notes.md
