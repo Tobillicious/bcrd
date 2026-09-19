@@ -1,0 +1,154 @@
+name: Vendor exact Figshare 33940978 v2 bundle
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/one-shot-vendor-figshare-33940978-v2.yml
+
+permissions:
+  contents: write
+
+jobs:
+  vendor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download and verify exact Figshare Version 2 payloads
+        env:
+          ARTICLE: "33940978"
+          VERSION: "2"
+        run: |
+          set -euo pipefail
+          tmp="$(mktemp -d)"
+          mkdir -p "$tmp/files"
+          curl -fsSL "https://api.figshare.com/v2/articles/$ARTICLE/versions/$VERSION" > "$tmp/meta.json"
+
+          python3 - "$tmp/meta.json" "$tmp/files" <<'PY'
+          import json, pathlib, sys, urllib.request
+          meta_path, outdir = sys.argv[1], pathlib.Path(sys.argv[2])
+          meta = json.load(open(meta_path, encoding="utf-8"))
+          expected = {
+              "main.pdf",
+              "main.tex",
+              "REVIEW-COPY.txt",
+              "EVIDENCE-BUNDLE.txt",
+              "FIGSHARE-SHA256SUMS.txt",
+          }
+          files = {f["name"]: f["download_url"] for f in meta.get("files", [])}
+          if set(files) != expected:
+              raise SystemExit(f"Figshare file set mismatch: {sorted(files)}")
+          for name in sorted(expected):
+              urllib.request.urlretrieve(files[name], outdir / name)
+          PY
+
+          cd "$tmp/files"
+          test "$(stat -c%s main.pdf)" = "416831"
+          test "$(stat -c%s main.tex)" = "59871"
+          test "$(stat -c%s REVIEW-COPY.txt)" = "52230"
+          test "$(stat -c%s EVIDENCE-BUNDLE.txt)" = "89168"
+          test "$(stat -c%s FIGSHARE-SHA256SUMS.txt)" = "318"
+
+          printf '%s  %s\n' \
+            19fb7328179a2d5405b90bac3e1e3357a1e1d06f08889bbc2a3624c7f7326105 main.pdf \
+            84985b96eb8a94e92258822852ff4e760dcdc8304576b013dd49cd5b5a947d26 main.tex \
+            9c27b1bdec49dff1713bcc2cf0085d945ff84921e44d842269f9b42628ec0981 REVIEW-COPY.txt \
+            c517f6dfc45291b5fc551794847a9db4c5e0a396f4f0ee02bd7d5412b45ae6be EVIDENCE-BUNDLE.txt \
+            ae7e3e18a3ad7fcbb264e00b3ba66859236a81c8b7083ca18f4c6c364f62e314 FIGSHARE-SHA256SUMS.txt \
+            | sha256sum -c -
+
+          # The downloaded manifest must itself validate the four payloads it names.
+          sha256sum -c FIGSHARE-SHA256SUMS.txt
+
+          cd "$GITHUB_WORKSPACE"
+          dest="papers/four-simplex-asymptotics/figshare-v2"
+          rm -rf "$dest"
+          mkdir -p "$dest"
+          cp "$tmp/files/"* "$dest/"
+
+          # Confirm the curated root source is exactly the Figshare source.
+          cmp -s papers/four-simplex-asymptotics/main.tex "$dest/main.tex"
+
+      - name: Commit only the verified publication bundle and remove this workflow
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/one-shot-vendor-figshare-33940978-v2.yml
+          rmdir .github/workflows 2>/dev/null || true
+          rmdir .github 2>/dev/null || true
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+
+          # Fail closed: the only new release payload paths are the five frozen files;
+          # the temporary workflow must not survive in the release tree.
+          python3 - <<'PY'
+          import subprocess
+          names = subprocess.check_output(
+              ["git","diff","--cached","--name-only"], text=True
+          ).splitlines()
+          expected = {
+              "papers/four-simplex-asymptotics/figshare-v2/main.pdf",
+              "papers/four-simplex-asymptotics/figshare-v2/main.tex",
+              "papers/four-simplex-asymptotics/figshare-v2/REVIEW-COPY.txt",
+              "papers/four-simplex-asymptotics/figshare-v2/EVIDENCE-BUNDLE.txt",
+              "papers/four-simplex-asymptotics/figshare-v2/FIGSHARE-SHA256SUMS.txt",
+              ".github/workflows/one-shot-vendor-figshare-33940978-v2.yml",
+          }
+          if set(names) != expected:
+              raise SystemExit(f"Unexpected staged paths: {names}")
+          PY
+
+          git commit -m "publication: vendor exact Figshare 33940978 v2 bundle"
+          git push origin HEAD:main
+
+      - name: Retarget release branch and recreate frozen tag/release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          TAG: four-simplex-asymptotics-figshare-v2
+        run: |
+          set -euo pipefail
+          TARGET="$(git rev-parse HEAD)"
+
+          # Keep the named release branch on the exact vendored release commit.
+          git push origin "HEAD:refs/heads/release/figshare-33940978-v2"
+
+          # The earlier release was deliberately mutable while the exact Figshare
+          # payloads were being mirrored. Replace it once, then verify the new tag.
+          if gh release view "$TAG" --repo "$REPO" >/dev/null 2>&1; then
+            gh release delete "$TAG" --repo "$REPO" --yes --cleanup-tag
+          elif gh api "repos/$REPO/git/ref/tags/$TAG" >/dev/null 2>&1; then
+            gh api --method DELETE "repos/$REPO/git/refs/tags/$TAG"
+          fi
+
+          gh api --method POST "repos/$REPO/git/refs" \
+            -f ref="refs/tags/$TAG" \
+            -f sha="$TARGET" >/dev/null
+
+          cat > /tmp/release-notes.md <<EOF
+          Frozen public GitHub release corresponding to Figshare Version 2 of:
+
+          **Oriented Area-Regge Asymptotics of a Native Four-Simplex Vertex**
+
+          - Figshare item DOI: https://doi.org/10.6084/m9.figshare.33940978
+          - Version-specific DOI: https://doi.org/10.6084/m9.figshare.33940978.v2
+          - Companion W2 vertex: https://doi.org/10.6084/m9.figshare.33936508
+          - Frozen Git commit: $TARGET
+
+          Scope: Riemannian, leading-large-spin, single-vertex result for coherent nondegenerate boundary data. No continuum/refinement limit, bulk-spin-sum control, Lorentzian or nonlinear dynamics, or derivation of four-dimensional general relativity is claimed.
+
+          The exact five-file Figshare Version 2 bundle is mirrored byte-for-byte under `papers/four-simplex-asymptotics/figshare-v2/`, with hashes and provenance frozen in the repository. No private development tree is imported.
+          EOF
+
+          gh release create "$TAG" \
+            --repo "$REPO" \
+            --target "$TARGET" \
+            --title "Oriented Area-Regge Asymptotics — Figshare v2" \
+            --notes-file /tmp/release-notes.md
+
+          test "$(gh api "repos/$REPO/git/ref/tags/$TAG" --jq '.object.sha')" = "$TARGET"
